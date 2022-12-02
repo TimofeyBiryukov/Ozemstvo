@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzemstvoConsole", "OzemstvoConsole\OzemstvoConsole.csproj", "{75546D5E-B5C9-453A-845E-73500B89022A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzemstvoConsole", "OzemstvoConsole\OzemstvoConsole.csproj", "{75546D5E-B5C9-453A-845E-73500B89022A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OzemstvoSetup", "OzemstvoSetup\OzemstvoSetup.vdproj", "{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{75546D5E-B5C9-453A-845E-73500B89022A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75546D5E-B5C9-453A-845E-73500B89022A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75546D5E-B5C9-453A-845E-73500B89022A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{75546D5E-B5C9-453A-845E-73500B89022A}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{75546D5E-B5C9-453A-845E-73500B89022A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75546D5E-B5C9-453A-845E-73500B89022A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}.Debug|Any CPU.ActiveCfg = Release
+		{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

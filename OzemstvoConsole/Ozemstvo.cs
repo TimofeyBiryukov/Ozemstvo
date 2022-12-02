@@ -30,14 +30,15 @@ public class Ozemstvo
     var firefox = _browsers.Find(x => x.Name.Contains("Firefox"));
     if (firefox is not null)
     {
-      _rules.Add(new Rule("Youtube", firefox, Rule.RuleTypes.Host, "youtube.com"));
-      _rules.Add(new Rule("Twitch", firefox, Rule.RuleTypes.Host, "twitch.tv"));
+      _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtube.com"));
+      _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtu.be"));
+      _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "twitch.tv"));
     }
 
     var edge = _browsers.Find(x => x.Name.Contains("Edge"));
     if (edge is not null)
     {
-      _rules.Add(new Rule("microsoft", edge, Rule.RuleTypes.Host, "microsoft.com"));
+      _rules.Add(new Rule(edge, Rule.RuleTypes.Host, "microsoft.com"));
     }
   }
 
@@ -53,6 +54,6 @@ public class Ozemstvo
     }
 
     // open default with default browser
-    Process.Start(new ProcessStartInfo(uri.ToString()) { UseShellExecute = true });
+    //Process.Start(new ProcessStartInfo(uri.ToString()) { UseShellExecute = true });
   }
 }
