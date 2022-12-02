@@ -55,5 +55,4 @@ public class Ozemstvo
     // open default with default browser
     Process.Start(new ProcessStartInfo(uri.ToString()) { UseShellExecute = true });
   }
-
 }
