@@ -33,6 +33,12 @@ public class Ozemstvo
       _rules.Add(new Rule("Youtube", firefox, Rule.RuleTypes.Host, "youtube.com"));
       _rules.Add(new Rule("Twitch", firefox, Rule.RuleTypes.Host, "twitch.tv"));
     }
+
+    var edge = _browsers.Find(x => x.Name.Contains("Edge"));
+    if (edge is not null)
+    {
+      _rules.Add(new Rule("microsoft", edge, Rule.RuleTypes.Host, "microsoft.com"));
+    }
   }
 
   public void Run(Uri uri)
