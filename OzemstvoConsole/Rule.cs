@@ -28,8 +28,8 @@ public class Rule
 
   public enum RuleTypes
   {
-    Host,
-    Regex
+    Host = 1,
+    Regex = 2
   }
 
   public bool Match(Uri uri)
