@@ -5,7 +5,7 @@ namespace OzemstvoConsole;
 public class Rule
 {
   public string Name { get; set; }
-  public string Browser { get; set; }
+  public Browser Browser { get; set; }
   public string? Host { get; set; }
   public Regex? Regex { get; set; }
   public RuleTypes Type { get; set; } = RuleTypes.Host;
@@ -16,7 +16,7 @@ public class Rule
     Regex = 2
   }
 
-  public Rule(string name, string browser, RuleTypes type, string data)
+  public Rule(string name, Browser browser, RuleTypes type, string data)
   {
     Name = name;
     Browser = browser;
