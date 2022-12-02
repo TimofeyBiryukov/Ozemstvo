@@ -31,6 +31,7 @@ public class Ozemstvo
     if (firefox is not null)
     {
       _rules.Add(new Rule("Youtube", firefox.Name, "youtube.com"));
+      _rules.Add(new Rule("Twitch", firefox.Name, "twitch.tv"));
     }
   }
 
