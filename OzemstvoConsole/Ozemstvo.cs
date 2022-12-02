@@ -27,6 +27,21 @@ public class Ozemstvo
       }
     }
 
+    if (_browsers.Count < 1)
+    {
+      throw new Exception("No browsers found");
+    }
+    _browsers[0].Default = true;
+
+    // -- user config --
+
+    var chromeIndex = _browsers.FindIndex(b => b.Name == "Google Chrome");
+    if (chromeIndex > -1)
+    {
+      _browsers[0].Default = false;
+      _browsers[chromeIndex].Default = true;
+    }
+
     var firefox = _browsers.Find(x => x.Name.Contains("Firefox"));
     if (firefox is not null)
     {
@@ -54,6 +69,13 @@ public class Ozemstvo
     }
 
     // open default with default browser
-    //Process.Start(new ProcessStartInfo(uri.ToString()) { UseShellExecute = true });
+    var defaultBrowser = _browsers.Find(x => x.Default);
+    if (defaultBrowser is not null)
+    {
+      Process.Start(defaultBrowser.Path, uri.ToString());
+      return;
+    }
+
+    throw new Exception("No default browser found");
   }
 }
