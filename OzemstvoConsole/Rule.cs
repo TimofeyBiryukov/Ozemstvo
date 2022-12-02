@@ -4,6 +4,18 @@ namespace OzemstvoConsole;
 
 public class Rule
 {
+  public string Name { get; set; }
+  public string Browser { get; set; }
+  public string? Host { get; set; }
+  public Regex? Regex { get; set; }
+  public RuleTypes Type { get; set; } = RuleTypes.Host;
+
+  public enum RuleTypes
+  {
+    Host = 1,
+    Regex = 2
+  }
+
   public Rule(string name, string browser, RuleTypes type, string data)
   {
     Name = name;
@@ -18,18 +30,6 @@ public class Rule
     {
       Regex = new Regex(data);
     }
-  }
-
-  public string Name { get; set; }
-  public string Browser { get; set; }
-  public string? Host { get; set; }
-  public Regex? Regex { get; set; }
-  public RuleTypes Type { get; set; } = RuleTypes.Host;
-
-  public enum RuleTypes
-  {
-    Host = 1,
-    Regex = 2
   }
 
   public bool Match(Uri uri)
