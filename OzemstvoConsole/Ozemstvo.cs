@@ -30,8 +30,8 @@ public class Ozemstvo
     var firefox = _browsers.Find(x => x.Name.Contains("Firefox"));
     if (firefox is not null)
     {
-      _rules.Add(new Rule("Youtube", firefox.Name, "youtube.com"));
-      _rules.Add(new Rule("Twitch", firefox.Name, "twitch.tv"));
+      _rules.Add(new Rule("Youtube", firefox.Name, Rule.RuleTypes.Host, "youtube.com"));
+      _rules.Add(new Rule("Twitch", firefox.Name, Rule.RuleTypes.Host, "twitch.tv"));
     }
   }
 
@@ -39,12 +39,14 @@ public class Ozemstvo
   {
     foreach (var rule in _rules)
     {
-      if (rule.Host == uri.Host)
+      if (rule.Match(uri))
       {
         var browser = _browsers.Find(x => x.Name == rule.Browser);
-        if (browser is null) continue;
-        Process.Start(browser.Path, uri.ToString());
-        return;
+        if (browser is not null)
+        {
+          Process.Start(browser.Path, uri.ToString());
+          return;
+        }
       }
     }
 

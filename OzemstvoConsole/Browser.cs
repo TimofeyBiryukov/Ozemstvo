@@ -1,4 +1,6 @@
-﻿namespace OzemstvoConsole;
+﻿using System.Diagnostics;
+
+namespace OzemstvoConsole;
 
 public class Browser
 {
