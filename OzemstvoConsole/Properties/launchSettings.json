@@ -2,7 +2,7 @@
   "profiles": {
     "OzemstvoConsole": {
       "commandName": "Project",
-      "commandLineArgs": "https://google.com"
+      "commandLineArgs": "https://store.steampowered.com/app/1544020/The_Callisto_Protocol/"
     }
   }
 }

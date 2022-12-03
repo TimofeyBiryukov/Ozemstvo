@@ -27,6 +27,9 @@ public class Ozemstvo
       }
     }
 
+    // TODO: get dynamically
+    _browsers.Add(new Browser("Steam", @"E:\Program Files (x86)\Steam\steam.exe"));
+
     if (_browsers.Count < 1)
     {
       throw new Exception("No browsers found");
@@ -62,6 +65,12 @@ public class Ozemstvo
     {
       _rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
     }
+
+    var steam = _browsers.Find(x => x.Name.Contains("Steam"));
+    if (steam is not null)
+    {
+      _rules.Add(new Rule(steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
+    }
   }
 
   public void Run(Uri uri)
@@ -70,7 +79,14 @@ public class Ozemstvo
     {
       if (rule.Match(uri))
       {
-        Start(rule.Browser, uri);
+        if (rule.Template is not null)
+        {
+          Start(rule.Browser, rule.Template.Replace("{{url}}", uri.ToString()));
+        }
+        else
+        {
+          Start(rule.Browser, uri.ToString());
+        }
         return;
       }
     }
@@ -79,16 +95,19 @@ public class Ozemstvo
     var defaultBrowser = _browsers.Find(x => x.Default);
     if (defaultBrowser is not null)
     {
-      Start(defaultBrowser, uri);
+      Start(defaultBrowser, uri.ToString());
       return;
     }
 
     throw new Exception("No default browser found");
   }
 
-  private static void Start(Browser browser, Uri uri)
+  private static void Start(Browser browser, string target)
   {
-    Process.Start(browser.Path, uri.ToString());
+    Process.Start(browser.Path, target);
+
+    // TODO: get steam path
+    //Process.Start(@"E:\Program Files (x86)\Steam\steam.exe", "steam://openurl/https://store.steampowered.com/app/1544020/The_Callisto_Protocol/");
 
     // Process.Start(browser.Path, $"--profile-email=\"timofeybiryukov@tagspace.com\" @{uri}");
 
