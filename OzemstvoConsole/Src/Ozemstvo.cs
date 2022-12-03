@@ -27,7 +27,7 @@ public class Ozemstvo
       }
     }
 
-    // TODO: get dynamically
+    // TODO: get steam path dynamically
     _browsers.Add(new Browser("Steam", @"E:\Program Files (x86)\Steam\steam.exe"));
 
     if (_browsers.Count < 1)
@@ -64,6 +64,7 @@ public class Ozemstvo
     if (chrome is not null)
     {
       _rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
+      _rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
     }
 
     var steam = _browsers.Find(x => x.Name.Contains("Steam"));
@@ -105,20 +106,5 @@ public class Ozemstvo
   private static void Start(Browser browser, string target)
   {
     Process.Start(browser.Path, target);
-
-    // TODO: get steam path
-    //Process.Start(@"E:\Program Files (x86)\Steam\steam.exe", "steam://openurl/https://store.steampowered.com/app/1544020/The_Callisto_Protocol/");
-
-    // Process.Start(browser.Path, $"--profile-email=\"timofeybiryukov@tagspace.com\" @{uri}");
-
-    //Process.Start(new ProcessStartInfo(defaultBrowser.Path)
-    //{
-    //  Arguments = uri.ToString(),
-    //  WindowStyle = ProcessWindowStyle.Hidden,
-    //  CreateNoWindow = true,
-    //  RedirectStandardInput = true,
-    //  RedirectStandardError = true,
-    //  UseShellExecute = false,
-    //});
   }
 }

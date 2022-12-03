@@ -8,7 +8,8 @@ public class Rule
   public Browser Browser { get; set; }
   public string? Host { get; set; }
   public Regex? Regex { get; set; }
-  public string? Template { get; set; } = null;
+  public string Template { get; set; }
+
   public RuleTypes Type { get; set; } = RuleTypes.Host;
   public enum RuleTypes
   {
@@ -16,11 +17,18 @@ public class Rule
     Regex = 2
   }
 
-  public Rule(Browser browser, RuleTypes type, string data, [Optional] string template)
+  public Rule(Browser browser, RuleTypes type, string data, string template = "{{url}}")
   {
     Browser = browser;
     Type = type;
+
+    if (!template.Contains("{{url}}"))
+    {
+      throw new ArgumentException("Template must contain {{url}}", nameof(template));
+    }
+
     Template = template;
+
 
     if (Type == RuleTypes.Host)
     {
