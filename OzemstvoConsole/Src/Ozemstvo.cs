@@ -27,8 +27,15 @@ public class Ozemstvo
       }
     }
 
-    // TODO: get steam path dynamically
-    _browsers.Add(new Browser("Steam", @"E:\Program Files (x86)\Steam\steam.exe"));
+    RegistryKey? steamServiceKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Valve\SteamService");
+    if (steamServiceKey is not null)
+    {
+      var path = steamServiceKey.GetValue("installpath_default")!.ToString();
+      if (path is not null)
+      {
+        _browsers.Add(new Browser("Steam", $@"{path}\steam.exe"));
+      }
+    }
 
     if (_browsers.Count < 1)
     {
