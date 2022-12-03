@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OzemstvoConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "https://google.com"
+    }
+  }
+}

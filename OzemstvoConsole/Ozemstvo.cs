@@ -89,6 +89,9 @@ public class Ozemstvo
   private static void Start(Browser browser, Uri uri)
   {
     Process.Start(browser.Path, uri.ToString());
+
+    // Process.Start(browser.Path, $"--profile-email=\"timofeybiryukov@tagspace.com\" @{uri}");
+
     //Process.Start(new ProcessStartInfo(defaultBrowser.Path)
     //{
     //  Arguments = uri.ToString(),
