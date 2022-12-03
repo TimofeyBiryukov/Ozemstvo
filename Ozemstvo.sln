@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzemstvoConsole", "Ozemstvo
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OzemstvoSetup", "OzemstvoSetup\OzemstvoSetup.vdproj", "{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzemstvoWindowsForm", "OzemstvoWindowsForm\OzemstvoWindowsForm.csproj", "{0F2A255F-43F8-4038-8600-B50F2954A54F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{75546D5E-B5C9-453A-845E-73500B89022A} = {75546D5E-B5C9-453A-845E-73500B89022A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +24,10 @@ Global
 		{75546D5E-B5C9-453A-845E-73500B89022A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}.Debug|Any CPU.ActiveCfg = Release
 		{8584CEF3-1155-4E2C-8CC9-101B0F785DA6}.Release|Any CPU.ActiveCfg = Release
+		{0F2A255F-43F8-4038-8600-B50F2954A54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2A255F-43F8-4038-8600-B50F2954A54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2A255F-43F8-4038-8600-B50F2954A54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2A255F-43F8-4038-8600-B50F2954A54F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
