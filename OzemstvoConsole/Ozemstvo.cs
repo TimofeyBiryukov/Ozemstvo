@@ -63,7 +63,7 @@ public class Ozemstvo
     {
       if (rule.Match(uri))
       {
-        Process.Start(rule.Browser.Path, uri.ToString());
+        Start(rule.Browser, uri);
         return;
       }
     }
@@ -72,10 +72,24 @@ public class Ozemstvo
     var defaultBrowser = _browsers.Find(x => x.Default);
     if (defaultBrowser is not null)
     {
-      Process.Start(defaultBrowser.Path, uri.ToString());
+      Start(defaultBrowser, uri);
       return;
     }
 
     throw new Exception("No default browser found");
+  }
+
+  private void Start(Browser browser, Uri uri)
+  {
+    Process.Start(browser.Path, uri.ToString());
+    //Process.Start(new ProcessStartInfo(defaultBrowser.Path)
+    //{
+    //  Arguments = uri.ToString(),
+    //  WindowStyle = ProcessWindowStyle.Hidden,
+    //  CreateNoWindow = true,
+    //  RedirectStandardInput = true,
+    //  RedirectStandardError = true,
+    //  UseShellExecute = false,
+    //});
   }
 }
