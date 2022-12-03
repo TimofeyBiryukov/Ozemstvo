@@ -53,4 +53,9 @@ public class Rule
 
     return false;
   }
+
+  public string GetArgument(Uri uri)
+  {
+    return Template.Replace("{{url}}", uri.ToString());
+  }
 }

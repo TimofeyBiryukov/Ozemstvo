@@ -87,14 +87,7 @@ public class Ozemstvo
     {
       if (rule.Match(uri))
       {
-        if (rule.Template is not null)
-        {
-          Start(rule.Browser, rule.Template.Replace("{{url}}", uri.ToString()));
-        }
-        else
-        {
-          Start(rule.Browser, uri.ToString());
-        }
+        Start(rule.Browser, rule.GetArgument(uri));
         return;
       }
     }
