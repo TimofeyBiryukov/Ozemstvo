@@ -55,6 +55,12 @@ public class Ozemstvo
     {
       _rules.Add(new Rule(edge, Rule.RuleTypes.Host, "microsoft.com"));
     }
+
+    var chrome = _browsers.Find(x => x.Name.Contains("Google Chrome"));
+    if (chrome is not null)
+    {
+      _rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
+    }
   }
 
   public void Run(Uri uri)
