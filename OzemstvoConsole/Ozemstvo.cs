@@ -48,6 +48,7 @@ public class Ozemstvo
       _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtube.com"));
       _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtu.be"));
       _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "twitch.tv"));
+      _rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "dzen.ru"));
     }
 
     var edge = _browsers.Find(x => x.Name.Contains("Edge"));
