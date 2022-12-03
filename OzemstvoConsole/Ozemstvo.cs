@@ -79,7 +79,7 @@ public class Ozemstvo
     throw new Exception("No default browser found");
   }
 
-  private void Start(Browser browser, Uri uri)
+  private static void Start(Browser browser, Uri uri)
   {
     Process.Start(browser.Path, uri.ToString());
     //Process.Start(new ProcessStartInfo(defaultBrowser.Path)
