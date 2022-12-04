@@ -10,9 +10,9 @@ public class Ozemstvo
 
   public void Init()
   {
+    // Browsers
     RegistryKey? browserKeys = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Clients\StartMenuInternet");
     browserKeys ??= Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Clients\StartMenuInternet");
-
     if (browserKeys is not null)
     {
       foreach (var name in browserKeys.GetSubKeyNames())
@@ -27,6 +27,7 @@ public class Ozemstvo
       }
     }
 
+    // Steam
     RegistryKey? steamServiceKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Valve\SteamService");
     if (steamServiceKey is not null)
     {
