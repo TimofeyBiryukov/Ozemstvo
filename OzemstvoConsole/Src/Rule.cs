@@ -30,7 +30,6 @@ public class Rule
 
     Template = template;
 
-
     if (Type == RuleTypes.Host)
     {
       Host = data;
