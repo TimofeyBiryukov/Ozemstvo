@@ -9,6 +9,7 @@ public class Rule
   public string? Host { get; set; }
   public Regex? Regex { get; set; }
   public string Template { get; set; }
+  public const string TemplateHook = "{{url}}";
 
   public RuleTypes Type { get; set; } = RuleTypes.Host;
   public enum RuleTypes
@@ -17,14 +18,14 @@ public class Rule
     Regex = 2
   }
 
-  public Rule(Browser browser, RuleTypes type, string data, string template = "{{url}}")
+  public Rule(Browser browser, RuleTypes type, string data, string template = TemplateHook)
   {
     Browser = browser;
     Type = type;
 
-    if (!template.Contains("{{url}}"))
+    if (!template.Contains(TemplateHook))
     {
-      throw new ArgumentException("Template must contain {{url}}", nameof(template));
+      throw new ArgumentException($"Template must contain {TemplateHook}", nameof(template));
     }
 
     Template = template;
@@ -54,8 +55,8 @@ public class Rule
     return false;
   }
 
-  public string GetArgument(Uri uri)
+  public string GetArguments(Uri uri)
   {
-    return Template.Replace("{{url}}", uri.ToString());
+    return Template.Replace(TemplateHook, uri.ToString());
   }
 }

@@ -87,7 +87,7 @@ public class Ozemstvo
     {
       if (rule.Match(uri))
       {
-        Start(rule.Browser, rule.GetArgument(uri));
+        Start(rule.Browser, rule.GetArguments(uri));
         return;
       }
     }
@@ -103,8 +103,8 @@ public class Ozemstvo
     throw new Exception("No default browser found");
   }
 
-  private static void Start(Browser browser, string target)
+  private static void Start(Browser browser, string argumets)
   {
-    Process.Start(browser.Path, target);
+    Process.Start(browser.Path, argumets);
   }
 }
