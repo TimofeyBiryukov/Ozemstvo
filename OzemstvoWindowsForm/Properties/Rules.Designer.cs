@@ -25,25 +25,13 @@ namespace OzemstvoWindowsForm.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Foo: \"Bar\"}")]
-        public string Rule1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"BrowserName\": \"Edge\", \"Type\": \"Host\", \"Data\": \"bing.com\"}")]
+        public string Bing {
             get {
-                return ((string)(this["Rule1"]));
+                return ((string)(this["Bing"]));
             }
             set {
-                this["Rule1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{Biz: \"Baz}")]
-        public string Rule2 {
-            get {
-                return ((string)(this["Rule2"]));
-            }
-            set {
-                this["Rule2"] = value;
+                this["Bing"] = value;
             }
         }
     }

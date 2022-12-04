@@ -1,17 +1,52 @@
 using System.Configuration;
+using System.Text.Json;
+using OzemstvoConsole;
 
 namespace OzemstvoWindowsForm
 {
     public partial class Form1 : Form
     {
-        public OzemstvoConsole.Ozemstvo ozemstvo = new();
+        public Ozemstvo ozemstvo = new();
+
+        private class RuleProperties
+        {
+            public string BrowserName { get; set; }
+            public string Type { get; set; }
+            public string Data { get; set; }
+        }
 
         public Form1()
         {
             InitializeComponent();
             ozemstvo.Init();
-            // var foo = Properties.Settings.Default.Foo;
-            // Console.WriteLine(foo);
+
+            //foreach (SettingsProperty settingsProperty in Properties.Rules.Default.Properties)
+            //{
+            //    var ruleProperties = Properties.Rules.Default[settingsProperty.ToString()].ToString();
+            //    if (ruleProperties is null) continue;
+
+            //    var ruleData = JsonSerializer.Deserialize<RuleProperties>(ruleProperties);
+            //    if (ruleData is null) continue;
+
+            //    var app = ozemstvo.Browsers.Find(x => x.Name.Contains(ruleData.BrowserName));
+            //    if (app is not null)
+            //    {
+            //        Rule.RuleTypes type = Enum.Parse<Rule.RuleTypes>(ruleData.Type);
+            //        ozemstvo.Rules.Add(new Rule(app, type, ruleData.Data));
+            //    }
+            //}
+
+            // TODO: itirate over all rules
+            var ruleData = JsonSerializer.Deserialize<RuleProperties>(Properties.Rules.Default.Bing);
+            if (ruleData is not null)
+            {
+                var app = ozemstvo.Browsers.Find(x => x.Name.Contains(ruleData.BrowserName));
+                if (app is not null)
+                {
+                    Rule.RuleTypes type = Enum.Parse<Rule.RuleTypes>(ruleData.Type);
+                    ozemstvo.Rules.Add(new Rule(app, type, ruleData.Data));
+                }
+            }
 
         }
 
