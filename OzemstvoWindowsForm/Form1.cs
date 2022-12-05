@@ -8,7 +8,7 @@ namespace OzemstvoWindowsForm
     {
         public Ozemstvo ozemstvo = new();
 
-        private class RuleProperties
+        private class RuleSetting
         {
             public string BrowserName { get; set; }
             public string Type { get; set; }
@@ -37,7 +37,7 @@ namespace OzemstvoWindowsForm
             //}
 
             // TODO: itirate over all rules
-            var ruleData = JsonSerializer.Deserialize<RuleProperties>(Properties.Rules.Default.Bing);
+            var ruleData = JsonSerializer.Deserialize<RuleSetting>(Properties.Rules.Default.Bing);
             if (ruleData is not null)
             {
                 var app = ozemstvo.Browsers.Find(x => x.Name.Contains(ruleData.BrowserName));
