@@ -5,5 +5,8 @@
     <Setting Name="Bing" Type="System.String" Scope="User">
       <Value Profile="(Default)">{"BrowserName": "Edge", "Type": "Host", "Data": "bing.com"}</Value>
     </Setting>
+    <Setting Name="Reddit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"BrowserName": "Firefox", "Type": "Host", "Data": "reddit.com"}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

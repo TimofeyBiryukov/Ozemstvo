@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Rules" Type="System.String" Scope="User">
-      <Value Profile="(Default)">[]</Value>
+      <Value Profile="(Default)">[{"BrowserName": "Edge", "Type": "Host", "Data": "bing.com"}, {"BrowserName": "Firefox", "Type": "Host", "Data": "reddit.com"}]</Value>
+    </Setting>
+    <Setting Name="DefaultBrowserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Google Chrome</Value>
     </Setting>
   </Settings>
 </SettingsFile>

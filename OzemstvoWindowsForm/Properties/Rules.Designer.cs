@@ -34,5 +34,17 @@ namespace OzemstvoWindowsForm.Properties {
                 this["Bing"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"BrowserName\": \"Firefox\", \"Type\": \"Host\", \"Data\": \"reddit.com\"}")]
+        public string Reddit {
+            get {
+                return ((string)(this["Reddit"]));
+            }
+            set {
+                this["Reddit"] = value;
+            }
+        }
     }
 }

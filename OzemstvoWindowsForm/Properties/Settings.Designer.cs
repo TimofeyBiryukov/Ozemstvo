@@ -25,13 +25,26 @@ namespace OzemstvoWindowsForm.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("[]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("[{\"BrowserName\": \"Edge\", \"Type\": \"Host\", \"Data\": \"bing.com\"}, {\"BrowserName\": \"Fi" +
+            "refox\", \"Type\": \"Host\", \"Data\": \"reddit.com\"}]")]
         public string Rules {
             get {
                 return ((string)(this["Rules"]));
             }
             set {
                 this["Rules"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Google Chrome")]
+        public string DefaultBrowserName {
+            get {
+                return ((string)(this["DefaultBrowserName"]));
+            }
+            set {
+                this["DefaultBrowserName"] = value;
             }
         }
     }

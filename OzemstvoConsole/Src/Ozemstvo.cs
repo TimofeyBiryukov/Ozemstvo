@@ -46,40 +46,40 @@ public class Ozemstvo
 
     // -- user config --
 
-    var chromeIndex = Browsers.FindIndex(b => b.Name == "Google Chrome");
-    if (chromeIndex > -1)
-    {
-      Browsers[0].Default = false;
-      Browsers[chromeIndex].Default = true;
-    }
+    // var chromeIndex = Browsers.FindIndex(b => b.Name == "Google Chrome");
+    // if (chromeIndex > -1)
+    // {
+    //   Browsers[0].Default = false;
+    //   Browsers[chromeIndex].Default = true;
+    // }
 
-    var firefox = Browsers.Find(x => x.Name.Contains("Firefox"));
-    if (firefox is not null)
-    {
-      Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtube.com"));
-      Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtu.be"));
-      Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "twitch.tv"));
-      Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "dzen.ru"));
-    }
+    // var firefox = Browsers.Find(x => x.Name.Contains("Firefox"));
+    // if (firefox is not null)
+    // {
+    //   Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtube.com"));
+    //   Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtu.be"));
+    //   Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "twitch.tv"));
+    //   Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "dzen.ru"));
+    // }
 
-    var edge = Browsers.Find(x => x.Name.Contains("Edge"));
-    if (edge is not null)
-    {
-      Rules.Add(new Rule(edge, Rule.RuleTypes.Host, "microsoft.com"));
-    }
+    // var edge = Browsers.Find(x => x.Name.Contains("Edge"));
+    // if (edge is not null)
+    // {
+    //   Rules.Add(new Rule(edge, Rule.RuleTypes.Host, "microsoft.com"));
+    // }
 
-    var chrome = Browsers.Find(x => x.Name.Contains("Google Chrome"));
-    if (chrome is not null)
-    {
-      Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
-      Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
-    }
+    // var chrome = Browsers.Find(x => x.Name.Contains("Google Chrome"));
+    // if (chrome is not null)
+    // {
+    //   Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
+    //   Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
+    // }
 
-    var steam = Browsers.Find(x => x.Name.Contains("Steam"));
-    if (steam is not null)
-    {
-      Rules.Add(new Rule(steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
-    }
+    // var steam = Browsers.Find(x => x.Name.Contains("Steam"));
+    // if (steam is not null)
+    // {
+    //   Rules.Add(new Rule(steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
+    // }
   }
 
   public void Run(Uri uri)
