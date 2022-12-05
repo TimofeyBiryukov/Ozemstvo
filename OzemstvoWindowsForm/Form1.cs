@@ -56,7 +56,7 @@ namespace OzemstvoWindowsForm
             //{
             //    textBox1.Text = settingsProperty.Name;
             //}
-            textBox1.Text = Properties.Rules.Default.Properties.Count.ToString();
+            // textBox1.Text = Properties.Rules.Default.Properties.Count.ToString();
 
         }
 
@@ -67,16 +67,6 @@ namespace OzemstvoWindowsForm
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
