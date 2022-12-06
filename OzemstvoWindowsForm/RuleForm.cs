@@ -17,6 +17,14 @@ namespace OzemstvoWindowsForm
             InitializeComponent();
         }
 
+        private void Submit()
+        {
+            RulesListBox.Items.Add($"{BrowserNameTextBox.Text} | {TypeTextBox.Text} | {DataTextBox.Text}");
+            BrowserNameTextBox.Text = "";
+            TypeTextBox.Text = "";
+            DataTextBox.Text = "";
+        }
+
         private void RuleForm_Load(object sender, EventArgs e)
         {
             RulesListBox.Items.Add("Google Crhome | Host | google.com");
@@ -25,10 +33,7 @@ namespace OzemstvoWindowsForm
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            RulesListBox.Items.Add($"{BrowserNameTextBox.Text} | {TypeTextBox.Text} | {DataTextBox.Text}");
-            BrowserNameTextBox.Text = "";
-            TypeTextBox.Text = "";
-            DataTextBox.Text = "";
+            Submit();
         }
 
         private void RulesListBox_SelectedIndexChanged(object sender, EventArgs e)
