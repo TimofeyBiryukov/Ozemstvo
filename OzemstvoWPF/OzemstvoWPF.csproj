@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OzemstvoConsole\OzemstvoConsole.csproj" />
+  </ItemGroup>
+
 </Project>

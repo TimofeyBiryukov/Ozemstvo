@@ -4,26 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OzemstvoWPF"
+        xmlns:controls="clr-namespace:OzemstvoWPF.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="417" Width="366">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <TabControl x:Name="tabControl">
-            <TabItem Header="Rules">
-                <Grid Background="#FFE5E5E5">
-                    <DataGrid
-                        x:Name="rulesGrid"
-                        d:ItemsSource="{d:SampleData ItemCount=5}"
-                        RowEditEnding="rulesGrid_RowEditEnding"
-                    />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Browsers" IsEnabled="False"></TabItem>
-        </TabControl>
-
-        <TextBlock x:Name="debugBlock" HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <StackPanel Margin="0,0,0,47">
+            <controls:Rule RuleName="Hello World" Margin="2,5,2,0" Padding="0,5,0,5" />
+            <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
+            <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
+            <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
+        </StackPanel>
+        <Button
+            x:Name="button"
+            Content="Add"
+            HorizontalAlignment="Right"
+            Margin="0,0,20,20"
+            Padding="5,2,5,2"
+            VerticalAlignment="Bottom"
+            />
     </Grid>
 </Window>

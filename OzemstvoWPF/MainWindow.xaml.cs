@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OzemstvoConsole;
 
 namespace OzemstvoWPF
 {
@@ -30,32 +31,13 @@ namespace OzemstvoWPF
             public string Template { get; set; } = "{{url}}";
         }
 
-        private List<RuleSetting> rules = new List<RuleSetting>();
+        public Ozemstvo ozemstvo = new();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            rulesGrid.ItemsSource = rules;
-
-            rules.Add(new RuleSetting
-            {
-                BrowserName = "FireFox",
-                Type = "Host",
-                Data = "youtube.com"
-            });
-            rules.Add(new RuleSetting
-            {
-                BrowserName = "Google Chrome",
-                Type = "Host",
-                Data = "google.com"
-            });
-        }
-
-        private void rulesGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            var data = JsonSerializer.Serialize(rules);
-            debugBlock.Text = data;
+            ozemstvo.Init();
+            //rulesGrid.ItemsSource = ozemstvo.Rules;
         }
     }
 }
