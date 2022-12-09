@@ -14,12 +14,13 @@
             Margin="0,0,0,47"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl
-                x:Name="itemControlRulesList"
+                x:Name="itemsControlRulesList"
                 d:ItemsSource="{d:SampleData ItemCount=5}" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <controls:Rule
+                        <controls:RuleItem
                             RuleName="{Binding Name}"
+                            Remove="Rule_OnRemove"
                             Margin="2,5,2,0" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

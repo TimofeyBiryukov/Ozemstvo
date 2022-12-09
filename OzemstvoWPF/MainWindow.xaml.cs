@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OzemstvoConsole;
+using OzemstvoWPF.Controls;
+using static OzemstvoWPF.Controls.RuleItem;
 
 namespace OzemstvoWPF
 {
@@ -72,7 +74,19 @@ namespace OzemstvoWPF
                 ozemstvo.Rules.Add(new Rule("Steam", steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
             }
 
-            itemControlRulesList.ItemsSource = ozemstvo.Rules;
+            itemsControlRulesList.ItemsSource = ozemstvo.Rules;
+        }
+
+        private void Rule_OnRemove(object sender, RoutedEventArgs e)
+        {
+            RuleItem ruleItem = (RuleItem)sender;
+            var rule = ozemstvo.Rules.Find(r => r.Name.Contains(ruleItem.RuleName));
+            if (rule is not null)
+            {
+                ozemstvo.Rules.Remove(rule);
+                itemsControlRulesList.ItemsSource = null;
+                itemsControlRulesList.ItemsSource = ozemstvo.Rules;
+            }
         }
     }
 }
