@@ -6,20 +6,25 @@
         xmlns:local="clr-namespace:OzemstvoWPF"
         xmlns:controls="clr-namespace:OzemstvoWPF.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="417" Width="366">
+        Title="Ozemstvo"
+        Height="417"
+        Width="366">
     <Grid>
-        <ItemsControl
-            x:Name="itemControlRulesList"
+        <ScrollViewer
             Margin="0,0,0,47"
-            d:ItemsSource="{d:SampleData ItemCount=5}" >
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <controls:Rule
-                        RuleName="{Binding Name}"
-                        Margin="2,5,2,0" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            VerticalScrollBarVisibility="Auto">
+            <ItemsControl
+                x:Name="itemControlRulesList"
+                d:ItemsSource="{d:SampleData ItemCount=5}" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:Rule
+                            RuleName="{Binding Name}"
+                            Margin="2,5,2,0" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
         <Button
             x:Name="button"
             Content="Add"
