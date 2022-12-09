@@ -4,6 +4,7 @@ namespace OzemstvoConsole;
 
 public class Rule
 {
+  public string Name { get; set; }
   public Browser Browser { get; set; }
   public string? Host { get; set; }
   public Regex? Regex { get; set; }
@@ -17,8 +18,9 @@ public class Rule
     Regex = 2
   }
 
-  public Rule(Browser browser, RuleTypes type, string data, string template = TemplateHook)
+  public Rule(string name, Browser browser, RuleTypes type, string data, string template = TemplateHook)
   {
+    Name = name;
     Browser = browser;
     Type = type;
 

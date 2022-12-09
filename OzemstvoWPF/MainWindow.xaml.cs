@@ -48,29 +48,28 @@ namespace OzemstvoWPF
             var firefox = ozemstvo.Browsers.Find(x => x.Name.Contains("Firefox"));
             if (firefox is not null)
             {
-                ozemstvo.Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtube.com"));
-                ozemstvo.Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "youtu.be"));
-                ozemstvo.Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "twitch.tv"));
-                ozemstvo.Rules.Add(new Rule(firefox, Rule.RuleTypes.Host, "dzen.ru"));
+                ozemstvo.Rules.Add(new Rule("Youtube", firefox, Rule.RuleTypes.Host, "youtube.com"));
+                ozemstvo.Rules.Add(new Rule("youtu.be", firefox, Rule.RuleTypes.Host, "twitch.tv"));
+                ozemstvo.Rules.Add(new Rule("dezn", firefox, Rule.RuleTypes.Host, "dzen.ru"));
             }
 
             var edge = ozemstvo.Browsers.Find(x => x.Name.Contains("Edge"));
             if (edge is not null)
             {
-                ozemstvo.Rules.Add(new Rule(edge, Rule.RuleTypes.Host, "microsoft.com"));
+                ozemstvo.Rules.Add(new Rule("microsoft.com", edge, Rule.RuleTypes.Host, "microsoft.com"));
             }
 
             var chrome = ozemstvo.Browsers.Find(x => x.Name.Contains("Google Chrome"));
             if (chrome is not null)
             {
-                ozemstvo.Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "meet.google.com"));
-                ozemstvo.Rules.Add(new Rule(chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
+                ozemstvo.Rules.Add(new Rule("Google Meet", chrome, Rule.RuleTypes.Host, "meet.google.com"));
+                ozemstvo.Rules.Add(new Rule("Tagspace", chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
             }
 
             var steam = ozemstvo.Browsers.Find(x => x.Name.Contains("Steam"));
             if (steam is not null)
             {
-                ozemstvo.Rules.Add(new Rule(steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
+                ozemstvo.Rules.Add(new Rule("Steam", steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
             }
 
             itemControlRulesList.ItemsSource = ozemstvo.Rules;
