@@ -15,23 +15,20 @@
             d:Content="RuleName"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="20,0,0,0"
-            />
+            Margin="20,0,0,0" />
         <Button
             x:Name="editBtn"
             Content="Edit"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Margin="0,0,80,0"
-            Padding="5,2,5,2"
-            />
+            Padding="5,2,5,2" />
         <Button
             x:Name="removeBtn"
             Content="Remove"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Margin="0,0,20,0"
-            Padding="5,2,5,2"
-            />
+            Padding="5,2,5,2" />
     </Grid>
 </UserControl>

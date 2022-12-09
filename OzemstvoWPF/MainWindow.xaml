@@ -8,19 +8,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="417" Width="366">
     <Grid>
-        <StackPanel Margin="0,0,0,47">
+        <ItemsControl x:Name="itemControlRulesList" Margin="0,0,0,47">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:Rule
+                        RuleName="Hello World"
+                        Margin="2,5,2,0"
+                        Padding="0,5,0,5" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!-- <StackPanel Margin="0,0,0,47">
             <controls:Rule RuleName="Hello World" Margin="2,5,2,0" Padding="0,5,0,5" />
             <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
             <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
             <controls:Rule Margin="2,5,2,0" Padding="0,5,0,5" />
-        </StackPanel>
+        </StackPanel>-->
         <Button
             x:Name="button"
             Content="Add"
             HorizontalAlignment="Right"
             Margin="0,0,20,20"
             Padding="5,2,5,2"
-            VerticalAlignment="Bottom"
-            />
+            VerticalAlignment="Bottom" /> 
     </Grid>
 </Window>
