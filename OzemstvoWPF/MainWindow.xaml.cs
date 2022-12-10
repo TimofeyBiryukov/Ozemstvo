@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,8 @@ namespace OzemstvoWPF
         }
 
         public Ozemstvo ozemstvo = new();
+
+        public ObservableCollection<Rule> Rules = new();
 
         public MainWindow()
         {
@@ -74,7 +77,12 @@ namespace OzemstvoWPF
                 ozemstvo.Rules.Add(new Rule("Steam", steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
             }
 
-            itemsControlRulesList.ItemsSource = ozemstvo.Rules;
+            foreach(var rule in ozemstvo.Rules)
+            {
+                Rules.Add(rule);
+            }
+
+            itemsControlRulesList.ItemsSource = Rules;
         }
 
         private void Rule_OnRemove(object sender, RoutedEventArgs e)
@@ -84,8 +92,7 @@ namespace OzemstvoWPF
             if (rule is not null)
             {
                 ozemstvo.Rules.Remove(rule);
-                itemsControlRulesList.ItemsSource = null;
-                itemsControlRulesList.ItemsSource = ozemstvo.Rules;
+                Rules.Remove(rule);
             }
         }
     }
