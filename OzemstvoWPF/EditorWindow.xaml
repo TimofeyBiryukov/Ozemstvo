@@ -22,14 +22,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label
-            x:Name="RuleNameInputLabel"
+            x:Name="ruleNameInputLabel"
             Content="Rule Name"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="0"
             Grid.Column="0"/>
         <TextBox
-            x:Name="RuleNameInput"
+            x:Name="ruleNameInput"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
@@ -38,14 +38,14 @@
             Width="120"/>
 
         <Label
-            x:Name="OpenInInputLabel"
+            x:Name="openInInputLabel"
             Content="Open In"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="0"/>
         <ComboBox
-            x:Name="OpenInInput"
+            x:Name="openInInput"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="1"
@@ -53,14 +53,14 @@
             Width="120"/>
 
         <Label
-            x:Name="TypeInputLabel"
+            x:Name="typeInputLabel"
             Content="Matching Type"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="2"
             Grid.Column="0"/>
         <ComboBox
-            x:Name="TypeInput"
+            x:Name="typeInput"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="2"
@@ -69,14 +69,14 @@
             SelectionChanged="TypeInput_SelectionChanged"/>
 
         <Label
-            x:Name="DataInputLabel"
+            x:Name="dataInputLabel"
             Content="Data"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="3"
             Grid.Column="0"/>
         <TextBox
-            x:Name="DataInput"
+            x:Name="dataInput"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
@@ -85,14 +85,14 @@
             Width="120"/>
 
         <Label
-            x:Name="TemplateInputLabel"
+            x:Name="templateInputLabel"
             Content="Template (optional)"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="4"
             Grid.Column="0"/>
         <TextBox
-            x:Name="TemplateInput"
+            x:Name="templateInput"
             Text="{}{{url}}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
@@ -102,7 +102,7 @@
             Width="120"/>
 
         <Button
-            x:Name="CancelButton"
+            x:Name="cancelButton"
             Grid.Column="1"
             Grid.Row="5"
             Content="Cancel"
@@ -111,7 +111,7 @@
             Click="CancelButton_Click"
             IsCancel="True" Margin="52,0,0,0"/>
         <Button
-            x:Name="SubmitButton"
+            x:Name="submitButton"
             Grid.Column="1"
             Grid.Row="5"
             Content="Submit"

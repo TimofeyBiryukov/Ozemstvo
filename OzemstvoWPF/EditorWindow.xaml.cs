@@ -28,57 +28,57 @@ namespace OzemstvoWPF
             InitializeComponent();
             _mainWindow = (MainWindow)Application.Current.MainWindow;
 
-            OpenInInput.ItemsSource = _mainWindow.ozemstvo.Browsers.Select(b => b.Name).ToArray();
+            openInInput.ItemsSource = _mainWindow.ozemstvo.Browsers.Select(b => b.Name).ToArray();
             var defaultBrowser = _mainWindow.ozemstvo.Browsers.Find(b => b.Default);
             if (defaultBrowser is not null)
             {
-                OpenInInput.SelectedItem = defaultBrowser.Name;
+                openInInput.SelectedItem = defaultBrowser.Name;
             }
-            TypeInput.ItemsSource = Enum.GetNames(typeof(Rule.RuleTypes));
-            TypeInput.SelectedIndex = 0;
+            typeInput.ItemsSource = Enum.GetNames(typeof(Rule.RuleTypes));
+            typeInput.SelectedIndex = 0;
 
             if (rule is not null)
             {
-                RuleNameInput.Text = rule.Name;
-                OpenInInput.SelectedValue = rule.Browser.Name;
-                TypeInput.SelectedItem = rule.Type.ToString();
-                DataInput.Text = rule.Data;
+                ruleNameInput.Text = rule.Name;
+                openInInput.SelectedValue = rule.Browser.Name;
+                typeInput.SelectedItem = rule.Type.ToString();
+                dataInput.Text = rule.Data;
                 if (rule.Type == Rule.RuleTypes.Host)
                 {
-                    TypeInput.SelectedValue = "Host";
+                    typeInput.SelectedValue = "Host";
                 }
                 else if (rule.Type == Rule.RuleTypes.Regex)
                 {
-                    TypeInput.SelectedValue = "Regex";
+                    typeInput.SelectedValue = "Regex";
                 }
-                TemplateInput.Text = rule.Template;
+                templateInput.Text = rule.Template;
             }
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TypeInput.SelectedItem.ToString() == "Host")
+            if (typeInput.SelectedItem.ToString() == "Host")
             {
-                DataInputLabel.Content = "Host to match";
+                dataInputLabel.Content = "Host to match";
             }
-            else if (TypeInput.SelectedItem.ToString() == "Regex")
+            else if (typeInput.SelectedItem.ToString() == "Regex")
             {
-                DataInputLabel.Content = "Regex to match";
+                dataInputLabel.Content = "Regex to match";
             }
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            var name = RuleNameInput.Text;
-            var browser = _mainWindow.ozemstvo.Browsers.Find(b => b.Name == OpenInInput.SelectedItem.ToString());
+            var name = ruleNameInput.Text;
+            var browser = _mainWindow.ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
             if (browser is null) throw new Exception();
             Rule.RuleTypes type = Rule.RuleTypes.Host;
-            if (TypeInput.SelectedItem.ToString() == "Regex")
+            if (typeInput.SelectedItem.ToString() == "Regex")
             {
                 type = Rule.RuleTypes.Regex;
             }
-            var data = DataInput.Text;
-            var template = TemplateInput.Text;
+            var data = dataInput.Text;
+            var template = templateInput.Text;
             var rule = new Rule(name, browser, type, data, template);
             _mainWindow.ozemstvo.Rules.Add(rule);
             Close();
