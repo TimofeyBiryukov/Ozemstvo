@@ -27,6 +27,7 @@ namespace OzemstvoWPF
         {
             InitializeComponent();
             _mainWindow = (MainWindow)Application.Current.MainWindow;
+
             OpenInInput.ItemsSource = _mainWindow.ozemstvo.Browsers.Select(b => b.Name).ToArray();
             var defaultBrowser = _mainWindow.ozemstvo.Browsers.Find(b => b.Default);
             if (defaultBrowser is not null)
@@ -61,8 +62,9 @@ namespace OzemstvoWPF
             }
             var data = DataInput.Text;
             var template = TemplateInput.Text;
-            ((MainWindow)Application.Current.MainWindow).ozemstvo.Rules.Add(new Rule(name, browser, type, data, template));
-            ((MainWindow)Application.Current.MainWindow).Rules.Add(new Rule(name, browser, type, data, template));
+            var rule = new Rule(name, browser, type, data, template);
+            _mainWindow.ozemstvo.Rules.Add(rule);
+            _mainWindow.Rules.Add(rule);
             Close();
         }
     }
