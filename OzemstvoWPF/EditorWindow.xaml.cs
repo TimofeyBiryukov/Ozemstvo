@@ -64,7 +64,6 @@ namespace OzemstvoWPF
             var template = TemplateInput.Text;
             var rule = new Rule(name, browser, type, data, template);
             _mainWindow.ozemstvo.Rules.Add(rule);
-            _mainWindow.Rules.Add(rule);
             Close();
         }
 

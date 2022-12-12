@@ -26,17 +26,12 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private class RuleSetting
+        public class OzemstvoObservable : Ozemstvo
         {
-            public string BrowserName { get; set; }
-            public string Type { get; set; }
-            public string Data { get; set; }
-            public string Template { get; set; } = "{{url}}";
+            new public ObservableCollection<Rule> Rules = new();
         }
 
-        public Ozemstvo ozemstvo = new();
-
-        public ObservableCollection<Rule> Rules = new();
+        public OzemstvoObservable ozemstvo = new();
 
         public MainWindow()
         {
@@ -77,22 +72,16 @@ namespace OzemstvoWPF
                 ozemstvo.Rules.Add(new Rule("Steam", steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
             }
 
-            foreach(var rule in ozemstvo.Rules)
-            {
-                Rules.Add(rule);
-            }
-
-            itemsControlRulesList.ItemsSource = Rules;
+            itemsControlRulesList.ItemsSource = ozemstvo.Rules;
         }
 
         private void Rule_OnRemove(object sender, RoutedEventArgs e)
         {
             RuleItem ruleItem = (RuleItem)sender;
-            var rule = ozemstvo.Rules.Find(r => r.Name.Contains(ruleItem.RuleName));
+            Rule rule = ozemstvo.Rules.Single(r => r.Name.Contains(ruleItem.RuleName));
             if (rule is not null)
             {
                 ozemstvo.Rules.Remove(rule);
-                Rules.Remove(rule);
             }
         }
 
