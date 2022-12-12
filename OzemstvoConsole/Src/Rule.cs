@@ -6,8 +6,7 @@ public class Rule
 {
   public string Name { get; set; }
   public Browser Browser { get; set; }
-  public string? Host { get; set; }
-  public Regex? Regex { get; set; }
+  public string Data { get; set; }
   public string Template { get; set; }
   public const string TemplateHook = "{{url}}";
 
@@ -23,21 +22,12 @@ public class Rule
     Name = name;
     Browser = browser;
     Type = type;
+    Template = template;
+    Data = data;
 
     if (!template.Contains(TemplateHook))
     {
       throw new ArgumentException($"Template must contain {TemplateHook}", nameof(template));
-    }
-
-    Template = template;
-
-    if (Type == RuleTypes.Host)
-    {
-      Host = data;
-    }
-    else if (Type == RuleTypes.Regex)
-    {
-      Regex = new Regex(data);
     }
   }
 
@@ -45,11 +35,11 @@ public class Rule
   {
     if (Type == RuleTypes.Host)
     {
-      return Host == uri.Host;
+      return Data == uri.Host;
     }
     else if (Type == RuleTypes.Regex)
     {
-      return Regex?.IsMatch(uri.ToString()) ?? false;
+      return new Regex(Data)?.IsMatch(uri.ToString()) ?? false;
     }
 
     return false;

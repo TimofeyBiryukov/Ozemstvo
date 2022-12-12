@@ -42,18 +42,14 @@ namespace OzemstvoWPF
                 RuleNameInput.Text = rule.Name;
                 OpenInInput.SelectedValue = rule.Browser.Name;
                 TypeInput.SelectedItem = rule.Type.ToString();
+                DataInput.Text = rule.Data;
                 if (rule.Type == Rule.RuleTypes.Host)
                 {
                     TypeInput.SelectedValue = "Host";
-                    DataInput.Text = rule.Host;
                 }
                 else if (rule.Type == Rule.RuleTypes.Regex)
                 {
                     TypeInput.SelectedValue = "Regex";
-                    if (rule.Regex is not null)
-                    {
-                        DataInput.Text = rule.Regex.ToString();
-                    }
                 }
                 TemplateInput.Text = rule.Template;
             }
