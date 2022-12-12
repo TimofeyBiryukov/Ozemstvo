@@ -48,5 +48,16 @@ namespace OzemstvoWPF.Controls
         {
             RaiseEvent(new RoutedEventArgs(OnRemoveEvent));
         }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var rule = mainWindow.ozemstvo.Rules.Single(r => r.Name == RuleName);
+            if (rule is not null)
+            {
+                var editorWindow = new EditorWindow(rule);
+                editorWindow.ShowDialog();
+            }
+        }
     }
 }

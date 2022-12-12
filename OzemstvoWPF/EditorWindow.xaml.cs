@@ -23,7 +23,7 @@ namespace OzemstvoWPF
     public partial class EditorWindow : Window
     {
         private readonly MainWindow _mainWindow;
-        public EditorWindow()
+        public EditorWindow(Rule? rule = null)
         {
             InitializeComponent();
             _mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -36,6 +36,27 @@ namespace OzemstvoWPF
             }
             TypeInput.ItemsSource = Enum.GetNames(typeof(Rule.RuleTypes));
             TypeInput.SelectedIndex = 0;
+
+            if (rule is not null)
+            {
+                RuleNameInput.Text = rule.Name;
+                OpenInInput.SelectedValue = rule.Browser.Name;
+                TypeInput.SelectedItem = rule.Type.ToString();
+                if (rule.Type == Rule.RuleTypes.Host)
+                {
+                    TypeInput.SelectedValue = "Host";
+                    DataInput.Text = rule.Host;
+                }
+                else if (rule.Type == Rule.RuleTypes.Regex)
+                {
+                    TypeInput.SelectedValue = "Regex";
+                    if (rule.Regex is not null)
+                    {
+                        DataInput.Text = rule.Regex.ToString();
+                    }
+                }
+                TemplateInput.Text = rule.Template;
+            }
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)

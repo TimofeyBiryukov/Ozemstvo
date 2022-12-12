@@ -26,7 +26,8 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Margin="0,0,80,0"
-                Padding="5,2,5,2" />
+                Padding="5,2,5,2"
+                Click="editBtn_Click"/>
             <Button
                 x:Name="removeBtn"
                 Content="Remove"
@@ -34,7 +35,7 @@
                 VerticalAlignment="Center"
                 Margin="0,0,20,0"
                 Padding="5,2,5,2"
-                Click="removeBtn_Click" />
+                Click="removeBtn_Click"/>
         </Grid>
     </Border>
 </UserControl>
