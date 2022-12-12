@@ -22,7 +22,7 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class EditorWindow : Window
     {
-        private MainWindow _mainWindow;
+        private readonly MainWindow _mainWindow;
         public EditorWindow()
         {
             InitializeComponent();
