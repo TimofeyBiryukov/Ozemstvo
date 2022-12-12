@@ -23,6 +23,7 @@ namespace OzemstvoWPF
     public partial class EditorWindow : Window
     {
         private readonly MainWindow _mainWindow;
+
         public EditorWindow(Rule? rule = null)
         {
             InitializeComponent();
@@ -43,25 +44,18 @@ namespace OzemstvoWPF
                 openInInput.SelectedValue = rule.Browser.Name;
                 typeInput.SelectedItem = rule.Type.ToString();
                 dataInput.Text = rule.Data;
-                if (rule.Type == Rule.RuleTypes.Host)
-                {
-                    typeInput.SelectedValue = "Host";
-                }
-                else if (rule.Type == Rule.RuleTypes.Regex)
-                {
-                    typeInput.SelectedValue = "Regex";
-                }
+                typeInput.Text = rule.Type.ToString();
                 templateInput.Text = rule.Template;
             }
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (typeInput.SelectedItem.ToString() == "Host")
+            if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Host.ToString())
             {
                 dataInputLabel.Content = "Host to match";
             }
-            else if (typeInput.SelectedItem.ToString() == "Regex")
+            else if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Regex.ToString())
             {
                 dataInputLabel.Content = "Regex to match";
             }
@@ -73,7 +67,7 @@ namespace OzemstvoWPF
             var browser = _mainWindow.ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
             if (browser is null) throw new Exception();
             Rule.RuleTypes type = Rule.RuleTypes.Host;
-            if (typeInput.SelectedItem.ToString() == "Regex")
+            if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Regex.ToString())
             {
                 type = Rule.RuleTypes.Regex;
             }
