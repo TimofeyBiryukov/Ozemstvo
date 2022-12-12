@@ -101,5 +101,10 @@ namespace OzemstvoWPF
             var editorWindow = new EditorWindow();
             editorWindow.ShowDialog();
         }
+
+        private void TestButton_Click(object sender, RoutedEventArgs e)
+        {
+            ozemstvo.Run(new Uri(TestInput.Text));
+        }
     }
 }
