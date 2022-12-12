@@ -67,5 +67,10 @@ namespace OzemstvoWPF
             _mainWindow.Rules.Add(rule);
             Close();
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
