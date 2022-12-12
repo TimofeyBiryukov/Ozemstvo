@@ -95,5 +95,11 @@ namespace OzemstvoWPF
                 Rules.Remove(rule);
             }
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var editorWindow = new EditorWindow();
+            editorWindow.ShowDialog();
+        }
     }
 }
