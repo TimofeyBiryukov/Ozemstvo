@@ -4,6 +4,7 @@ namespace OzemstvoConsole;
 
 public class Rule
 {
+  public string Id = Guid.NewGuid().ToString();
   public string Name { get; set; }
   public Browser Browser { get; set; }
   public string Data { get; set; }
@@ -17,13 +18,24 @@ public class Rule
     Regex = 2
   }
 
-  public Rule(string name, Browser browser, RuleTypes type, string data, string template = TemplateHook)
+  public Rule(
+    string name,
+    Browser browser,
+    RuleTypes type,
+    string data,
+    string template = TemplateHook,
+    string? id = null)
   {
     Name = name;
     Browser = browser;
     Type = type;
     Template = template;
     Data = data;
+
+    if (id is not null)
+    {
+      Id = id;
+    }
 
     if (!template.Contains(TemplateHook))
     {
