@@ -56,40 +56,78 @@ namespace OzemstvoWPF
             var firefox = Ozemstvo.Browsers.Find(x => x.Name.Contains("Firefox"));
             if (firefox is not null)
             {
-                Ozemstvo.Rules.Add(new Rule("Youtube", firefox, RuleType.Host, "youtube.com"));
-                Ozemstvo.Rules.Add(new Rule("youtu.be", firefox, RuleType.Host, "twitch.tv"));
-                Ozemstvo.Rules.Add(new Rule("dezn", firefox, RuleType.Host, "dzen.ru"));
+                Rules.Add(new RuleProperty
+                {
+                    Name = "Youtube",
+                    Browser = firefox.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "youtube.com"
+                });
+                Rules.Add(new RuleProperty
+                {
+                    Name = "youtu.be",
+                    Browser = firefox.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "youtu.be"
+                });
+                Rules.Add(new RuleProperty
+                {
+                    Name = "Twitch",
+                    Browser = firefox.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "twitch.tv"
+                });
+                Rules.Add(new RuleProperty
+                {
+                    Name = "dzen",
+                    Browser = firefox.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "dzen.ru"
+                });
             }
 
             var edge = Ozemstvo.Browsers.Find(x => x.Name.Contains("Edge"));
             if (edge is not null)
             {
-                Ozemstvo.Rules.Add(new Rule("microsoft.com", edge, RuleType.Host, "microsoft.com"));
+                Rules.Add(new RuleProperty
+                {
+                    Name = "microsoft.com",
+                    Browser = edge.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "microsoft.com"
+                });
             }
 
             var chrome = Ozemstvo.Browsers.Find(x => x.Name.Contains("Google Chrome"));
             if (chrome is not null)
             {
-                Ozemstvo.Rules.Add(new Rule("Google Meet", chrome, RuleType.Host, "meet.google.com"));
-                Ozemstvo.Rules.Add(new Rule("Tagspace", chrome, RuleType.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
+                Rules.Add(new RuleProperty
+                {
+                    Name = "Google Meet",
+                    Browser = chrome.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "meet.google.com"
+                });
+                Rules.Add(new RuleProperty
+                {
+                    Name = "Tagspace",
+                    Browser = chrome.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "tagspace.com",
+                    Template = "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"
+                });
             }
 
             var steam = Ozemstvo.Browsers.Find(x => x.Name.Contains("Steam"));
             if (steam is not null)
             {
-                Ozemstvo.Rules.Add(new Rule("Steam", steam, RuleType.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
-            }
-
-            foreach (var rule in Ozemstvo.Rules)
-            {
                 Rules.Add(new RuleProperty
                 {
-                    Id = rule.Id,
-                    Name = rule.Name,
-                    Browser = rule.Browser.Name,
-                    Data = rule.Data,
-                    Template = rule.Template,
-                    Type = rule.Type.ToString(),
+                    Name = "Steam",
+                    Browser = steam.Name,
+                    Type = RuleType.Host.ToString(),
+                    Data = "store.steampowered.com",
+                    Template = "steam://openurl/{{url}}"
                 });
             }
 
@@ -114,7 +152,16 @@ namespace OzemstvoWPF
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), Ozemstvo.Rules.ToList(), Ozemstvo.Browsers.ToList());
+            Ozemstvo.Rules.Clear();
+            foreach (var rule in Rules)
+            {
+                var browser = Ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
+                if (browser is null) continue;
+                Enum.TryParse(rule.Type, true, out RuleType type);
+                Ozemstvo.Rules.Add(
+                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+            }
+            Ozemstvo.Run(new Uri(TestInput.Text));
         }
     }
 }
