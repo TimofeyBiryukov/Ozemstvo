@@ -45,7 +45,7 @@
             Width="120"/>
         <Button
             x:Name="TestButton"
-            Content="Button"
+            Content="Test"
             HorizontalAlignment="Left"
             Margin="135,354,0,10"
             VerticalAlignment="Bottom"

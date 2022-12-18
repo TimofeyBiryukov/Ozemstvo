@@ -1,24 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using OzemstvoConsole;
 using OzemstvoWPF.Controls;
-using Windows.Web.AtomPub;
-using static OzemstvoWPF.Controls.RuleItem;
 
 namespace OzemstvoWPF
 {
@@ -152,16 +138,16 @@ namespace OzemstvoWPF
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            Ozemstvo.Rules.Clear();
+            List<Rule> rules = new List<Rule>();
             foreach (var rule in Rules)
             {
                 var browser = Ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
                 if (browser is null) continue;
                 Enum.TryParse(rule.Type, true, out RuleType type);
-                Ozemstvo.Rules.Add(
+                rules.Add(
                     new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
-            Ozemstvo.Run(new Uri(TestInput.Text));
+            OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
         }
     }
 }
