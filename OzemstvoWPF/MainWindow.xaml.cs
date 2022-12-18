@@ -87,8 +87,7 @@ namespace OzemstvoWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var editorWindow = new EditorWindow();
-            editorWindow.ShowDialog();
+            new EditorWindow().ShowDialog();
         }
 
         private void TestButton_Click(object sender, RoutedEventArgs e)

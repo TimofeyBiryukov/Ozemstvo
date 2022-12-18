@@ -109,7 +109,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Click="CancelButton_Click"
-            IsCancel="True" Margin="52,0,0,0"/>
+            IsCancel="True"
+            Margin="52,0,0,0"
+            Padding="2,2,2,2"/>
         <Button
             x:Name="submitButton"
             Grid.Column="1"
@@ -118,6 +120,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Click="SubmitButton_Click"
-            IsDefault="True" Margin="101,0,0,0"/>
+            IsDefault="True"
+            Margin="101,0,0,0"
+            Padding="2,2,2,2"/>
     </Grid>
 </Window>
