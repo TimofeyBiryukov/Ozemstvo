@@ -22,14 +22,14 @@ namespace OzemstvoWPF.Controls
     /// </summary>
     public partial class RuleItem : UserControl
     {
-        public static readonly DependencyProperty RuleProperty =
-            DependencyProperty.Register("Rule", typeof(Rule), typeof(RuleItem),
+        public static readonly DependencyProperty RuleDependecy =
+            DependencyProperty.Register("Rule", typeof(RuleProperty), typeof(RuleItem),
                 new PropertyMetadata());
 
-        public Rule Rule
+        public RuleProperty Rule
         {
-            get { return (Rule)GetValue(RuleProperty); }
-            set { SetValue(RuleProperty, value); }
+            get { return (RuleProperty)GetValue(RuleDependecy); }
+            set { SetValue(RuleDependecy, value); }
         }
 
         public static readonly RoutedEvent OnRemoveEvent =

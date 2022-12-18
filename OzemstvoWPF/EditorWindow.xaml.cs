@@ -24,63 +24,50 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class EditorWindow : Window
     {
-        public OzemstvoObservable Ozemstvo { get; set; }
+        private MainWindow _mainWindow;
 
-        public class RuleData
-        {
-            public RuleData() { }
-            public string Name { get; set; } = string.Empty;
-            public string Browser { get; set; } = string.Empty;
-            public string Data { get; set; } = string.Empty;
-            public string Template { get; set; } = "{{url}}";
-            public string Type { get; set; } = string.Empty;
-        }
-
-        public RuleData RuleForm { get; set; } = new();
+        public RuleProperty Rule { get; set; } = new();
 
         public string[] Browsers { get; set; } = Array.Empty<string>();
         public string[] Types { get; set; } = Array.Empty<string>();
 
         public string DataInputLabel { get; set; } = "Host to match";
 
-        public string? Id = null;
-
-        public EditorWindow(Rule? rule = null)
+        public EditorWindow(RuleProperty? rule = null)
         {
-            if (rule is not null)
-            {
-                Id = rule.Id;
-                RuleForm.Name = rule.Name;
-                RuleForm.Browser = rule.Browser.Name;
-                RuleForm.Type = rule.Type.ToString();
-                RuleForm.Data = rule.Data;
-                RuleForm.Template = rule.Template;
-            }
-
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            Ozemstvo = mainWindow.Ozemstvo;
+            _mainWindow = (MainWindow)Application.Current.MainWindow;
+            Ozemstvo Ozemstvo = _mainWindow.Ozemstvo;
 
             Browsers = Ozemstvo.Browsers.Select(b => b.Name).ToArray();
             Browser? defaultBrowser = Ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
             defaultBrowser ??= Ozemstvo.Browsers.First();
-            if (defaultBrowser is not null)
+            Types = Enum.GetNames(typeof(RuleType));
+
+            if (rule is not null)
             {
-                RuleForm.Browser = defaultBrowser.Name;
+                Rule = rule;
+            }
+            else
+            {
+                // set defaults for empty rule
+                if (defaultBrowser is not null)
+                {
+                    Rule.Browser = defaultBrowser.Name;
+                }
+                Rule.Type = Types.First();
             }
 
-            Types = Enum.GetNames(typeof(RuleType));
-            RuleForm.Type = Types.First();
 
             InitializeComponent();
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (RuleForm.Type == RuleType.Host.ToString())
+            if (Rule.Type == RuleType.Host.ToString())
             {
                 DataInputLabel = "Host to match";
             }
-            else if (RuleForm.Type == RuleType.Regex.ToString())
+            else if (Rule.Type == RuleType.Regex.ToString())
             {
                 DataInputLabel = "Regex to match";
             }
@@ -88,36 +75,34 @@ namespace OzemstvoWPF
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Browser browser = Ozemstvo.Browsers.First(b => b.Name == RuleForm.Browser);
-            Enum.TryParse(RuleForm.Type, true, out RuleType type);
+            Browser browser = _mainWindow.Ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
+            Enum.TryParse(Rule.Type, true, out RuleType type);
             if (browser is null)
             {
                 //throw?
                 return;
             }
 
-            if (Id is not null)
+            if (Rule.Id is not null)
             {
                 // update rule
-                Rule? rule = Ozemstvo.Rules.First(b => b.Id == Id);
+                Rule? rule = _mainWindow.Ozemstvo.Rules.First(b => b.Id == Rule.Id);
                 if (rule is not null)
                 {
-                    rule.Name = RuleForm.Name;
+                    rule.Name = Rule.Name;
                     rule.Browser = browser;
                     rule.Type = type;
-                    rule.Data = RuleForm.Data;
-                    rule.Template = RuleForm.Template;
+                    rule.Data = Rule.Data;
+                    rule.Template = Rule.Template;
                 }
                 else
                 {
-                    Ozemstvo.Rules.Add(
-                        new Rule(RuleForm.Name, browser, type, RuleForm.Data, RuleForm.Template));
+                    _mainWindow.Rules.Add(Rule);
                 }
             }
             else
             {
-                Ozemstvo.Rules.Add(
-                    new Rule(RuleForm.Name, browser, type, RuleForm.Data, RuleForm.Template));
+                _mainWindow.Rules.Add(Rule);
                 
             }
             Close();

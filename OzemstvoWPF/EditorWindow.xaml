@@ -37,7 +37,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Width="120"
-            Text="{Binding RuleForm.Name, ElementName=root}"/>
+            Text="{Binding Rule.Name, ElementName=root}"/>
 
         <Label
             x:Name="openInInputLabel"
@@ -54,7 +54,7 @@
             Grid.Column="1"
             Width="120"
             ItemsSource="{Binding Browsers, ElementName=root}"
-            SelectedItem="{Binding RuleForm.Browser, ElementName=root}"/>
+            SelectedItem="{Binding Rule.Browser, ElementName=root}"/>
 
         <Label
             x:Name="typeInputLabel"
@@ -71,7 +71,7 @@
             Grid.Column="1"
             Width="120"
             ItemsSource="{Binding Types, ElementName=root}"
-            SelectedItem="{Binding RuleForm.Type, ElementName=root}"
+            SelectedItem="{Binding Rule.Type, ElementName=root}"
             SelectionChanged="TypeInput_SelectionChanged"/>
 
         <Label
@@ -91,7 +91,7 @@
             Grid.Column="1"
             Width="120"
             d:Text="youtube.com"
-            Text="{Binding RuleForm.Data, ElementName=root}"/>
+            Text="{Binding Rule.Data, ElementName=root}"/>
 
         <Label
             x:Name="templateInputLabel"
@@ -109,7 +109,7 @@
             Grid.Column="1"
             Width="120"
             d:Text="{}{{url}}"
-            Text="{Binding RuleForm.Template, ElementName=root}"/>
+            Text="{Binding Rule.Template, ElementName=root}"/>
 
         <Button
             x:Name="cancelButton"

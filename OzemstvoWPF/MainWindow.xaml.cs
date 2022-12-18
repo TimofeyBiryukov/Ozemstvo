@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OzemstvoConsole;
 using OzemstvoWPF.Controls;
+using Windows.Web.AtomPub;
 using static OzemstvoWPF.Controls.RuleItem;
 
 namespace OzemstvoWPF
@@ -26,12 +27,20 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public class OzemstvoObservable : Ozemstvo
+
+        public class RuleProperty
         {
-            new public ObservableCollection<Rule> Rules = new();
+            public string? Id { get; set; } = null;
+            public string Name { get; set; } = string.Empty;
+            public string Browser { get; set; } = string.Empty;
+            public string Data { get; set; } = string.Empty;
+            public string Template { get; set; } = "{{url}}";
+            public string Type { get; set; } = string.Empty;
         }
 
-        public readonly OzemstvoObservable Ozemstvo = new();
+        public ObservableCollection<RuleProperty> Rules { get; set; } = new ObservableCollection<RuleProperty>();
+
+        public readonly Ozemstvo Ozemstvo = new();
 
         public MainWindow()
         {
@@ -71,17 +80,30 @@ namespace OzemstvoWPF
                 Ozemstvo.Rules.Add(new Rule("Steam", steam, RuleType.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
             }
 
+            foreach (var rule in Ozemstvo.Rules)
+            {
+                Rules.Add(new RuleProperty
+                {
+                    Id = rule.Id,
+                    Name = rule.Name,
+                    Browser = rule.Browser.Name,
+                    Data = rule.Data,
+                    Template = rule.Template,
+                    Type = rule.Type.ToString(),
+                });
+            }
+
             InitializeComponent();
-            itemsControlRulesList.ItemsSource = Ozemstvo.Rules;
+            itemsControlRulesList.ItemsSource = Rules;
         }
 
         private void Rule_OnRemove(object sender, RoutedEventArgs e)
         {
             RuleItem ruleItem = (RuleItem)sender;
-            Rule rule = Ozemstvo.Rules.Single(r => r.Name.Contains(ruleItem.Rule.Name));
+            RuleProperty rule = Rules.Single(r => r.Id == ruleItem.Rule.Id);
             if (rule is not null)
             {
-                Ozemstvo.Rules.Remove(rule);
+                Rules.Remove(rule);
             }
         }
 
