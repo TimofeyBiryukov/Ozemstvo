@@ -43,8 +43,20 @@ namespace OzemstvoWPF
 
         public string DataInputLabel { get; set; } = "Host to match";
 
+        public string? Id = null;
+
         public EditorWindow(Rule? rule = null)
         {
+            if (rule is not null)
+            {
+                Id = rule.Id;
+                RuleForm.Name = rule.Name;
+                RuleForm.Browser = rule.Browser.Name;
+                RuleForm.Type = rule.Type.ToString();
+                RuleForm.Data = rule.Data;
+                RuleForm.Template = rule.Template;
+            }
+
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             Ozemstvo = mainWindow.Ozemstvo;
 
@@ -56,28 +68,19 @@ namespace OzemstvoWPF
                 RuleForm.Browser = defaultBrowser.Name;
             }
 
-            Types = Enum.GetNames(typeof(RuleTypes));
+            Types = Enum.GetNames(typeof(RuleType));
             RuleForm.Type = Types.First();
-
-            if (rule is not null)
-            {
-                RuleForm.Name = rule.Name;
-                RuleForm.Browser = rule.Browser.Name;
-                RuleForm.Type = rule.Type.ToString();
-                RuleForm.Data = rule.Data;
-                RuleForm.Template = rule.Template;
-            }
 
             InitializeComponent();
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (RuleForm.Type == RuleTypes.Host.ToString())
+            if (RuleForm.Type == RuleType.Host.ToString())
             {
                 DataInputLabel = "Host to match";
             }
-            else if (RuleForm.Type == RuleTypes.Regex.ToString())
+            else if (RuleForm.Type == RuleType.Regex.ToString())
             {
                 DataInputLabel = "Regex to match";
             }
@@ -85,19 +88,38 @@ namespace OzemstvoWPF
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(RuleForm.Name);
-            //var name = ruleNameInput.Text;
-            //var browser = Ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
-            //if (browser is null) throw new Exception();
-            //RuleTypes type = RuleTypes.Host;
-            //if (RuleForm.Type == RuleTypes.Regex.ToString())
-            //{
-            //    type = RuleTypes.Regex;
-            //}
-            //var data = dataInput.Text;
-            //var template = templateInput.Text;
-            //var rule = new Rule(name, browser, type, data, template);
-            //Ozemstvo.Rules.Add(rule);
+            Browser browser = Ozemstvo.Browsers.First(b => b.Name == RuleForm.Browser);
+            Enum.TryParse(RuleForm.Type, true, out RuleType type);
+            if (browser is null)
+            {
+                //throw?
+                return;
+            }
+
+            if (Id is not null)
+            {
+                // update rule
+                Rule? rule = Ozemstvo.Rules.First(b => b.Id == Id);
+                if (rule is not null)
+                {
+                    rule.Name = RuleForm.Name;
+                    rule.Browser = browser;
+                    rule.Type = type;
+                    rule.Data = RuleForm.Data;
+                    rule.Template = RuleForm.Template;
+                }
+                else
+                {
+                    Ozemstvo.Rules.Add(
+                        new Rule(RuleForm.Name, browser, type, RuleForm.Data, RuleForm.Template));
+                }
+            }
+            else
+            {
+                Ozemstvo.Rules.Add(
+                    new Rule(RuleForm.Name, browser, type, RuleForm.Data, RuleForm.Template));
+                
+            }
             Close();
         }
 

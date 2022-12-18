@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace OzemstvoConsole;
 
-public enum RuleTypes
+public enum RuleType
 {
   Host = 1,
   Regex = 2
@@ -16,12 +16,12 @@ public class Rule
   public string Data { get; set; }
   public string Template { get; set; }
   public const string TemplateHook = "{{url}}";
-  public RuleTypes Type { get; set; } = RuleTypes.Host;
+  public RuleType Type { get; set; } = RuleType.Host;
 
   public Rule(
     string name,
     Browser browser,
-    RuleTypes type,
+    RuleType type,
     string data,
     string template = TemplateHook,
     string? id = null)
@@ -45,11 +45,11 @@ public class Rule
 
   public bool Match(Uri uri)
   {
-    if (Type == RuleTypes.Host)
+    if (Type == RuleType.Host)
     {
       return Data == uri.Host;
     }
-    else if (Type == RuleTypes.Regex)
+    else if (Type == RuleType.Regex)
     {
       return new Regex(Data)?.IsMatch(uri.ToString()) ?? false;
     }
