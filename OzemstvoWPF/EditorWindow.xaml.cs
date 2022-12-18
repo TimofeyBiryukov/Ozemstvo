@@ -43,7 +43,7 @@ namespace OzemstvoWPF
 
         public string DataInputLabel { get; set; } = "Host to match";
 
-        public EditorWindow()
+        public EditorWindow(Rule? rule = null)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             Ozemstvo = mainWindow.Ozemstvo;
@@ -59,15 +59,14 @@ namespace OzemstvoWPF
             Types = Enum.GetNames(typeof(RuleTypes));
             RuleForm.Type = Types.First();
 
-            //if (rule is not null)
-            //{
-            //    ruleNameInput.Text = rule.Name;
-            //    openInInput.SelectedValue = rule.Browser.Name;
-            //    typeInput.SelectedItem = rule.Type.ToString();
-            //    dataInput.Text = rule.Data;
-            //    typeInput.Text = rule.Type.ToString();
-            //    templateInput.Text = rule.Template;
-            //}
+            if (rule is not null)
+            {
+                RuleForm.Name = rule.Name;
+                RuleForm.Browser = rule.Browser.Name;
+                RuleForm.Type = rule.Type.ToString();
+                RuleForm.Data = rule.Data;
+                RuleForm.Template = rule.Template;
+            }
 
             InitializeComponent();
         }

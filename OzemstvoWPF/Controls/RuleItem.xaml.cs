@@ -53,7 +53,7 @@ namespace OzemstvoWPF.Controls
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            new EditorWindow().ShowDialog();
+            new EditorWindow(Rule).ShowDialog();
         }
     }
 }
