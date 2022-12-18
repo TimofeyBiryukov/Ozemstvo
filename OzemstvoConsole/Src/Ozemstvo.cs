@@ -47,7 +47,12 @@ public class Ozemstvo
 
   public void Run(Uri uri)
   {
-    foreach (var rule in Rules)
+    Ozemstvo.Run(uri, Rules, Browsers);
+  }
+
+  public static void Run(Uri uri, List<Rule> rules, List<Browser> browsers)
+  {
+    foreach (var rule in rules)
     {
       if (rule.Match(uri))
       {
@@ -57,7 +62,7 @@ public class Ozemstvo
     }
 
     // open default with default browser
-    var defaultBrowser = Browsers.Find(x => x.Default);
+    var defaultBrowser = browsers.Find(x => x.Default);
     if (defaultBrowser is not null)
     {
       Start(defaultBrowser, uri.ToString());

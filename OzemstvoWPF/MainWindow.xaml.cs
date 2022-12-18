@@ -92,7 +92,7 @@ namespace OzemstvoWPF
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            Ozemstvo.Run(new Uri(TestInput.Text));
+            OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), Ozemstvo.Rules.ToList(), Ozemstvo.Browsers.ToList());
         }
     }
 }
