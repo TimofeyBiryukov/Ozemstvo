@@ -15,7 +15,7 @@
         <Grid>
             <Label
                 x:Name="label"
-                Content="{Binding RuleName, ElementName=root}"
+                Content="{Binding Rule.Name, ElementName=root}"
                 d:Content="RuleName"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static OzemstvoWPF.MainWindow;
 
 namespace OzemstvoWPF
 {
@@ -22,15 +23,16 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class EditorWindow : Window
     {
-        private readonly MainWindow _mainWindow;
+        private OzemstvoObservable _ozemstvo { get; set; }
 
         public EditorWindow(Rule? rule = null)
         {
             InitializeComponent();
-            _mainWindow = (MainWindow)Application.Current.MainWindow;
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            _ozemstvo = mainWindow.Ozemstvo;
 
-            openInInput.ItemsSource = _mainWindow.ozemstvo.Browsers.Select(b => b.Name).ToArray();
-            var defaultBrowser = _mainWindow.ozemstvo.Browsers.Find(b => b.Default);
+            openInInput.ItemsSource = _ozemstvo.Browsers.Select(b => b.Name).ToArray();
+            var defaultBrowser = _ozemstvo.Browsers.Find(b => b.Default);
             if (defaultBrowser is not null)
             {
                 openInInput.SelectedItem = defaultBrowser.Name;
@@ -64,7 +66,7 @@ namespace OzemstvoWPF
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             var name = ruleNameInput.Text;
-            var browser = _mainWindow.ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
+            var browser = _ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
             if (browser is null) throw new Exception();
             Rule.RuleTypes type = Rule.RuleTypes.Host;
             if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Regex.ToString())
@@ -74,7 +76,7 @@ namespace OzemstvoWPF
             var data = dataInput.Text;
             var template = templateInput.Text;
             var rule = new Rule(name, browser, type, data, template);
-            _mainWindow.ozemstvo.Rules.Add(rule);
+            _ozemstvo.Rules.Add(rule);
             Close();
         }
 

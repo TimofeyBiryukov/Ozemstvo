@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OzemstvoConsole;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static OzemstvoWPF.MainWindow;
 
 namespace OzemstvoWPF.Controls
 {
@@ -20,14 +22,14 @@ namespace OzemstvoWPF.Controls
     /// </summary>
     public partial class RuleItem : UserControl
     {
-        public static readonly DependencyProperty RuleNameProperty =
-            DependencyProperty.Register("RuleName", typeof(string), typeof(RuleItem),
-                new PropertyMetadata("New Rule"));
+        public static readonly DependencyProperty RuleProperty =
+            DependencyProperty.Register("Rule", typeof(Rule), typeof(RuleItem),
+                new PropertyMetadata());
 
-        public string RuleName
+        public Rule Rule
         {
-            get { return (string)GetValue(RuleNameProperty); }
-            set { SetValue(RuleNameProperty, value); }
+            get { return (Rule)GetValue(RuleProperty); }
+            set { SetValue(RuleProperty, value); }
         }
 
         public static readonly RoutedEvent OnRemoveEvent =
@@ -51,13 +53,7 @@ namespace OzemstvoWPF.Controls
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            var rule = mainWindow.ozemstvo.Rules.Single(r => r.Name == RuleName);
-            if (rule is not null)
-            {
-                var editorWindow = new EditorWindow(rule);
-                editorWindow.ShowDialog();
-            }
+            new EditorWindow(Rule).ShowDialog();
         }
     }
 }
