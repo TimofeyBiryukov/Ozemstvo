@@ -1,6 +1,7 @@
 ﻿using OzemstvoConsole;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,60 +24,81 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class EditorWindow : Window
     {
-        private OzemstvoObservable _ozemstvo { get; set; }
+        public OzemstvoObservable Ozemstvo { get; set; }
 
-        public EditorWindow(Rule? rule = null)
+        public class RuleData
         {
-            InitializeComponent();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            _ozemstvo = mainWindow.Ozemstvo;
+            public RuleData() { }
+            public string Name { get; set; } = string.Empty;
+            public string Browser { get; set; } = string.Empty;
+            public string Data { get; set; } = string.Empty;
+            public string Template { get; set; } = "{{url}}";
+            public string Type { get; set; } = string.Empty;
+        }
 
-            openInInput.ItemsSource = _ozemstvo.Browsers.Select(b => b.Name).ToArray();
-            var defaultBrowser = _ozemstvo.Browsers.Find(b => b.Default);
+        public RuleData RuleForm { get; set; } = new();
+
+        public string[] Browsers { get; set; } = Array.Empty<string>();
+        public string[] Types { get; set; } = Array.Empty<string>();
+
+        public string DataInputLabel { get; set; } = "Host to match";
+
+        public EditorWindow()
+        {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            Ozemstvo = mainWindow.Ozemstvo;
+
+            Browsers = Ozemstvo.Browsers.Select(b => b.Name).ToArray();
+            Browser? defaultBrowser = Ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
+            defaultBrowser ??= Ozemstvo.Browsers.First();
             if (defaultBrowser is not null)
             {
-                openInInput.SelectedItem = defaultBrowser.Name;
+                RuleForm.Browser = defaultBrowser.Name;
             }
-            typeInput.ItemsSource = Enum.GetNames(typeof(Rule.RuleTypes));
-            typeInput.SelectedIndex = 0;
 
-            if (rule is not null)
-            {
-                ruleNameInput.Text = rule.Name;
-                openInInput.SelectedValue = rule.Browser.Name;
-                typeInput.SelectedItem = rule.Type.ToString();
-                dataInput.Text = rule.Data;
-                typeInput.Text = rule.Type.ToString();
-                templateInput.Text = rule.Template;
-            }
+            Types = Enum.GetNames(typeof(RuleTypes));
+            RuleForm.Type = Types.First();
+
+            //if (rule is not null)
+            //{
+            //    ruleNameInput.Text = rule.Name;
+            //    openInInput.SelectedValue = rule.Browser.Name;
+            //    typeInput.SelectedItem = rule.Type.ToString();
+            //    dataInput.Text = rule.Data;
+            //    typeInput.Text = rule.Type.ToString();
+            //    templateInput.Text = rule.Template;
+            //}
+
+            InitializeComponent();
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Host.ToString())
+            if (RuleForm.Type == RuleTypes.Host.ToString())
             {
-                dataInputLabel.Content = "Host to match";
+                DataInputLabel = "Host to match";
             }
-            else if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Regex.ToString())
+            else if (RuleForm.Type == RuleTypes.Regex.ToString())
             {
-                dataInputLabel.Content = "Regex to match";
+                DataInputLabel = "Regex to match";
             }
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            var name = ruleNameInput.Text;
-            var browser = _ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
-            if (browser is null) throw new Exception();
-            Rule.RuleTypes type = Rule.RuleTypes.Host;
-            if (typeInput.SelectedItem.ToString() == Rule.RuleTypes.Regex.ToString())
-            {
-                type = Rule.RuleTypes.Regex;
-            }
-            var data = dataInput.Text;
-            var template = templateInput.Text;
-            var rule = new Rule(name, browser, type, data, template);
-            _ozemstvo.Rules.Add(rule);
+            Console.WriteLine(RuleForm.Name);
+            //var name = ruleNameInput.Text;
+            //var browser = Ozemstvo.Browsers.Find(b => b.Name == openInInput.SelectedItem.ToString());
+            //if (browser is null) throw new Exception();
+            //RuleTypes type = RuleTypes.Host;
+            //if (RuleForm.Type == RuleTypes.Regex.ToString())
+            //{
+            //    type = RuleTypes.Regex;
+            //}
+            //var data = dataInput.Text;
+            //var template = templateInput.Text;
+            //var rule = new Rule(name, browser, type, data, template);
+            //Ozemstvo.Rules.Add(rule);
             Close();
         }
 

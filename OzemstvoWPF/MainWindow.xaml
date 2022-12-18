@@ -38,17 +38,18 @@
         <TextBox
             x:Name="TestInput"
             HorizontalAlignment="Left"
-            Margin="10,354,0,0"
+            Margin="10,354,0,10"
             TextWrapping="Wrap"
             Text="http://"
-            VerticalAlignment="Top"
+            VerticalAlignment="Bottom"
             Width="120"/>
         <Button
             x:Name="TestButton"
             Content="Button"
             HorizontalAlignment="Left"
-            Margin="135,354,0,0"
-            VerticalAlignment="Top"
+            Margin="135,354,0,10"
+            VerticalAlignment="Bottom"
+            IsDefault="True"
             Click="TestButton_Click"/>
     </Grid>
 </Window>

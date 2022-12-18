@@ -2,21 +2,21 @@ using System.Text.RegularExpressions;
 
 namespace OzemstvoConsole;
 
+public enum RuleTypes
+{
+  Host = 1,
+  Regex = 2
+}
+
 public class Rule
 {
-  public string Id = Guid.NewGuid().ToString();
+  public string Id { get; set; } = Guid.NewGuid().ToString();
   public string Name { get; set; }
   public Browser Browser { get; set; }
   public string Data { get; set; }
   public string Template { get; set; }
   public const string TemplateHook = "{{url}}";
-
   public RuleTypes Type { get; set; } = RuleTypes.Host;
-  public enum RuleTypes
-  {
-    Host = 1,
-    Regex = 2
-  }
 
   public Rule(
     string name,

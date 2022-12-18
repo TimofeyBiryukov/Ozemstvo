@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Rule Editor"
         Height="223"
-        Width="350">
+        Width="350"
+        x:Name="root">
     <Grid Margin="10,10,10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -35,7 +36,8 @@
             TextWrapping="Wrap"
             Grid.Row="0"
             Grid.Column="1"
-            Width="120"/>
+            Width="120"
+            Text="{Binding RuleForm.Name, ElementName=root}"/>
 
         <Label
             x:Name="openInInputLabel"
@@ -50,7 +52,9 @@
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="1"
-            Width="120"/>
+            Width="120"
+            ItemsSource="{Binding Browsers, ElementName=root}"
+            SelectedItem="{Binding RuleForm.Browser, ElementName=root}"/>
 
         <Label
             x:Name="typeInputLabel"
@@ -66,11 +70,14 @@
             Grid.Row="2"
             Grid.Column="1"
             Width="120"
+            ItemsSource="{Binding Types, ElementName=root}"
+            SelectedItem="{Binding RuleForm.Type, ElementName=root}"
             SelectionChanged="TypeInput_SelectionChanged"/>
 
         <Label
             x:Name="dataInputLabel"
-            Content="Data"
+            d:Content="[Data Input]"
+            Content="{Binding DataInputLabel, ElementName=root}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="3"
@@ -82,7 +89,9 @@
             TextWrapping="Wrap"
             Grid.Row="3"
             Grid.Column="1"
-            Width="120"/>
+            Width="120"
+            d:Text="youtube.com"
+            Text="{Binding RuleForm.Data, ElementName=root}"/>
 
         <Label
             x:Name="templateInputLabel"
@@ -93,13 +102,14 @@
             Grid.Column="0"/>
         <TextBox
             x:Name="templateInput"
-            Text="{}{{url}}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
             Grid.Row="4"
             Grid.Column="1"
-            Width="120"/>
+            Width="120"
+            d:Text="{}{{url}}"
+            Text="{Binding RuleForm.Template, ElementName=root}"/>
 
         <Button
             x:Name="cancelButton"

@@ -1,4 +1,6 @@
-﻿namespace OzemstvoConsole;
+﻿using OzemstvoConsole;
+
+namespace OzemstvoConsole;
 
 internal static class Program
 {
@@ -32,28 +34,28 @@ internal static class Program
     var firefox = ozemstvo.Browsers.Find(x => x.Name.Contains("Firefox"));
     if (firefox is not null)
     {
-      ozemstvo.Rules.Add(new Rule("Youtube", firefox, Rule.RuleTypes.Host, "youtube.com"));
-      ozemstvo.Rules.Add(new Rule("youtu.be", firefox, Rule.RuleTypes.Host, "twitch.tv"));
-      ozemstvo.Rules.Add(new Rule("dezn", firefox, Rule.RuleTypes.Host, "dzen.ru"));
+      ozemstvo.Rules.Add(new Rule("Youtube", firefox, RuleTypes.Host, "youtube.com"));
+      ozemstvo.Rules.Add(new Rule("youtu.be", firefox, RuleTypes.Host, "twitch.tv"));
+      ozemstvo.Rules.Add(new Rule("dezn", firefox, RuleTypes.Host, "dzen.ru"));
     }
 
     var edge = ozemstvo.Browsers.Find(x => x.Name.Contains("Edge"));
     if (edge is not null)
     {
-      ozemstvo.Rules.Add(new Rule("microsoft.com", edge, Rule.RuleTypes.Host, "microsoft.com"));
+      ozemstvo.Rules.Add(new Rule("microsoft.com", edge, RuleTypes.Host, "microsoft.com"));
     }
 
     var chrome = ozemstvo.Browsers.Find(x => x.Name.Contains("Google Chrome"));
     if (chrome is not null)
     {
-      ozemstvo.Rules.Add(new Rule("Google Meet", chrome, Rule.RuleTypes.Host, "meet.google.com"));
-      ozemstvo.Rules.Add(new Rule("Tagspace", chrome, Rule.RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
+      ozemstvo.Rules.Add(new Rule("Google Meet", chrome, RuleTypes.Host, "meet.google.com"));
+      ozemstvo.Rules.Add(new Rule("Tagspace", chrome, RuleTypes.Host, "tagspace.com", "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"));
     }
 
     var steam = ozemstvo.Browsers.Find(x => x.Name.Contains("Steam"));
     if (steam is not null)
     {
-      ozemstvo.Rules.Add(new Rule("Steam", steam, Rule.RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
+      ozemstvo.Rules.Add(new Rule("Steam", steam, RuleTypes.Host, "store.steampowered.com", "steam://openurl/{{url}}"));
     }
 
     ozemstvo.Run(uri);
