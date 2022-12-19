@@ -21,14 +21,12 @@ namespace OzemstvoWPF
 
         public string DataInputLabel { get; set; } = "Host to match";
 
-        public EditorWindow(RuleProperty? rule = null)
+        public EditorWindow(MainWindow mainWindow, RuleProperty? rule = null)
         {
-            _mainWindow = (MainWindow)Application.Current.MainWindow;
-            Ozemstvo Ozemstvo = _mainWindow.Ozemstvo;
-
-            Browsers = Ozemstvo.Browsers.Select(b => b.Name).ToArray();
-            Browser? defaultBrowser = Ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
-            defaultBrowser ??= Ozemstvo.Browsers.First();
+            _mainWindow = mainWindow;
+            Browsers = _mainWindow.Ozemstvo.Browsers.Select(b => b.Name).ToArray();
+            Browser? defaultBrowser = _mainWindow.Ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
+            defaultBrowser ??= _mainWindow.Ozemstvo.Browsers.First();
             Types = Enum.GetNames(typeof(RuleType));
 
             if (rule is not null)

@@ -20,7 +20,8 @@
                     <DataTemplate>
                         <controls:RuleItem
                             Rule="{Binding .}"
-                            Remove="Rule_OnRemove"
+                            Edit="RuleItem_OnEdit"
+                            Remove="RuleItem_OnRemove"
                             Margin="2,5,2,0" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

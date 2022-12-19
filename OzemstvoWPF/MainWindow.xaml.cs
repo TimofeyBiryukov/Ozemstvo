@@ -125,7 +125,17 @@ namespace OzemstvoWPF
             itemsControlRulesList.ItemsSource = Rules;
         }
 
-        private void Rule_OnRemove(object sender, RoutedEventArgs e)
+        private void RuleItem_OnEdit(object sender, RoutedEventArgs e)
+        {
+            RuleItem ruleItem = (RuleItem)sender;
+            RuleProperty rule = Rules.First(r => r.Id == ruleItem.Rule.Id);
+            if (rule is not null)
+            {
+                new EditorWindow(this, rule).ShowDialog();
+            }
+        }
+
+        private void RuleItem_OnRemove(object sender, RoutedEventArgs e)
         {
             RuleItem ruleItem = (RuleItem)sender;
             RuleProperty rule = Rules.First(r => r.Id == ruleItem.Rule.Id);
@@ -137,7 +147,7 @@ namespace OzemstvoWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            new EditorWindow().ShowDialog();
+            new EditorWindow(this).ShowDialog();
         }
 
         private void TestButton_Click(object sender, RoutedEventArgs e)

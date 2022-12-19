@@ -28,6 +28,15 @@ namespace OzemstvoWPF.Controls
             remove { RemoveHandler(OnRemoveEvent, value); }
         }
 
+        public static readonly RoutedEvent OnEditEvent =
+            EventManager.RegisterRoutedEvent("OnEdit", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(RuleItem));
+
+        public event RoutedEventHandler Edit
+        {
+            add { AddHandler(OnEditEvent, value); }
+            remove { RemoveHandler(OnEditEvent, value); }
+        }
+
         public RuleItem()
         {
             InitializeComponent();
@@ -40,7 +49,8 @@ namespace OzemstvoWPF.Controls
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            new EditorWindow(Rule).ShowDialog();
+            //new EditorWindow(Rule).ShowDialog();
+            RaiseEvent(new RoutedEventArgs(OnEditEvent));
         }
     }
 }
