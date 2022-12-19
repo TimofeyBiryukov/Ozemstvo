@@ -37,6 +37,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Width="120"
+            d:Text="Youtube"
             Text="{Binding Rule.Name, ElementName=root}"/>
 
         <Label

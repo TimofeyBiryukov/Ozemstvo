@@ -42,86 +42,8 @@ namespace OzemstvoWPF
                 Ozemstvo.Browsers[chromeIndex].Default = true;
             }
 
-            //var firefox = Ozemstvo.Browsers.Find(x => x.Name.Contains("Firefox"));
-            //if (firefox is not null)
-            //{
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "Youtube",
-            //        Browser = firefox.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "youtube.com"
-            //    });
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "youtu.be",
-            //        Browser = firefox.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "youtu.be"
-            //    });
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "Twitch",
-            //        Browser = firefox.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "twitch.tv"
-            //    });
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "dzen",
-            //        Browser = firefox.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "dzen.ru"
-            //    });
-            //}
-
-            //var edge = Ozemstvo.Browsers.Find(x => x.Name.Contains("Edge"));
-            //if (edge is not null)
-            //{
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "microsoft.com",
-            //        Browser = edge.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "microsoft.com"
-            //    });
-            //}
-
-            //var chrome = Ozemstvo.Browsers.Find(x => x.Name.Contains("Google Chrome"));
-            //if (chrome is not null)
-            //{
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "Google Meet",
-            //        Browser = chrome.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "meet.google.com"
-            //    });
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "Tagspace",
-            //        Browser = chrome.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "tagspace.com",
-            //        Template = "--profile-email=\"timofeybiryukov@tagspace.com\" {{url}}"
-            //    });
-            //}
-
-            //var steam = Ozemstvo.Browsers.Find(x => x.Name.Contains("Steam"));
-            //if (steam is not null)
-            //{
-            //    Rules.Add(new RuleProperty
-            //    {
-            //        Name = "Steam",
-            //        Browser = steam.Name,
-            //        Type = RuleType.Host.ToString(),
-            //        Data = "store.steampowered.com",
-            //        Template = "steam://openurl/{{url}}"
-            //    });
-            //}
-
-            LoadRules();
             InitializeComponent();
+            LoadRules();
             itemsControlRulesList.ItemsSource = Rules;
         }
 
@@ -142,6 +64,7 @@ namespace OzemstvoWPF
             if (rule is not null)
             {
                 Rules.Remove(rule);
+                SaveRules();
             }
         }
 
@@ -162,7 +85,6 @@ namespace OzemstvoWPF
                     new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
             OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
-            SaveRules();
         }
 
         public void SaveRules()

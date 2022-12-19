@@ -60,37 +60,35 @@ namespace OzemstvoWPF
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Browser browser = _mainWindow.Ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
-            Enum.TryParse(Rule.Type, true, out RuleType type);
-            if (browser is null)
+            if (string.IsNullOrEmpty(Rule.Id))
             {
-                //throw?
-                return;
+                AddNewRule();
             }
-
-            if (Rule.Id is not null)
+            else
             {
-                // update rule
-                Rule? rule = _mainWindow.Ozemstvo.Rules.First(b => b.Id == Rule.Id);
+
+                RuleProperty? rule = _mainWindow.Rules.First(b => b.Id == Rule.Id);
                 if (rule is not null)
                 {
                     rule.Name = Rule.Name;
-                    rule.Browser = browser;
-                    rule.Type = type;
+                    rule.Browser = Rule.Browser;
+                    rule.Type = Rule.Type;
                     rule.Data = Rule.Data;
                     rule.Template = Rule.Template;
                 }
                 else
                 {
-                    _mainWindow.Rules.Add(Rule);
+                    AddNewRule();
                 }
             }
-            else
-            {
-                _mainWindow.Rules.Add(Rule);
-                
-            }
+            _mainWindow.SaveRules();
             Close();
+        }
+
+        private void AddNewRule()
+        {
+            Rule.Id = Guid.NewGuid().ToString();
+            _mainWindow.Rules.Add(Rule);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
