@@ -43,7 +43,6 @@ namespace OzemstvoWPF
                 Rule.Type = Types.First();
             }
 
-
             InitializeComponent();
         }
 
