@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="Rule Editor"
         Height="223"
+        MinHeight="223"
         Width="350"
+        MinWidth="350"
         x:Name="root">
     <Grid Margin="10,10,10,10">
         <Grid.ColumnDefinitions>

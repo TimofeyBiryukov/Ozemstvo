@@ -8,7 +8,9 @@
         mc:Ignorable="d"
         Title="Ozemstvo"
         Height="417"
-        Width="366">
+        MinHeight="400"
+        Width="366"
+        MinWidth="350">
     <Grid>
         <ScrollViewer
             Margin="0,0,0,47"
@@ -39,7 +41,7 @@
         <TextBox
             x:Name="TestInput"
             HorizontalAlignment="Left"
-            Margin="10,354,0,10"
+            Margin="10,354,0,0"
             TextWrapping="Wrap"
             Text="http://"
             VerticalAlignment="Bottom"
@@ -48,7 +50,7 @@
             x:Name="TestButton"
             Content="Test"
             HorizontalAlignment="Left"
-            Margin="135,354,0,10"
+            Margin="135,354,0,0"
             VerticalAlignment="Bottom"
             IsDefault="True"
             Click="TestButton_Click"/>
