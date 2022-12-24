@@ -83,7 +83,7 @@ namespace OzemstvoWPF
                 rules.Add(
                     new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
-            OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
+            //OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
         }
 
         public void SaveRules()

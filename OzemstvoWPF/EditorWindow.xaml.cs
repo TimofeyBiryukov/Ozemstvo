@@ -119,13 +119,13 @@ namespace OzemstvoWPF
                 }
             }
             _mainWindow.SaveRules();
-            //Close();
+            Close();
         }
 
         private void AddNewRule()
         {
             Rule.Id = Guid.NewGuid().ToString();
-            //_mainWindow.Rules.Add(Rule);
+            _mainWindow.Rules.Add(Rule);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -7,9 +7,9 @@
         xmlns:controls="clr-namespace:OzemstvoWPF.Controls"
         mc:Ignorable="d"
         Title="Ozemstvo"
-        Height="417"
+        Height="500"
         MinHeight="400"
-        Width="366"
+        Width="400"
         MinWidth="350">
     <Grid>
         <ScrollViewer
@@ -38,7 +38,7 @@
             VerticalAlignment="Bottom"
             Click="AddButton_Click" />
 
-        <TextBox
+        <!-- <TextBox
             x:Name="TestInput"
             HorizontalAlignment="Left"
             Margin="10,354,0,0"
@@ -53,6 +53,6 @@
             Margin="135,354,0,0"
             VerticalAlignment="Bottom"
             IsDefault="True"
-            Click="TestButton_Click"/>
+            Click="TestButton_Click"/> -->
     </Grid>
 </Window>
