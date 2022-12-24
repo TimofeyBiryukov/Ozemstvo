@@ -51,6 +51,7 @@ namespace OzemstvoWPF
         public string[] Types { get; set; } = Array.Empty<string>();
 
         public string DataInputLabel { get; set; } = "Host to match";
+        public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
         public EditorWindow(MainWindow mainWindow, RuleProperty? rule = null)
         {

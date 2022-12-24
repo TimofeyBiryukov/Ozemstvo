@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:OzemstvoWPF"
         mc:Ignorable="d"
         Title="Rule Editor"
-        Height="223"
-        MinHeight="223"
+        Height="380"
+        MinHeight="380"
         Width="350"
         MinWidth="350"
         x:Name="root">
@@ -22,6 +22,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label
@@ -115,6 +116,16 @@
             VerticalAlignment="Center"
             Grid.Row="4"
             Grid.Column="0"/>
+        <TextBlock
+            TextWrapping="Wrap"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            d:Text="Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}."
+            Text="{Binding TemplateDescription, ElementName=root}"
+            />
         <TextBox
             x:Name="templateInput"
             HorizontalAlignment="Stretch"
@@ -136,7 +147,7 @@
         <Button
             x:Name="cancelButton"
             Grid.Column="1"
-            Grid.Row="5"
+            Grid.Row="6"
             Content="Cancel"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -147,7 +158,7 @@
         <Button
             x:Name="submitButton"
             Grid.Column="1"
-            Grid.Row="5"
+            Grid.Row="6"
             Content="Submit"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
