@@ -7,6 +7,37 @@ using static OzemstvoWPF.MainWindow;
 
 namespace OzemstvoWPF
 {
+    public class RequiredValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            string? stringToValidate = value as string;
+            if (string.IsNullOrEmpty(stringToValidate))
+            {
+                return new ValidationResult(false, "This field is required");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
+    public class TemplateValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            string? stringToValidate = value as string;
+            ValidationResult result = new ValidationResult(false, "Template must contain {{url}}");
+            if (string.IsNullOrEmpty(stringToValidate))
+            {
+                return result;
+            }
+            if (!stringToValidate.Contains("{{url}}"))
+            {
+                return result;
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for EditorWindow.xaml
     /// </summary>
@@ -66,7 +97,6 @@ namespace OzemstvoWPF
             }
             else
             {
-
                 RuleProperty? rule = _mainWindow.Rules.First(b => b.Id == Rule.Id);
                 if (rule is not null)
                 {
@@ -82,13 +112,13 @@ namespace OzemstvoWPF
                 }
             }
             _mainWindow.SaveRules();
-            Close();
+            //Close();
         }
 
         private void AddNewRule()
         {
             Rule.Id = Guid.NewGuid().ToString();
-            _mainWindow.Rules.Add(Rule);
+            //_mainWindow.Rules.Add(Rule);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -38,9 +38,15 @@
             TextWrapping="Wrap"
             Grid.Row="0"
             Grid.Column="1"
-            Width="120"
-            d:Text="Youtube"
-            Text="{Binding Rule.Name, ElementName=root}"/>
+            Width="120">
+            <Binding
+                Path="Rule.Name"
+                ElementName="root">
+                <Binding.ValidationRules>
+                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
         <Label
             x:Name="openInInputLabel"
@@ -92,9 +98,15 @@
             TextWrapping="Wrap"
             Grid.Row="3"
             Grid.Column="1"
-            Width="120"
-            d:Text="youtube.com"
-            Text="{Binding Rule.Data, ElementName=root}"/>
+            Width="120">
+            <Binding
+                Path="Rule.Data"
+                ElementName="root">
+                <Binding.ValidationRules>
+                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
         <Label
             x:Name="templateInputLabel"
@@ -110,9 +122,16 @@
             TextWrapping="Wrap"
             Grid.Row="4"
             Grid.Column="1"
-            Width="120"
-            d:Text="{}{{url}}"
-            Text="{Binding Rule.Template, ElementName=root}"/>
+            Width="120">
+            <Binding
+                Path="Rule.Template"
+                ElementName="root">
+                <Binding.ValidationRules>
+                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                    <local:TemplateValidationRule ValidatesOnTargetUpdated="True"/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
         <Button
             x:Name="cancelButton"

@@ -11,22 +11,21 @@ using OzemstvoWPF.Controls;
 
 namespace OzemstvoWPF
 {
+    public class RuleProperty
+    {
+        virtual public string? Id { get; set; } = null;
+        virtual public string Name { get; set; } = string.Empty;
+        virtual public string Browser { get; set; } = string.Empty;
+        virtual public string Data { get; set; } = string.Empty;
+        virtual public string Template { get; set; } = "{{url}}";
+        virtual public string Type { get; set; } = string.Empty;
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public class RuleProperty
-        {
-            public string? Id { get; set; } = null;
-            public string Name { get; set; } = string.Empty;
-            public string Browser { get; set; } = string.Empty;
-            public string Data { get; set; } = string.Empty;
-            public string Template { get; set; } = "{{url}}";
-            public string Type { get; set; } = string.Empty;
-        }
-
         public ObservableCollection<RuleProperty> Rules { get; set; } = new ObservableCollection<RuleProperty>();
 
         public readonly Ozemstvo Ozemstvo = new();
