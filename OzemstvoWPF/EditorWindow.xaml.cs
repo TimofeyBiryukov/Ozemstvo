@@ -95,9 +95,46 @@ namespace OzemstvoWPF
                 dataInputLabel.Content = "Regex to match";
             }
         }
+        
+        private bool Validate()
+        {
+            if (string.IsNullOrEmpty(Rule.Name))
+            {
+                MessageBox.Show("Name is required");
+                return false;
+            }
+            if (string.IsNullOrEmpty(Rule.Browser))
+            {
+                MessageBox.Show("Browser is required");
+                return false;
+            }
+            if (string.IsNullOrEmpty(Rule.Type))
+            {
+                MessageBox.Show("Type is required");
+                return false;
+            }
+            if (string.IsNullOrEmpty(Rule.Data))
+            {
+                MessageBox.Show("Data is required");
+                return false;
+            }
+            if (string.IsNullOrEmpty(Rule.Template))
+            {
+                MessageBox.Show("Template is required");
+                return false;
+            }
+            if (!Rule.Template.Contains("{{url}}"))
+            {
+                MessageBox.Show("Template must contain {{url}}");
+                return false;
+            }
+            return true;
+        }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!Validate()) return;
+
             if (string.IsNullOrEmpty(Rule.Id))
             {
                 AddNewRule();
