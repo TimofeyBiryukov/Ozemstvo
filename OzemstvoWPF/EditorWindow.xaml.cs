@@ -50,7 +50,6 @@ namespace OzemstvoWPF
         public string[] Browsers { get; set; } = Array.Empty<string>();
         public string[] Types { get; set; } = Array.Empty<string>();
 
-        public string DataInputLabel { get; set; } = "Host to match";
         public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
         public EditorWindow(MainWindow mainWindow, RuleProperty? rule = null)
@@ -76,17 +75,24 @@ namespace OzemstvoWPF
             }
 
             InitializeComponent();
+            updateDataInputLabel();
         }
 
         private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dataInputLabel is null) return;
+            updateDataInputLabel();
+        }
+
+        private void updateDataInputLabel()
+        {
             if (Rule.Type == RuleType.Host.ToString())
             {
-                DataInputLabel = "Host to match";
+                dataInputLabel.Content = "Host to match";
             }
             else if (Rule.Type == RuleType.Regex.ToString())
             {
-                DataInputLabel = "Regex to match";
+                dataInputLabel.Content = "Regex to match";
             }
         }
 

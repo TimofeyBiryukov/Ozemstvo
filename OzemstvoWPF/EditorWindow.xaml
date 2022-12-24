@@ -66,9 +66,17 @@
             ItemsSource="{Binding Browsers, ElementName=root}"
             SelectedItem="{Binding Rule.Browser, ElementName=root}"/>
 
+        <Border
+            BorderBrush="Black"
+            BorderThickness="1"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"/>
+
         <Label
             x:Name="typeInputLabel"
-            Content="Matching Type"
+            Content="Match By"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="2"
@@ -87,7 +95,6 @@
         <Label
             x:Name="dataInputLabel"
             d:Content="[Data Input]"
-            Content="{Binding DataInputLabel, ElementName=root}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="3"
