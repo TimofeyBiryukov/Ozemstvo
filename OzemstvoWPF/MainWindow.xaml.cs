@@ -19,6 +19,7 @@ namespace OzemstvoWPF
         virtual public string Data { get; set; } = string.Empty;
         virtual public string Template { get; set; } = "{{url}}";
         virtual public string Type { get; set; } = string.Empty;
+        virtual public string Example { get; set; } = string.Empty;
     }
 
     /// <summary>

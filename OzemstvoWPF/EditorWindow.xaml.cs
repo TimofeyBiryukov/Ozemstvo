@@ -1,5 +1,6 @@
 ﻿using OzemstvoConsole;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -127,6 +128,18 @@ namespace OzemstvoWPF
                 MessageBox.Show("Template must contain {{url}}");
                 return false;
             }
+            try
+            {
+                if (!string.IsNullOrEmpty(Rule.Example))
+                {
+                    new Uri(Rule.Example);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Example must be a valid URL");
+                return false;
+            }
             return true;
         }
 
@@ -167,6 +180,20 @@ namespace OzemstvoWPF
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void TestButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Validate()) return;
+            if (string.IsNullOrEmpty(Rule.Example))
+            {
+                MessageBox.Show("Example is required");
+                return;
+            }
+            Browser browser = _mainWindow.Ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
+            RuleType ruleType = Enum.TryParse<RuleType>(Rule.Type, out RuleType type) ? type : RuleType.Host;
+            Rule rule = new Rule(Rule.Name, browser, ruleType, Rule.Data, Rule.Template);
+            Ozemstvo.Run(new Uri(Rule.Example), new List<Rule> { rule }, _mainWindow.Ozemstvo.Browsers);
         }
     }
 }

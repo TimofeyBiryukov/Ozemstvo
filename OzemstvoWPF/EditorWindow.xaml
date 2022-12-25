@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:OzemstvoWPF"
         mc:Ignorable="d"
         Title="Rule Editor"
-        Height="380"
-        MinHeight="380"
+        Height="430"
+        MinHeight="430"
         Width="350"
         MinWidth="350"
         x:Name="root">
@@ -23,6 +23,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="1*"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -149,10 +150,46 @@
             </Binding>
         </TextBox>
 
+        <Border
+            BorderBrush="Black"
+            BorderThickness="1"
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"/>
+        <Label
+            x:Name="exampleInputLabel"
+            Content="URL Example"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Grid.Row="6"
+            Grid.Column="0"/>
+        <TextBox
+            x:Name="exampleInput"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"
+            Grid.Row="6"
+            Grid.Column="5"
+            Margin="0,0,10,0">
+            <Binding
+                Path="Rule.Example"
+                ElementName="root"/>
+        </TextBox>
+
+        <Button
+            x:Name="testButton"
+            Grid.Column="0"
+            Grid.Row="7"
+            Content="Test"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Click="TestButton_Click"
+            Margin="52,0,0,0"
+            Padding="2,2,2,2"/>
         <Button
             x:Name="cancelButton"
             Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="7"
             Content="Cancel"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -163,7 +200,7 @@
         <Button
             x:Name="submitButton"
             Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="7"
             Content="Submit"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
