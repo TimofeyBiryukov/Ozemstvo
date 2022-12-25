@@ -25,6 +25,15 @@
             <RowDefinition Height="1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+        <Border
+            BorderBrush="Black"
+            BorderThickness="1"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"/>
+
         <Label
             x:Name="ruleNameInputLabel"
             Content="Rule Name"
@@ -39,7 +48,7 @@
             TextWrapping="Wrap"
             Grid.Row="0"
             Grid.Column="1"
-            Width="120">
+            Margin="0,0,10,0">
             <Binding
                 Path="Rule.Name"
                 ElementName="root">
@@ -62,17 +71,9 @@
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="1"
-            Width="120"
+            Margin="0,0,10,0"
             ItemsSource="{Binding Browsers, ElementName=root}"
             SelectedItem="{Binding Rule.Browser, ElementName=root}"/>
-
-        <Border
-            BorderBrush="Black"
-            BorderThickness="1"
-            Grid.Row="0"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"/>
 
         <Label
             x:Name="typeInputLabel"
@@ -87,7 +88,6 @@
             VerticalAlignment="Center"
             Grid.Row="2"
             Grid.Column="1"
-            Width="120"
             ItemsSource="{Binding Types, ElementName=root}"
             SelectedItem="{Binding Rule.Type, ElementName=root}"
             SelectionChanged="TypeInput_SelectionChanged"/>
@@ -105,8 +105,7 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"
             Grid.Row="3"
-            Grid.Column="1"
-            Width="120">
+            Grid.Column="1">
             <Binding
                 Path="Rule.Data"
                 ElementName="root">
@@ -136,11 +135,10 @@
         <TextBox
             x:Name="templateInput"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+            VerticalAlignment="Stretch"
             TextWrapping="Wrap"
             Grid.Row="4"
-            Grid.Column="1"
-            Width="120">
+            Grid.Column="1">
             <Binding
                 Path="Rule.Template"
                 ElementName="root">
