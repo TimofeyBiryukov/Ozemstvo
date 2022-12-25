@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using static OzemstvoWPF.MainWindow;
 
 namespace OzemstvoWPF
 {
