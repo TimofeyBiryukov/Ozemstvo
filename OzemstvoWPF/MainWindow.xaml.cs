@@ -18,9 +18,15 @@ namespace OzemstvoWPF
 
         public readonly Ozemstvo Ozemstvo = new();
 
-        public MainWindow()
+        public MainWindow(string[] args)
         {
             Ozemstvo.Init();
+            LoadRules();
+            if (args.Length > 0)
+            {
+                OzemstvoRun(args[0]);
+                return;
+            }
 
             var chromeIndex = Ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
             if (chromeIndex > -1)
@@ -30,7 +36,6 @@ namespace OzemstvoWPF
             }
 
             InitializeComponent();
-            LoadRules();
             itemsControlRulesList.ItemsSource = Rules;
         }
 
@@ -62,8 +67,12 @@ namespace OzemstvoWPF
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            var rules = GetRules(Ozemstvo.Browsers);
-            //OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
+            //OzemstvoRun(TestInput.Text);
+        }
+
+        private void OzemstvoRun(string url)
+        {
+            OzemstvoConsole.Ozemstvo.Run(new Uri(url), GetRules(Ozemstvo.Browsers), Ozemstvo.Browsers);
         }
 
         public void SaveRules()

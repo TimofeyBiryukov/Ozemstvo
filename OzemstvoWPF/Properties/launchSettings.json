@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "OzemstvoWPF": {
+      "commandName": "Project"
+    },
+    "OzemstvoWPF-Console": {
+      "commandName": "Project",
+      "commandLineArgs": "https://microsoft.com"
+    }
+  }
+}
