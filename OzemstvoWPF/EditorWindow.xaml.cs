@@ -1,6 +1,8 @@
 ﻿using OzemstvoConsole;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,7 +45,8 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class EditorWindow : Window
     {
-        private MainWindow _mainWindow;
+        private Ozemstvo _ozemstvo { get; set; }
+        private ObservableCollection<RuleProperty> _rules { get; set; }
 
         public RuleProperty Rule { get; set; } = new();
 
@@ -52,12 +55,16 @@ namespace OzemstvoWPF
 
         public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
-        public EditorWindow(MainWindow mainWindow, RuleProperty? rule = null)
+        public EditorWindow(
+            Ozemstvo ozemstvo,
+            ObservableCollection<RuleProperty> rules,
+            RuleProperty? rule = null)
         {
-            _mainWindow = mainWindow;
-            Browsers = _mainWindow.Ozemstvo.Browsers.Select(b => b.Name).ToArray();
-            Browser? defaultBrowser = _mainWindow.Ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
-            defaultBrowser ??= _mainWindow.Ozemstvo.Browsers.First();
+            _ozemstvo = ozemstvo;
+            _rules = rules;
+            Browsers = _ozemstvo.Browsers.Select(b => b.Name).ToArray();
+            Browser? defaultBrowser = _ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
+            defaultBrowser ??= _ozemstvo.Browsers.First();
             Types = Enum.GetNames(typeof(RuleType));
 
             if (rule is not null)
@@ -153,7 +160,7 @@ namespace OzemstvoWPF
             }
             else
             {
-                RuleProperty? rule = _mainWindow.Rules.First(b => b.Id == Rule.Id);
+                RuleProperty? rule = _rules.First(b => b.Id == Rule.Id);
                 if (rule is not null)
                 {
                     rule.Name = Rule.Name;
@@ -167,14 +174,14 @@ namespace OzemstvoWPF
                     AddNewRule();
                 }
             }
-            _mainWindow.SaveRules();
+            ((App)Application.Current).SaveRulesProperties();
             Close();
         }
 
         private void AddNewRule()
         {
             Rule.Id = Guid.NewGuid().ToString();
-            _mainWindow.Rules.Add(Rule);
+            _rules.Add(Rule);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -190,10 +197,10 @@ namespace OzemstvoWPF
                 MessageBox.Show("Example is required");
                 return;
             }
-            Browser browser = _mainWindow.Ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
+            Browser browser = _ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
             RuleType ruleType = Enum.TryParse<RuleType>(Rule.Type, out RuleType type) ? type : RuleType.Host;
-            Rule rule = new Rule(Rule.Name, browser, ruleType, Rule.Data, Rule.Template);
-            Ozemstvo.Run(new Uri(Rule.Example), new List<Rule> { rule }, _mainWindow.Ozemstvo.Browsers);
+            OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, ruleType, Rule.Data, Rule.Template);
+            Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, _ozemstvo.Browsers);
         }
     }
 }

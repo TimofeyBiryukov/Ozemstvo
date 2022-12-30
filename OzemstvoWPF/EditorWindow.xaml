@@ -201,7 +201,7 @@
             x:Name="submitButton"
             Grid.Column="1"
             Grid.Row="7"
-            Content="Submit"
+            Content="Save"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Click="SubmitButton_Click"

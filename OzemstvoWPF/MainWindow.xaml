@@ -37,22 +37,5 @@
             Padding="5,2,5,2"
             VerticalAlignment="Bottom"
             Click="AddButton_Click" />
-
-        <!-- <TextBox
-            x:Name="TestInput"
-            HorizontalAlignment="Left"
-            Margin="10,354,0,0"
-            TextWrapping="Wrap"
-            Text="http://"
-            VerticalAlignment="Bottom"
-            Width="120"/>
-        <Button
-            x:Name="TestButton"
-            Content="Test"
-            HorizontalAlignment="Left"
-            Margin="135,354,0,0"
-            VerticalAlignment="Bottom"
-            IsDefault="True"
-            Click="TestButton_Click"/> -->
     </Grid>
 </Window>

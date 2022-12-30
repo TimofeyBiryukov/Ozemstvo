@@ -21,26 +21,75 @@ namespace OzemstvoWPF
     {
         public App()
         {
-            //preventSecond();
+            //TODO: preventSecond();
         }
 
         private const string UniqueEventName = "Ozemstvo";
-        public ObservableCollection<RuleProperty> Rules { get; set; } = new ObservableCollection<RuleProperty>();
-        public Ozemstvo Ozemstvo = new();
+        private readonly Ozemstvo _ozemstvo = new();
+        private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
+
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Ozemstvo.Init();
-            
+            _ozemstvo.Init();
+            LoadRulesProperties();
+
+            // TODO: ask user about default browser
+            var chromeIndex = _ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
+            if (chromeIndex > -1)
+            {
+                _ozemstvo.Browsers[0].Default = false;
+                _ozemstvo.Browsers[chromeIndex].Default = true;
+            }
+
             if (e.Args.Length > 0)
             {
-                Ozemstvo.Rules = GetRules(Ozemstvo.Browsers);
-                Ozemstvo.Run(new Uri(e.Args[0]));
+                string target = e.Args[0];
+                Uri.TryCreate(target, UriKind.Absolute, out Uri? uri);
+                if (uri is null)
+                {
+                    Console.WriteLine("Invalid URL");
+                    Shutdown();
+                    return;
+                }
+
+                _ozemstvo.Rules = GetRules();
+                _ozemstvo.Run(new Uri(e.Args[0]));
+                Shutdown();
             }
             else
             {
-                MainWindow main = new MainWindow(e.Args);
+                MainWindow main = new MainWindow(_ozemstvo, _rules);
                 main.Show();
+            }
+        }
+
+        private void preventSecond()
+        {
+            try
+            {
+                EventWaitHandle.OpenExisting(UniqueEventName);
+                Shutdown();
+            }
+            catch (WaitHandleCannotBeOpenedException)
+            {
+                new EventWaitHandle(false, EventResetMode.AutoReset, UniqueEventName);
+            }
+        }
+
+        public void SaveRulesProperties()
+        {
+            var rules = JsonSerializer.Serialize(_rules);
+            Settings.Default.Rules = rules;
+            Settings.Default.Save();
+        }
+
+        public void LoadRulesProperties()
+        {
+            var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
+            if (rules is not null)
+            {
+                _rules = rules;
             }
         }
 
@@ -60,33 +109,18 @@ namespace OzemstvoWPF
             return rules;
         }
 
-        private void preventSecond()
+        public List<OzemstvoConsole.Rule> GetRules()
         {
-            try
+            List<OzemstvoConsole.Rule> rules = new List<OzemstvoConsole.Rule>();
+            foreach (var rule in _rules)
             {
-                EventWaitHandle.OpenExisting(UniqueEventName);
-                Shutdown();
+                var browser = _ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
+                if (browser is null) continue;
+                Enum.TryParse(rule.Type, true, out RuleType type);
+                rules.Add(
+                    new OzemstvoConsole.Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
-            catch (WaitHandleCannotBeOpenedException)
-            {
-                new EventWaitHandle(false, EventResetMode.AutoReset, UniqueEventName);
-            }
-        }
-
-        public void SaveRules()
-        {
-            var rules = JsonSerializer.Serialize(Rules);
-            Settings.Default.Rules = rules;
-            Settings.Default.Save();
-        }
-
-        public void LoadRules()
-        {
-            var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
-            if (rules is not null)
-            {
-                Rules = rules;
-            }
+            return rules;
         }
     }
 }
