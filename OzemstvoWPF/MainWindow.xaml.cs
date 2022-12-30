@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Linq;
-using System.Security.RightsManagement;
 using System.Text.Json;
 using System.Windows;
 using OzemstvoConsole;
@@ -64,15 +62,7 @@ namespace OzemstvoWPF
 
         private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Rule> rules = new List<Rule>();
-            foreach (var rule in Rules)
-            {
-                var browser = Ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
-                if (browser is null) continue;
-                Enum.TryParse(rule.Type, true, out RuleType type);
-                rules.Add(
-                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
-            }
+            var rules = GetRules(Ozemstvo.Browsers);
             //OzemstvoConsole.Ozemstvo.Run(new Uri(TestInput.Text), rules, Ozemstvo.Browsers);
         }
 
@@ -90,6 +80,22 @@ namespace OzemstvoWPF
             {
                 Rules = rules;
             }
+        }
+
+        static public List<Rule> GetRules(List<Browser> browsers)
+        {
+            List<Rule> rules = new List<Rule>();
+            var savedRules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
+            if (savedRules is null) return rules;
+            foreach (var rule in savedRules)
+            {
+                var browser = browsers.Find(b => b.Name == rule.Browser);
+                if (browser is null) continue;
+                Enum.TryParse(rule.Type, true, out RuleType type);
+                rules.Add(
+                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+            }
+            return rules;
         }
     }
 }

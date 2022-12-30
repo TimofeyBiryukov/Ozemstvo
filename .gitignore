@@ -3,4 +3,5 @@ bin
 obj
 Release
 Debug
-*.csproj.user
+*.user
+
