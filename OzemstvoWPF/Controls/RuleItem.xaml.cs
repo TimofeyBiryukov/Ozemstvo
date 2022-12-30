@@ -49,7 +49,6 @@ namespace OzemstvoWPF.Controls
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            //new EditorWindow(Rule).ShowDialog();
             RaiseEvent(new RoutedEventArgs(OnEditEvent));
         }
     }
