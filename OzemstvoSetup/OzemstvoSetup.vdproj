@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_48704C9D62E14EC8B1293CEDC211A508"
+        "MsmKey" = "8:_4019E4110B7240C68DD6940476D71768"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,7 +178,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ozemstvo"
         "ProductCode" = "8:{F889DDE2-AE6C-413A-97ED-9EB1EBE8E648}"
-        "PackageCode" = "8:{A5B01D31-6299-4556-8E46-D04EA52FF6AA}"
+        "PackageCode" = "8:{0EC781EB-C5C1-4313-B70B-857CA1BE8293}"
         "UpgradeCode" = "8:{5785C7A3-15D9-427E-ABF2-02C97B1C66D9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -295,7 +295,7 @@
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
-                                                                    "Value" = "8:\"[TARGETDIR][ProductName]Console.exe\" \"%1\""
+                                                                    "Value" = "8:\"[TARGETDIR][ProductName]WPF.exe\" \"%1\""
                                                                     }
                                                                 }
                                                             }
@@ -853,9 +853,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_48704C9D62E14EC8B1293CEDC211A508"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4019E4110B7240C68DD6940476D71768"
             {
-            "SourcePath" = "8:..\\OzemstvoConsole\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\OzemstvoWPF\\obj\\Release\\net6.0-windows7.0\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AF99719A38D44C5AAB44FB5530C22831"
@@ -875,7 +875,7 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{75546D5E-B5C9-453A-845E-73500B89022A}"
+            "OutputProjectGuid" = "8:{B7330498-AC5B-46EE-9FAB-0BCB61BCE45B}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
