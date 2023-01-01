@@ -178,7 +178,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ozemstvo"
         "ProductCode" = "8:{F889DDE2-AE6C-413A-97ED-9EB1EBE8E648}"
-        "PackageCode" = "8:{0EC781EB-C5C1-4313-B70B-857CA1BE8293}"
+        "PackageCode" = "8:{EDFCD5D6-A9F9-4EC1-BD1D-FFF80F8D5087}"
         "UpgradeCode" = "8:{5785C7A3-15D9-427E-ABF2-02C97B1C66D9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -295,7 +295,7 @@
                                                                     "Condition" = "8:"
                                                                     "Transitive" = "11:FALSE"
                                                                     "ValueTypes" = "3:1"
-                                                                    "Value" = "8:\"[TARGETDIR][ProductName]WPF.exe\" \"%1\""
+                                                                    "Value" = "8:\"[TARGETDIR][ProductName].exe\" \"%1\""
                                                                     }
                                                                 }
                                                             }
