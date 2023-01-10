@@ -97,6 +97,14 @@ namespace OzemstvoWPF
             {
                 dataInputLabel.Content = "Host to match";
             }
+            else if (Rule.Type == RuleType.Path.ToString())
+            {
+                dataInputLabel.Content = "Path to match";
+            }
+            else if (Rule.Type == RuleType.Port.ToString())
+            {
+                dataInputLabel.Content = "Port to match";
+            }
             else if (Rule.Type == RuleType.Regex.ToString())
             {
                 dataInputLabel.Content = "Regex to match";

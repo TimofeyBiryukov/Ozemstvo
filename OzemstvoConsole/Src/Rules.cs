@@ -5,7 +5,9 @@ namespace OzemstvoConsole;
 public enum RuleType
 {
   Host = 1,
-  Regex = 2
+  Regex = 2,
+  Path = 3,
+  Port = 4
 }
 
 public class Rule
@@ -48,6 +50,14 @@ public class Rule
     if (Type == RuleType.Host)
     {
       return Data == uri.Host;
+    }
+    else if (Type == RuleType.Path)
+    {
+      return Data == uri.AbsolutePath;
+    }
+    else if (Type == RuleType.Port)
+    {
+      return Data == uri.Port.ToString();
     }
     else if (Type == RuleType.Regex)
     {

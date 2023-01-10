@@ -24,8 +24,6 @@ internal static class Program
 
     ozemstvo.Init();
 
-    // mainWindow GetRules();
-
     //var chromeIndex = ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
     //if (chromeIndex > -1)
     //{
