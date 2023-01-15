@@ -23,5 +23,31 @@ namespace OzemstvoWPF
         {
             InitializeComponent();
         }
+
+        private void browseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".exe";
+            dlg.Filter = "Executable files (*.exe)|*.exe";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                pathInput.Text = dlg.FileName;
+            }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void submitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (nameInput.Text.Length > 0 && pathInput.Text.Length > 0)
+            {
+                //((App)Application.Current).AddBrowser(nameInput.Text, pathInput.Text);
+                //Close();
+            }
+        }
     }
 }
