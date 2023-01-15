@@ -34,5 +34,17 @@ namespace OzemstvoWPF {
                 this["Rules"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[]")]
+        public string Browsers {
+            get {
+                return ((string)(this["Browsers"]));
+            }
+            set {
+                this["Browsers"] = value;
+            }
+        }
     }
 }

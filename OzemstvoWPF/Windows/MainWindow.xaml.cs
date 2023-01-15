@@ -14,19 +14,19 @@ namespace OzemstvoWPF
     {
         private Ozemstvo _ozemstvo { get; set; }
         private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
+        private ObservableCollection<BrowserProperty> _browsers { get; set; } = new ObservableCollection<BrowserProperty>();
 
-        public MainWindow(Ozemstvo ozemstvo, ObservableCollection<RuleProperty> rules)
+        public MainWindow(
+            Ozemstvo ozemstvo,
+            ObservableCollection<RuleProperty> rules,
+            ObservableCollection<BrowserProperty> browsers)
         {
             _ozemstvo = ozemstvo;
             _rules = rules;
+            _browsers = browsers;
             InitializeComponent();
             itemsControlRulesList.ItemsSource = _rules;
-            ObservableCollection<BrowserProperty> browsers = new ObservableCollection<BrowserProperty>();
-            foreach (var browser in _ozemstvo.Browsers)
-            {
-                browsers.Add(new BrowserProperty { Name = browser.Name, Path = browser.Path });
-            }
-            browsersList.ItemsSource = browsers;
+            browsersList.ItemsSource = _browsers;
         }
 
         private void RuleItem_OnEdit(object sender, RoutedEventArgs e)

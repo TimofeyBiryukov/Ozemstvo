@@ -22,12 +22,13 @@ namespace OzemstvoWPF
         private const string UniqueEventName = "Ozemstvo";
         private readonly Ozemstvo _ozemstvo = new();
         private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
-
+        private ObservableCollection<BrowserProperty> _browsers = new ObservableCollection<BrowserProperty>();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             _ozemstvo.Init();
             LoadRulesProperties();
+            LoadBrowsersProperties();
 
             // TODO: ask user about default browser
             var chromeIndex = _ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
@@ -54,7 +55,7 @@ namespace OzemstvoWPF
             }
             else
             {
-                MainWindow main = new MainWindow(_ozemstvo, _rules);
+                MainWindow main = new MainWindow(_ozemstvo, _rules, _browsers);
                 main.Show();
             }
         }
@@ -85,6 +86,19 @@ namespace OzemstvoWPF
             if (rules is not null)
             {
                 _rules = rules;
+            }
+        }
+
+        public void LoadBrowsersProperties()
+        {
+            var browsers = JsonSerializer.Deserialize<ObservableCollection<BrowserProperty>>(Settings.Default.Browsers.ToString());
+            if (browsers is not null)
+            {
+                _browsers = browsers;
+            }
+            foreach (var browser in _ozemstvo.Browsers)
+            {
+                _browsers.Add(new BrowserProperty { Name = browser.Name, Path = browser.Path });
             }
         }
 
