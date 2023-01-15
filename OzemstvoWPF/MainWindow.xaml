@@ -12,30 +12,39 @@
         Width="400"
         MinWidth="350">
     <Grid>
-        <ScrollViewer
-            Margin="0,0,0,47"
-            VerticalScrollBarVisibility="Auto">
-            <ItemsControl
-                x:Name="itemsControlRulesList"
-                d:ItemsSource="{d:SampleData ItemCount=5}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:RuleItem
-                            Rule="{Binding .}"
-                            Edit="RuleItem_OnEdit"
-                            Remove="RuleItem_OnRemove"
-                            Margin="2,5,2,0" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        <Button
-            x:Name="AddButton"
-            Content="Add"
-            HorizontalAlignment="Right"
-            Margin="0,0,20,20"
-            Padding="5,2,5,2"
-            VerticalAlignment="Bottom"
-            Click="AddButton_Click" />
+        <TabControl x:Name="tabControl">
+            <TabItem Header="Rules">
+                <Grid Background="#FFE5E5E5">
+                    <ScrollViewer
+                        Margin="0,0,0,47"
+                        VerticalScrollBarVisibility="Auto">
+                        <ItemsControl
+                            x:Name="itemsControlRulesList"
+                            d:ItemsSource="{d:SampleData ItemCount=5}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:RuleItem
+                                        Rule="{Binding .}"
+                                        Edit="RuleItem_OnEdit"
+                                        Remove="RuleItem_OnRemove"
+                                        Margin="2,5,2,0" /> 
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                    <Button
+                        x:Name="AddButton"
+                        Content="Add"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,20"
+                        Padding="5,2,5,2"
+                        VerticalAlignment="Bottom"
+                        Click="AddButton_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Applications">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
