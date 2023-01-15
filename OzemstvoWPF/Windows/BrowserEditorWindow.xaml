@@ -10,7 +10,8 @@
         Width="274"
         MinHeight="155"
         MinWidth="274"
-        x:Name="root">
+        x:Name="root"
+        ResizeMode="CanMinimize">
     <Grid Margin="10, 10, 10, 10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
