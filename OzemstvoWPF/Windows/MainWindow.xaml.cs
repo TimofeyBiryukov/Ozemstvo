@@ -57,7 +57,7 @@ namespace OzemstvoWPF
 
         private void AddBrowserButton_Click(object sender, RoutedEventArgs e)
         {
-            new BrowserEditorWindow().ShowDialog();
+            new BrowserEditorWindow(_browsers).ShowDialog();
         }
     }
 }

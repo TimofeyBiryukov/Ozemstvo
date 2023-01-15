@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OzemstvoWPF.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +21,21 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class BrowserEditorWindow : Window
     {
-        public BrowserEditorWindow()
+        private ObservableCollection<BrowserProperty> _browsers { get; set; } = new ObservableCollection<BrowserProperty>();
+
+        public BrowserProperty Browser { get; set; } = new();
+
+        public BrowserEditorWindow(
+            ObservableCollection<BrowserProperty> browsers,
+            BrowserProperty? browser = null)
         {
+            _browsers = browsers;
+
+            if (browser is not null)
+            {
+                Browser = browser;
+            }
+
             InitializeComponent();
         }
 
@@ -33,6 +48,7 @@ namespace OzemstvoWPF
             if (result == true)
             {
                 pathInput.Text = dlg.FileName;
+                Browser.Path = dlg.FileName;
             }
         }
 
@@ -43,11 +59,31 @@ namespace OzemstvoWPF
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            if (nameInput.Text.Length > 0 && pathInput.Text.Length > 0)
+            if (string.IsNullOrEmpty(Browser.Id))
             {
-                //((App)Application.Current).AddBrowser(nameInput.Text, pathInput.Text);
-                //Close();
+                AddBrowser();
             }
+            else
+            {
+                BrowserProperty? browser = _browsers.FirstOrDefault(b => b.Id == Browser.Id);
+                if (browser is not null)
+                {
+                    browser.Name = Browser.Name;
+                    browser.Path = Browser.Path;
+                }
+                else
+                {
+                    AddBrowser();
+                }
+            }
+            ((App)Application.Current).SaveBrowserProperties();
+            Close();
+        }
+
+        private void AddBrowser()
+        {
+            Browser.Id = Guid.NewGuid().ToString();
+            _browsers.Add(Browser);
         }
     }
 }

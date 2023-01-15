@@ -9,7 +9,8 @@
         Height="155"
         Width="274"
         MinHeight="155"
-        MinWidth="274">
+        MinWidth="274"
+        x:Name="root">
     <Grid Margin="10, 10, 10, 10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -34,7 +35,8 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="0"
-            Grid.Column="1"/>
+            Grid.Column="1"
+            Text="{Binding Path=Browser.Name, ElementName=root}"/>
 
         <Label
             x:Name="pathLabel"
@@ -50,7 +52,8 @@
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,50,0"/>
+            Margin="0,0,50,0"
+            Text="{Binding Path=Browser.Path, ElementName=root}"/>
 
         <Button
             x:Name="browseButton"

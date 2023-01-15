@@ -3,6 +3,7 @@ using OzemstvoWPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Windows;
@@ -50,6 +51,7 @@ namespace OzemstvoWPF
                 }
 
                 _ozemstvo.Rules = GetRules();
+                _ozemstvo.Browsers = GetBrowsers();
                 _ozemstvo.Run(new Uri(e.Args[0]));
                 Shutdown();
             }
@@ -80,6 +82,20 @@ namespace OzemstvoWPF
             Settings.Default.Save();
         }
 
+        public void SaveBrowserProperties()
+        {
+            ObservableCollection<BrowserProperty> browsers = new();
+            foreach (var browser in _browsers)
+            {
+                if (!browser.AutoDetected)
+                {
+                    browsers.Add(browser);
+                }
+            }
+            Settings.Default.Browsers = JsonSerializer.Serialize(browsers);
+            Settings.Default.Save();
+        }
+
         public void LoadRulesProperties()
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
@@ -91,20 +107,27 @@ namespace OzemstvoWPF
 
         public void LoadBrowsersProperties()
         {
-            var browsers = JsonSerializer.Deserialize<ObservableCollection<BrowserProperty>>(Settings.Default.Browsers.ToString());
-            if (browsers is not null)
-            {
-                _browsers = browsers;
-            }
             foreach (var browser in _ozemstvo.Browsers)
             {
-                _browsers.Add(new BrowserProperty { Name = browser.Name, Path = browser.Path });
+                _browsers.Add(new BrowserProperty
+                {
+                    Name = browser.Name,
+                    Path = browser.Path,
+                    AutoDetected = true
+                });
             }
+            var browsers = JsonSerializer.Deserialize<ObservableCollection<BrowserProperty>>(Settings.Default.Browsers.ToString());
+            if (browsers is null) return;
+            foreach (var browser in browsers)
+            {
+                _browsers.Add(browser);
+            }
+
         }
 
-        static public List<OzemstvoConsole.Rule> GetRules(List<Browser> browsers)
+        static public List<Rule> GetRules(List<Browser> browsers)
         {
-            List<OzemstvoConsole.Rule> rules = new List<OzemstvoConsole.Rule>();
+            List<Rule> rules = new List<Rule>();
             var savedRules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
             if (savedRules is null) return rules;
             foreach (var rule in savedRules)
@@ -113,23 +136,33 @@ namespace OzemstvoWPF
                 if (browser is null) continue;
                 Enum.TryParse(rule.Type, true, out RuleType type);
                 rules.Add(
-                    new OzemstvoConsole.Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
             return rules;
         }
 
-        public List<OzemstvoConsole.Rule> GetRules()
+        public List<Rule> GetRules()
         {
-            List<OzemstvoConsole.Rule> rules = new List<OzemstvoConsole.Rule>();
+            List<Rule> rules = new List<Rule>();
             foreach (var rule in _rules)
             {
                 var browser = _ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
                 if (browser is null) continue;
                 Enum.TryParse(rule.Type, true, out RuleType type);
                 rules.Add(
-                    new OzemstvoConsole.Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
             }
             return rules;
+        }
+        
+        public List<Browser> GetBrowsers()
+        {
+            List<Browser> browsers = new List<Browser>();
+            foreach (var browser in _browsers)
+            {
+                browsers.Add(new Browser(browser.Name, browser.Path));
+            }
+            return browsers;
         }
     }
 }
