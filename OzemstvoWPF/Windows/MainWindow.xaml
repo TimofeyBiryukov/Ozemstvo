@@ -33,18 +33,21 @@
                         </ItemsControl>
                     </ScrollViewer>
                     <Button
-                        x:Name="AddButton"
+                        x:Name="AddRuleButton"
                         Content="Add"
                         HorizontalAlignment="Right"
                         Margin="0,0,20,20"
                         Padding="5,2,5,2"
                         VerticalAlignment="Bottom"
-                        Click="AddButton_Click" />
+                        Click="AddRuleButton_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Browsers">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="browsersList" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListView
+                        x:Name="browsersList"
+                        d:ItemsSource="{d:SampleData ItemCount=5}"
+                        Margin="0,0,0,47">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -52,6 +55,13 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button
+                        x:Name="AddBrowserButton"
+                        Content="Add"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,20"
+                        Padding="5,2,5,2"
+                        VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
         </TabControl>

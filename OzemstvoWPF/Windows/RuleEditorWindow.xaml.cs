@@ -42,9 +42,9 @@ namespace OzemstvoWPF
     }
 
     /// <summary>
-    /// Interaction logic for EditorWindow.xaml
+    /// Interaction logic for RuleEditorWindow.xaml
     /// </summary>
-    public partial class EditorWindow : Window
+    public partial class RuleEditorWindow : Window
     {
         private Ozemstvo _ozemstvo { get; set; }
         private ObservableCollection<RuleProperty> _rules { get; set; }
@@ -56,7 +56,7 @@ namespace OzemstvoWPF
 
         public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
-        public EditorWindow(
+        public RuleEditorWindow(
             Ozemstvo ozemstvo,
             ObservableCollection<RuleProperty> rules,
             RuleProperty? rule = null)
