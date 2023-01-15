@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using OzemstvoWPF.Models;
 using static OzemstvoWPF.MainWindow;
 
 namespace OzemstvoWPF.Controls

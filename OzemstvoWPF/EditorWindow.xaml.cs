@@ -1,4 +1,5 @@
 ﻿using OzemstvoConsole;
+using OzemstvoWPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

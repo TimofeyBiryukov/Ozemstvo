@@ -1,4 +1,4 @@
-﻿namespace OzemstvoWPF
+﻿namespace OzemstvoWPF.Models
 {
     public class RuleProperty
     {

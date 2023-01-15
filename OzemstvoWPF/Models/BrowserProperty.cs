@@ -1,4 +1,4 @@
-﻿namespace OzemstvoWPF
+﻿namespace OzemstvoWPF.Models
 {
     internal class BrowserProperty
     {

@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Windows;
 using OzemstvoConsole;
 using OzemstvoWPF.Controls;
+using OzemstvoWPF.Models;
 
 namespace OzemstvoWPF
 {
