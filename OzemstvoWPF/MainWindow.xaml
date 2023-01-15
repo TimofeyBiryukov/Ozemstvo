@@ -42,8 +42,17 @@
                         Click="AddButton_Click" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Applications">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Browsers">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="browsersList" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
