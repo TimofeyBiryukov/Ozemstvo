@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B4017B4201BD4A4D8A77959FFB249491"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BF367F5ED5E040B98DE34295C3D3B2EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,6 +141,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4017B4201BD4A4D8A77959FFB249491"
+            {
+            "SourcePath" = "8:..\\OzemstvoWPF\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_AF99719A38D44C5AAB44FB5530C22831"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF367F5ED5E040B98DE34295C3D3B2EA"
             {
             "SourcePath" = "8:..\\OzemstvoWPF\\bin\\Release\\net6.0-windows7.0\\publish\\Ozemstvo.exe"
@@ -212,7 +238,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ozemstvo"
         "ProductCode" = "8:{F889DDE2-AE6C-413A-97ED-9EB1EBE8E648}"
-        "PackageCode" = "8:{F7BED486-6BC9-40E0-91A8-68F4C0DD139C}"
+        "PackageCode" = "8:{0CC22CA9-CEB5-4B2C-8CD9-CAC8EB8DE2CD}"
         "UpgradeCode" = "8:{5785C7A3-15D9-427E-ABF2-02C97B1C66D9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -499,7 +525,7 @@
             "Target" = "8:_BF367F5ED5E040B98DE34295C3D3B2EA"
             "Folder" = "8:_DC12B39C244E4F50861A4986F6488A7A"
             "WorkingFolder" = "8:_AF99719A38D44C5AAB44FB5530C22831"
-            "Icon" = "8:"
+            "Icon" = "8:_B4017B4201BD4A4D8A77959FFB249491"
             "Feature" = "8:"
             }
         }
@@ -903,7 +929,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4019E4110B7240C68DD6940476D71768"
             {
-            "SourcePath" = "8:..\\OzemstvoWPF\\obj\\Release\\net6.0-windows7.0\\apphost.exe"
+            "SourcePath" = "8:..\\OzemstvoWPF\\obj\\Debug\\net6.0-windows7.0\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_AF99719A38D44C5AAB44FB5530C22831"
