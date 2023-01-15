@@ -54,5 +54,10 @@ namespace OzemstvoWPF
         {
             new RuleEditorWindow(_ozemstvo, _rules).ShowDialog();
         }
+
+        private void AddBrowserButton_Click(object sender, RoutedEventArgs e)
+        {
+            new BrowserEditorWindow().ShowDialog();
+        }
     }
 }

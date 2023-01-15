@@ -61,7 +61,8 @@
                         HorizontalAlignment="Right"
                         Margin="0,0,20,20"
                         Padding="5,2,5,2"
-                        VerticalAlignment="Bottom"/>
+                        VerticalAlignment="Bottom"
+                        Click="AddBrowserButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
