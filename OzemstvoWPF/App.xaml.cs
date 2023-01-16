@@ -31,14 +31,6 @@ namespace OzemstvoWPF
             LoadRulesProperties();
             LoadBrowsersProperties();
 
-            // TODO: ask user about default browser
-            var chromeIndex = _ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
-            if (chromeIndex > -1)
-            {
-                _ozemstvo.Browsers[0].Default = false;
-                _ozemstvo.Browsers[chromeIndex].Default = true;
-            }
-
             if (e.Args.Length > 0)
             {
                 string target = e.Args[0];
@@ -52,6 +44,15 @@ namespace OzemstvoWPF
 
                 _ozemstvo.Rules = GetRules();
                 _ozemstvo.Browsers = GetBrowsers();
+
+                // TODO: ask user about default browser
+                var chromeIndex = _ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
+                if (chromeIndex > -1)
+                {
+                    _ozemstvo.Browsers[0].Default = false;
+                    _ozemstvo.Browsers[chromeIndex].Default = true;
+                }
+
                 _ozemstvo.Run(new Uri(e.Args[0]));
                 Shutdown();
             }

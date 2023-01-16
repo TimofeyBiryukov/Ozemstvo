@@ -5,7 +5,7 @@
     },
     "OzemstvoWPF-Console": {
       "commandName": "Project",
-      "commandLineArgs": "https://microsoft.com"
+      "commandLineArgs": "https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript"
     }
   }
 }
