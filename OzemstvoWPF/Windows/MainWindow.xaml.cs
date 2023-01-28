@@ -35,7 +35,7 @@ namespace OzemstvoWPF
             RuleProperty rule = _rules.First(r => r.Id == ruleItem.Rule.Id);
             if (rule is not null)
             {
-                new RuleEditorWindow(_ozemstvo, _rules, rule).ShowDialog();
+                new RuleEditorWindow(_rules, _browsers, rule).ShowDialog();
             }
         }
 
@@ -52,7 +52,7 @@ namespace OzemstvoWPF
 
         private void AddRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            new RuleEditorWindow(_ozemstvo, _rules).ShowDialog();
+            new RuleEditorWindow(_rules, _browsers).ShowDialog();
         }
 
         private void AddBrowserButton_Click(object sender, RoutedEventArgs e)

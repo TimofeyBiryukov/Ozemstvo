@@ -46,8 +46,8 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class RuleEditorWindow : Window
     {
-        private Ozemstvo _ozemstvo { get; set; }
         private ObservableCollection<RuleProperty> _rules { get; set; }
+        private ObservableCollection<BrowserProperty> _browsers { get; set; }
 
         public RuleProperty Rule { get; set; } = new();
 
@@ -57,15 +57,15 @@ namespace OzemstvoWPF
         public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
         public RuleEditorWindow(
-            Ozemstvo ozemstvo,
             ObservableCollection<RuleProperty> rules,
+            ObservableCollection<BrowserProperty> browsers,
             RuleProperty? rule = null)
         {
-            _ozemstvo = ozemstvo;
             _rules = rules;
-            Browsers = _ozemstvo.Browsers.Select(b => b.Name).ToArray();
-            Browser? defaultBrowser = _ozemstvo.Browsers.Where(b => b.Default).FirstOrDefault();
-            defaultBrowser ??= _ozemstvo.Browsers.First();
+            _browsers = browsers;
+            Browsers = _browsers.Select(b => b.Name).ToArray();
+            BrowserProperty? defaultBrowser = _browsers.Where(b => b.IsDefault).FirstOrDefault();
+            defaultBrowser ??= _browsers.First();
             Types = Enum.GetNames(typeof(RuleType));
 
             if (rule is not null)
@@ -206,10 +206,11 @@ namespace OzemstvoWPF
                 MessageBox.Show("Example is required");
                 return;
             }
-            Browser browser = _ozemstvo.Browsers.First(b => b.Name == Rule.Browser);
+            BrowserProperty browserProperty = _browsers.First(b => b.Name == Rule.Browser);
+            Browser browser = new(browserProperty.Name, browserProperty.Path);
             RuleType ruleType = Enum.TryParse<RuleType>(Rule.Type, out RuleType type) ? type : RuleType.Host;
             OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, ruleType, Rule.Data, Rule.Template);
-            Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, _ozemstvo.Browsers);
+            Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, new List<Browser> { browser });
         }
     }
 }
