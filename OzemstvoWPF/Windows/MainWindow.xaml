@@ -49,6 +49,11 @@
                         d:ItemsSource="{d:SampleData ItemCount=5}"
                         Margin="0,0,0,47"
                         AutoGenerateColumns="False">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Setter Property="IsEnabled" Value="{Binding Path=UserDefined}"/>
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Name"

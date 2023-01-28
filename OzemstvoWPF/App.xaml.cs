@@ -88,7 +88,7 @@ namespace OzemstvoWPF
             ObservableCollection<BrowserProperty> browsers = new();
             foreach (var browser in _browsers)
             {
-                if (!browser.AutoDetected)
+                if (browser.UserDefined)
                 {
                     browsers.Add(browser);
                 }
@@ -114,7 +114,7 @@ namespace OzemstvoWPF
                 {
                     Name = browser.Name,
                     Path = browser.Path,
-                    AutoDetected = true
+                    UserDefined = false
                 });
             }
             var browsers = JsonSerializer.Deserialize<ObservableCollection<BrowserProperty>>(Settings.Default.Browsers.ToString());
