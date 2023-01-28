@@ -64,7 +64,7 @@ namespace OzemstvoWPF
             _rules = rules;
             _browsers = browsers;
             Browsers = _browsers.Select(b => b.Name).ToArray();
-            BrowserProperty? defaultBrowser = _browsers.Where(b => b.IsDefault).FirstOrDefault();
+            BrowserProperty? defaultBrowser = _browsers.Where(b => b.Default).FirstOrDefault();
             defaultBrowser ??= _browsers.First();
             Types = Enum.GetNames(typeof(RuleType));
 
