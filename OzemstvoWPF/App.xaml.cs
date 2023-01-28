@@ -58,7 +58,7 @@ namespace OzemstvoWPF
             }
             else
             {
-                MainWindow main = new MainWindow(_ozemstvo, _rules, _browsers);
+                MainWindow main = new MainWindow(_rules, _browsers);
                 main.Show();
             }
         }

@@ -12,16 +12,13 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Ozemstvo _ozemstvo { get; set; }
         private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
         private ObservableCollection<BrowserProperty> _browsers { get; set; } = new ObservableCollection<BrowserProperty>();
 
         public MainWindow(
-            Ozemstvo ozemstvo,
             ObservableCollection<RuleProperty> rules,
             ObservableCollection<BrowserProperty> browsers)
         {
-            _ozemstvo = ozemstvo;
             _rules = rules;
             _browsers = browsers;
             InitializeComponent();
