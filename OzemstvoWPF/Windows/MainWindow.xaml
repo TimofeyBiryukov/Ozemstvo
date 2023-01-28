@@ -44,17 +44,23 @@
             </TabItem>
             <TabItem Header="Browsers">
                 <Grid Background="#FFE5E5E5">
-                    <ListView
+                    <DataGrid
                         x:Name="browsersList"
                         d:ItemsSource="{d:SampleData ItemCount=5}"
-                        Margin="0,0,0,47">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Path" DisplayMemberBinding="{Binding Path}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                        Margin="0,0,0,47"
+                        AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="Name"
+                                Binding="{Binding Name}" />
+                            <DataGridTextColumn
+                                Header="Path"
+                                Binding="{Binding Path}" />
+                            <DataGridCheckBoxColumn
+                                Header="Default"
+                                Binding="{Binding Default}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Button
                         x:Name="AddBrowserButton"
                         Content="Add"
