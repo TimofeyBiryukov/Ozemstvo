@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using OzemstvoConsole;
@@ -12,49 +13,47 @@ namespace OzemstvoWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
-        private ObservableCollection<BrowserProperty> _browsers { get; set; } = new ObservableCollection<BrowserProperty>();
+        public ObservableCollection<RuleProperty> Rules { get; set; } = new ObservableCollection<RuleProperty>();
+        public ObservableCollection<BrowserProperty> Browsers { get; set; } = new ObservableCollection<BrowserProperty>();
 
         public MainWindow(
             ObservableCollection<RuleProperty> rules,
             ObservableCollection<BrowserProperty> browsers)
         {
-            _rules = rules;
-            _browsers = browsers;
+            Rules = rules;
+            Browsers = browsers;
             InitializeComponent();
-            itemsControlRulesList.ItemsSource = _rules;
-            browsersList.ItemsSource = _browsers;
         }
 
         private void RuleItem_OnEdit(object sender, RoutedEventArgs e)
         {
             RuleItem ruleItem = (RuleItem)sender;
-            RuleProperty rule = _rules.First(r => r.Id == ruleItem.Rule.Id);
+            RuleProperty rule = Rules.First(r => r.Id == ruleItem.Rule.Id);
             if (rule is not null)
             {
-                new RuleEditorWindow(_rules, _browsers, rule).ShowDialog();
+                new RuleEditorWindow(Rules, Browsers, rule).ShowDialog();
             }
         }
 
         private void RuleItem_OnRemove(object sender, RoutedEventArgs e)
         {
             RuleItem ruleItem = (RuleItem)sender;
-            RuleProperty rule = _rules.First(r => r.Id == ruleItem.Rule.Id);
+            RuleProperty rule = Rules.First(r => r.Id == ruleItem.Rule.Id);
             if (rule is not null)
             {
-                _rules.Remove(rule);
+                Rules.Remove(rule);
                 ((App)Application.Current).SaveRulesProperties();
             }
         }
 
         private void AddRuleButton_Click(object sender, RoutedEventArgs e)
         {
-            new RuleEditorWindow(_rules, _browsers).ShowDialog();
+            new RuleEditorWindow(Rules, Browsers).ShowDialog();
         }
 
         private void AddBrowserButton_Click(object sender, RoutedEventArgs e)
         {
-            new BrowserEditorWindow(_browsers).ShowDialog();
+            new BrowserEditorWindow(Browsers).ShowDialog();
         }
     }
 }
