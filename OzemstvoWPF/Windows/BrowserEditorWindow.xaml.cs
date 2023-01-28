@@ -59,6 +59,7 @@ namespace OzemstvoWPF
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!Validate()) return;
             if (string.IsNullOrEmpty(Browser.Id))
             {
                 AddBrowser();
@@ -78,6 +79,21 @@ namespace OzemstvoWPF
             }
             ((App)Application.Current).SaveBrowserProperties();
             Close();
+        }
+
+        private bool Validate()
+        {
+            if (string.IsNullOrEmpty(Browser.Name))
+            {
+                MessageBox.Show("Name is required", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(Browser.Path))
+            {
+                MessageBox.Show("Path is required", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
 
         private void AddBrowser()
