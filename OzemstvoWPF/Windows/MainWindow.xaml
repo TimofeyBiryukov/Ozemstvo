@@ -49,7 +49,7 @@
                     <DataGrid
                         x:Name="browsersList"
                         d:ItemsSource="{d:SampleData ItemCount=5}"
-                        ItemsSource="{Binding Browsers, ElementName=root}"
+                        ItemsSource="{Binding Browsers, ElementName=root, Mode=TwoWay}"
                         Margin="0,0,0,47"
                         AutoGenerateColumns="False"
                         CanUserAddRows="False"
@@ -81,6 +81,15 @@
                         VerticalAlignment="Bottom"
                         IsEnabled="False"
                         Click="RemoveBrowserButton_Click"/>
+                    <Button
+                        x:Name="MakeDefaultBrowserButton"
+                        Content="Make default"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,20,20"
+                        Padding="5,2,5,2"
+                        VerticalAlignment="Bottom"
+                        IsEnabled="False"
+                        Click="MakeDefaultBrowserButton_Click"/>
                     <Button
                         x:Name="AddBrowserButton"
                         Content="Add"

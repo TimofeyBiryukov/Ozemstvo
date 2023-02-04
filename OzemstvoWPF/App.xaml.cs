@@ -22,8 +22,8 @@ namespace OzemstvoWPF
 
         private const string UniqueEventName = "Ozemstvo";
         private readonly Ozemstvo _ozemstvo = new();
-        private ObservableCollection<RuleProperty> _rules { get; set; } = new ObservableCollection<RuleProperty>();
-        private ObservableCollection<BrowserProperty> _browsers = new ObservableCollection<BrowserProperty>();
+        private ObservableCollection<RuleProperty> _rules { get; set; } = new();
+        private ObservableCollection<BrowserProperty> _browsers = new();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -114,6 +114,7 @@ namespace OzemstvoWPF
             if (browsers is null) return;
             foreach (var browser in browsers)
             {
+                if (browser.Default) foreach (var b in _browsers) b.Default = false;
                 _browsers.Add(browser);
             }
 

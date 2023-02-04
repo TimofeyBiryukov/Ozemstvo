@@ -57,7 +57,16 @@ namespace OzemstvoWPF
         private void browsersList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             SelectedBrowser = (BrowserProperty)browsersList.SelectedItem;
-            RemoveBrowserButton.IsEnabled = true;
+            if (SelectedBrowser is null)
+            {
+                RemoveBrowserButton.IsEnabled = false;
+                MakeDefaultBrowserButton.IsEnabled = false;
+            }
+            else
+            {
+                RemoveBrowserButton.IsEnabled = true;
+                MakeDefaultBrowserButton.IsEnabled = true;
+            }
         }
 
         private void RemoveBrowserButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +77,19 @@ namespace OzemstvoWPF
             Browsers.Remove(browser);
             SelectedBrowser = null;
             RemoveBrowserButton.IsEnabled = false;
+            ((App)Application.Current).SaveBrowserProperties();
+        }
+
+        private void MakeDefaultBrowserButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedBrowser is null) return;
+            BrowserProperty browser = Browsers.First(b => b.Id == SelectedBrowser.Id);
+            if (browser is null) return;
+            foreach (BrowserProperty b in Browsers)
+            {
+                b.SetDefault(false);
+            }
+            browser.SetDefault(true);
             ((App)Application.Current).SaveBrowserProperties();
         }
     }
