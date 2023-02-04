@@ -61,15 +61,15 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
+                            <DataGridCheckBoxColumn
+                                Header="Default"
+                                Binding="{Binding Default}" />
                             <DataGridTextColumn
                                 Header="Name"
                                 Binding="{Binding Name}" />
                             <DataGridTextColumn
                                 Header="Path"
                                 Binding="{Binding Path}" />
-                            <DataGridCheckBoxColumn
-                                Header="Default"
-                                Binding="{Binding Default}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button
