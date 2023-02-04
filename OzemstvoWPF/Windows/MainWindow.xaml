@@ -51,7 +51,9 @@
                         d:ItemsSource="{d:SampleData ItemCount=5}"
                         ItemsSource="{Binding Browsers, ElementName=root}"
                         Margin="0,0,0,47"
-                        AutoGenerateColumns="False">
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        IsReadOnly="True">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Setter Property="IsEnabled" Value="{Binding Path=UserDefined}"/>
