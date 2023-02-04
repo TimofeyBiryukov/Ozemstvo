@@ -57,7 +57,13 @@
                         SelectionChanged="browsersList_SelectionChanged">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
-                                <Setter Property="IsEnabled" Value="{Binding Path=UserDefined}"/>
+                                <!-- Setter Property="IsEnabled" Value="{Binding Path=UserDefined}"/ -->
+                                <!-- Setter Property="Background" Value="LightBlue" / -->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=UserDefined}" Value="True">
+                                        <Setter Property="Background" Value="AliceBlue" />
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>

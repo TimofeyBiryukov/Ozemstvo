@@ -64,7 +64,7 @@ namespace OzemstvoWPF
             }
             else
             {
-                RemoveBrowserButton.IsEnabled = true;
+                RemoveBrowserButton.IsEnabled = SelectedBrowser.UserDefined;
                 MakeDefaultBrowserButton.IsEnabled = true;
             }
         }

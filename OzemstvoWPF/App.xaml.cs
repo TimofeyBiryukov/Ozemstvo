@@ -104,6 +104,7 @@ namespace OzemstvoWPF
             {
                 _browsers.Add(new BrowserProperty
                 {
+                    Id = browser.Id,
                     Name = browser.Name,
                     Path = browser.Path,
                     UserDefined = false,
