@@ -42,7 +42,7 @@ public class Ozemstvo
     {
       throw new Exception("No browsers found");
     }
-    Browsers[0].Default = true;
+    Browsers.First().Default = true;
   }
 
   public void Run(Uri uri)

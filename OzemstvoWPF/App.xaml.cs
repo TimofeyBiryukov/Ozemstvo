@@ -45,14 +45,6 @@ namespace OzemstvoWPF
                 _ozemstvo.Rules = GetRules();
                 _ozemstvo.Browsers = GetBrowsers();
 
-                // TODO: ask user about default browser
-                var chromeIndex = _ozemstvo.Browsers.FindIndex(b => b.Name == "Google Chrome");
-                if (chromeIndex > -1)
-                {
-                    _ozemstvo.Browsers[0].Default = false;
-                    _ozemstvo.Browsers[chromeIndex].Default = true;
-                }
-
                 _ozemstvo.Run(new Uri(e.Args[0]));
                 Shutdown();
             }
@@ -114,7 +106,8 @@ namespace OzemstvoWPF
                 {
                     Name = browser.Name,
                     Path = browser.Path,
-                    UserDefined = false
+                    UserDefined = false,
+                    Default = browser.Default
                 });
             }
             var browsers = JsonSerializer.Deserialize<ObservableCollection<BrowserProperty>>(Settings.Default.Browsers.ToString());
@@ -161,7 +154,7 @@ namespace OzemstvoWPF
             List<Browser> browsers = new List<Browser>();
             foreach (var browser in _browsers)
             {
-                browsers.Add(new Browser(browser.Name, browser.Path));
+                browsers.Add(new Browser(browser.Name, browser.Path, browser.Default));
             }
             return browsers;
         }

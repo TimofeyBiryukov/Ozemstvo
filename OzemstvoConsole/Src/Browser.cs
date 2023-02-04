@@ -7,9 +7,10 @@ public class Browser
   public string Path { get; set; }
   public bool Default { get; set; } = false;
 
-  public Browser(string name, string path)
+  public Browser(string name, string path, bool isDefault = false)
   {
     Name = name;
     Path = path;
+    Default = isDefault;
   }
 }
