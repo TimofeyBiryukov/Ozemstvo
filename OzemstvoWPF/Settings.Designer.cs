@@ -46,5 +46,17 @@ namespace OzemstvoWPF {
                 this["Browsers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultBrowserId {
+            get {
+                return ((string)(this["DefaultBrowserId"]));
+            }
+            set {
+                this["DefaultBrowserId"] = value;
+            }
+        }
     }
 }

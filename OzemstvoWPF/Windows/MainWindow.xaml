@@ -67,6 +67,9 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="ID"
+                                Binding="{Binding Id}" />
                             <DataGridCheckBoxColumn
                                 Header="Default"
                                 Binding="{Binding Default}" />

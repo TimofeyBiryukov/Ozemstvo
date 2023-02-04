@@ -9,6 +9,7 @@ public class Browser
 
   public Browser(string name, string path, bool isDefault = false)
   {
+    Id = name.ToLower().Replace(" ", "-");
     Name = name;
     Path = path;
     Default = isDefault;

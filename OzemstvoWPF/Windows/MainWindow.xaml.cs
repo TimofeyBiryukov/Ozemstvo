@@ -91,6 +91,7 @@ namespace OzemstvoWPF
             }
             browser.SetDefault(true);
             ((App)Application.Current).SaveBrowserProperties();
+            ((App)Application.Current).SaveDefaultBrowser();
         }
     }
 }

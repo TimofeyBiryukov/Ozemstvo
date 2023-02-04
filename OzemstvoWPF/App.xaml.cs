@@ -30,6 +30,7 @@ namespace OzemstvoWPF
             _ozemstvo.Init();
             LoadRulesProperties();
             LoadBrowsersProperties();
+            LoadDefaultBrowser();
 
             if (e.Args.Length > 0)
             {
@@ -89,6 +90,14 @@ namespace OzemstvoWPF
             Settings.Default.Save();
         }
 
+        public void SaveDefaultBrowser()
+        {
+            BrowserProperty defaultBrowser = _browsers.First(b => b.Default);
+            if (defaultBrowser is null) return;
+            Settings.Default.DefaultBrowserId = defaultBrowser.Id;
+            Settings.Default.Save();
+        }
+
         public void LoadRulesProperties()
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
@@ -119,6 +128,16 @@ namespace OzemstvoWPF
                 _browsers.Add(browser);
             }
 
+        }
+
+        public void LoadDefaultBrowser()
+        {
+            string defaultBrowserId = Settings.Default.DefaultBrowserId.ToString();
+            if (string.IsNullOrEmpty(defaultBrowserId)) return;
+            foreach (var browser in _browsers)
+            {
+                browser.Default = defaultBrowserId == browser.Id;
+            }
         }
 
         static public List<Rule> GetRules(List<Browser> browsers)
