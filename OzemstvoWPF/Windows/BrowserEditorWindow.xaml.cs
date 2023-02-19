@@ -16,6 +16,20 @@ using System.Windows.Shapes;
 
 namespace OzemstvoWPF
 {
+
+    //public class RequiredValidationRule : ValidationRule
+    //{
+    //    public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+    //    {
+    //        string? stringToValidate = value as string;
+    //        if (string.IsNullOrEmpty(stringToValidate))
+    //        {
+    //            return new ValidationResult(false, "This field is required");
+    //        }
+    //        return ValidationResult.ValidResult;
+    //    }
+    //}
+
     /// <summary>
     /// Interaction logic for BrowserEditorWindow.xaml
     /// </summary>

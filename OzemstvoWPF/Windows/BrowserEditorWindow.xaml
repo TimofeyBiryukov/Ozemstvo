@@ -37,7 +37,15 @@
             VerticalAlignment="Center"
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding Path=Browser.Name, ElementName=root}"/>
+            >
+            <Binding
+                Path="Browser.Name"
+                ElementName="root">
+                <Binding.ValidationRules>
+                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
         <Label
             x:Name="pathLabel"
@@ -53,8 +61,15 @@
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,50,0"
-            Text="{Binding Path=Browser.Path, ElementName=root}"/>
+            Margin="0,0,50,0">
+            <Binding
+                Path="Browser.Path"
+                ElementName="root">
+                <Binding.ValidationRules>
+                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
         <Button
             x:Name="browseButton"
