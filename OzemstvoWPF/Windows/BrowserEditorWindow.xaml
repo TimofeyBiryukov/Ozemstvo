@@ -39,8 +39,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="0"
-            Grid.Column="1"
-            >
+            Grid.Column="1">
             <Binding
                 Path="Browser.Name"
                 ElementName="root">
