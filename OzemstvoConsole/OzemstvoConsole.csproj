@@ -11,8 +11,4 @@
     <EditorConfigFiles Remove="C:\Users\timofey\Sources\Tim\Ozemstvo\OzemstvoConsole\.editorconfig" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="C:\Users\timofey\Sources\Tim\Ozemstvo\OzemstvoConsole\.editorconfig" />
-  </ItemGroup>
-
 </Project>

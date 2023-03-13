@@ -2,37 +2,26 @@ using System.Text.RegularExpressions;
 
 namespace OzemstvoConsole;
 
-public enum RuleType
-{
-  Host = 1,
-  Regex = 2,
-  Path = 3,
-  Port = 4
-}
-
 public class Rule
 {
   public string Id { get; set; } = Guid.NewGuid().ToString();
   public string Name { get; set; }
   public Browser Browser { get; set; }
-  public string Data { get; set; }
   public string Template { get; set; }
   public const string TemplateHook = "{{url}}";
-  public RuleType Type { get; set; } = RuleType.Host;
+  public List<Match> Matches = new();
 
   public Rule(
     string name,
     Browser browser,
-    RuleType type,
-    string data,
+    List<Match> matches,
     string template = TemplateHook,
     string? id = null)
   {
     Name = name;
     Browser = browser;
-    Type = type;
+    Matches = matches;
     Template = template;
-    Data = data;
 
     if (id is not null)
     {
@@ -47,23 +36,10 @@ public class Rule
 
   public bool Match(Uri uri)
   {
-    if (Type == RuleType.Host)
+    foreach (Match match in Matches)
     {
-      return Data == uri.Host;
+      if (match.Run(uri)) return true;
     }
-    else if (Type == RuleType.Path)
-    {
-      return Data == uri.AbsolutePath;
-    }
-    else if (Type == RuleType.Port)
-    {
-      return Data == uri.Port.ToString();
-    }
-    else if (Type == RuleType.Regex)
-    {
-      return new Regex(Data)?.IsMatch(uri.ToString()) ?? false;
-    }
-
     return false;
   }
 
