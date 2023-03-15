@@ -56,7 +56,7 @@
                 Grid.Column="2"
                 Margin="5,5,5,5">
                 <Binding
-                    Path="Match.Data"
+                    Path="Match.Value"
                     ElementName="root">
                     <Binding.ValidationRules>
                         <validations:RequiredValidationRule ValidatesOnTargetUpdated="True"/>

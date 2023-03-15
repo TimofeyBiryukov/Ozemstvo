@@ -153,7 +153,7 @@ namespace OzemstvoWPF
                 foreach (var match in rule.Matches)
                 {
                     Enum.TryParse(match.Type, true, out MatchType type);
-                    matches.Add(new Match(match.Data, type));
+                    matches.Add(new Match(match.Value, type));
                 }
 
                 rules.Add(
@@ -174,7 +174,7 @@ namespace OzemstvoWPF
                 foreach (var match in rule.Matches)
                 {
                     Enum.TryParse(match.Type, true, out MatchType type);
-                    matches.Add(new Match(match.Data, type));
+                    matches.Add(new Match(match.Value, type));
                 }
 
                 rules.Add(

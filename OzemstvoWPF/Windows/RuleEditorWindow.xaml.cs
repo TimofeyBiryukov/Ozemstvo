@@ -76,7 +76,7 @@ namespace OzemstvoWPF
             {
                 foreach (var match in Rule.Matches)
                 {
-                    if (string.IsNullOrEmpty(match.Data))
+                    if (string.IsNullOrEmpty(match.Value))
                     {
                         MessageBox.Show("Match value is required");
                         return false;
@@ -166,7 +166,7 @@ namespace OzemstvoWPF
             foreach (var match in Rule.Matches)
             {
                 MatchType matchType = Enum.TryParse<MatchType>(match.Type, out MatchType type) ? type : MatchType.Host;
-                matches.Add(new Match(match.Data, matchType));
+                matches.Add(new Match(match.Value, matchType));
             }
             
             OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, matches, Rule.Template);

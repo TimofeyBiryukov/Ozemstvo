@@ -14,12 +14,12 @@ public enum MatchType
 public class Match
 {
 	public string Id = Guid.NewGuid().ToString();
-	public string Data { get; set; }
+	public string Value { get; set; }
 	public MatchType Type { get; set; } = MatchType.Host;
 
 	public Match(string data, MatchType type)
 	{
-		Data = data;
+		Value = data;
 		Type = type;
 	}
 
@@ -27,19 +27,19 @@ public class Match
 	{
     if (Type == MatchType.Host)
     {
-      return Data == uri.Host;
+      return Value == uri.Host;
     }
     else if (Type == MatchType.Path)
     {
-      return Data == uri.AbsolutePath;
+      return Value == uri.AbsolutePath;
     }
     else if (Type == MatchType.Port)
     {
-      return Data == uri.Port.ToString();
+      return Value == uri.Port.ToString();
     }
     else if (Type == MatchType.Regex)
     {
-      return new Regex(Data)?.IsMatch(uri.ToString()) ?? false;
+      return new Regex(Value)?.IsMatch(uri.ToString()) ?? false;
     }
 
     return false;
