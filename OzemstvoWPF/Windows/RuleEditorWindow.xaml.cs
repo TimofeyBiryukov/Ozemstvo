@@ -128,8 +128,7 @@ namespace OzemstvoWPF
                 {
                     rule.Name = Rule.Name;
                     rule.Browser = Rule.Browser;
-                    rule.Type = Rule.Type;
-                    rule.Data = Rule.Data;
+                    rule.Matches = Rule.Matches;
                     rule.Template = Rule.Template;
                 }
                 else

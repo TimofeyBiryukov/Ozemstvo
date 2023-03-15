@@ -7,10 +7,6 @@ namespace OzemstvoWPF.Models
         virtual public string? Id { get; set; } = null;
         virtual public string Name { get; set; } = string.Empty;
         virtual public string Browser { get; set; } = string.Empty;
-        // Legacy do not use
-        virtual public string Data { get; set; } = string.Empty;
-        // Legacy do not use
-        virtual public string Type { get; set; } = string.Empty;
         virtual public ObservableCollection<MatchProperty> Matches { get; set; } = new();
         virtual public string Template { get; set; } = "{{url}}";
         virtual public string Example { get; set; } = string.Empty;
