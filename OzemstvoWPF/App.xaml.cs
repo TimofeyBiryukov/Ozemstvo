@@ -190,7 +190,7 @@ namespace OzemstvoWPF
                 List<Match> matches = new();
                 foreach (var match in rule.Matches)
                 {
-                    Enum.TryParse(rule.Type, true, out MatchType type);
+                    Enum.TryParse(match.Type, true, out MatchType type);
                     matches.Add(new Match(match.Data, type));
                 }
 
@@ -211,7 +211,7 @@ namespace OzemstvoWPF
                 List<Match> matches = new();
                 foreach (var match in rule.Matches)
                 {
-                    Enum.TryParse(rule.Type, true, out MatchType type);
+                    Enum.TryParse(match.Type, true, out MatchType type);
                     matches.Add(new Match(match.Data, type));
                 }
 
