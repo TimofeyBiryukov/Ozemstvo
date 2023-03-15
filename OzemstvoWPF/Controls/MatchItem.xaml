@@ -53,7 +53,8 @@
                 VerticalAlignment="Center"
                 Grid.Row="0"
                 Grid.Column="3"
-                Margin="5,5,5,5" />
+                Margin="5,5,5,5"
+                Click="removeBtn_Click"/>
             
         </Grid>
     </Border>

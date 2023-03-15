@@ -21,12 +21,26 @@ namespace OzemstvoWPF.Controls
             set { SetValue(MatchDependecy, value); }
         }
 
+        public static readonly RoutedEvent OnRemoveEvent =
+            EventManager.RegisterRoutedEvent("OnRemove", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MatchItem));
+
+        public event RoutedEventHandler Remove
+        {
+            add { AddHandler(OnRemoveEvent, value); }
+            remove { RemoveHandler(OnRemoveEvent, value); }
+        }
+
         public string[] Types { get; set; } = Array.Empty<string>();
 
         public MatchItem()
         {
             Types = Enum.GetNames(typeof(MatchType));
             InitializeComponent();
+        }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(OnRemoveEvent));
         }
     }
 }

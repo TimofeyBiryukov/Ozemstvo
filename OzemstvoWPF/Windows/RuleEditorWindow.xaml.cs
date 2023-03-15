@@ -1,4 +1,5 @@
 ﻿using OzemstvoConsole;
+using OzemstvoWPF.Controls;
 using OzemstvoWPF.Models;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,10 @@ namespace OzemstvoWPF
                 {
                     Rule.Browser = defaultBrowser.Name;
                 }
-                Rule.Matches.Add(new MatchProperty());
+                Rule.Matches.Add(new MatchProperty
+                {
+                    Id = Guid.NewGuid().ToString()
+                });
             }
 
             InitializeComponent();
@@ -162,7 +166,18 @@ namespace OzemstvoWPF
 
         private void addMatchButton_Click(object sender, RoutedEventArgs e)
         {
-            Rule.Matches.Add(new MatchProperty());
+            Rule.Matches.Add(new MatchProperty
+            {
+                Id = Guid.NewGuid().ToString()
+            });
+        }
+
+        private void MatchItem_Remove(object sender, RoutedEventArgs e)
+        {
+            MatchItem matchItem = (MatchItem)sender;
+            MatchProperty matchProperty = Rule.Matches.First(m => m.Id == matchItem.Match.Id);
+            if (matchProperty is null) return;
+            Rule.Matches.Remove(matchProperty);
         }
     }
 }

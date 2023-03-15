@@ -103,6 +103,9 @@ namespace OzemstvoWPF
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
             if (rules is null) return;
+            // this is a fallback, we migrate old
+            // Type & Data included in Rule
+            // to new Matches with Rules and Data in them
             foreach (var rule in rules)
             {
                 if (string.IsNullOrEmpty(rule.Data) || string.IsNullOrEmpty(rule.Type))
@@ -112,13 +115,31 @@ namespace OzemstvoWPF
                     continue;
                 }
 
-                var matchProperty = new MatchProperty();
+                MatchProperty matchProperty = new();
+                if (string.IsNullOrEmpty(matchProperty.Id))
+                {
+                    matchProperty.Id = Guid.NewGuid().ToString();
+                }
                 matchProperty.Type = rule.Type;
                 matchProperty.Data = rule.Data;
                 rule.Matches.Add(matchProperty);
                 rule.Data = string.Empty;
                 rule.Type = string.Empty;
             }
+
+            // another fallback to add id's to existing matches
+            // if they have non yet
+            foreach (var rule in rules)
+            {
+                foreach (var match in rule.Matches)
+                {
+                    if (string.IsNullOrEmpty(match.Id))
+                    {
+                        match.Id = Guid.NewGuid().ToString();
+                    }
+                }
+            }
+
             _rules = rules;
         }
 
