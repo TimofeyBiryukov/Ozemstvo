@@ -21,7 +21,6 @@ namespace OzemstvoWPF
         public RuleProperty Rule { get; set; } = new();
 
         public string[] Browsers { get; set; } = Array.Empty<string>();
-        public string[] Types { get; set; } = Array.Empty<string>();
 
         public string TemplateDescription { get; set; } = "Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}.";
 
@@ -35,7 +34,6 @@ namespace OzemstvoWPF
             Browsers = _browsers.Select(b => b.Name).ToArray();
             BrowserProperty? defaultBrowser = _browsers.Where(b => b.Default).FirstOrDefault();
             defaultBrowser ??= _browsers.First();
-            Types = Enum.GetNames(typeof(MatchType));
 
             if (rule is not null)
             {
@@ -49,37 +47,9 @@ namespace OzemstvoWPF
                     Rule.Browser = defaultBrowser.Name;
                 }
                 Rule.Matches.Add(new MatchProperty());
-                Rule.Type = Types.First();
             }
 
             InitializeComponent();
-            updateDataInputLabel();
-        }
-
-        private void TypeInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dataInputLabel is null) return;
-            updateDataInputLabel();
-        }
-
-        private void updateDataInputLabel()
-        {
-            if (Rule.Type == MatchType.Host.ToString())
-            {
-                dataInputLabel.Content = "Host to match";
-            }
-            else if (Rule.Type == MatchType.Path.ToString())
-            {
-                dataInputLabel.Content = "Path to match";
-            }
-            else if (Rule.Type == MatchType.Port.ToString())
-            {
-                dataInputLabel.Content = "Port to match";
-            }
-            else if (Rule.Type == MatchType.Regex.ToString())
-            {
-                dataInputLabel.Content = "Regex to match";
-            }
         }
         
         private bool Validate()

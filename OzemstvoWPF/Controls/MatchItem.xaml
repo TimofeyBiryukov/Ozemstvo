@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="OzemstvoWPF.Controls.MatchItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OzemstvoWPF.Controls"
+             mc:Ignorable="d"
+             x:Name="root"
+             d:DesignHeight="40" d:DesignWidth="300">
+    <Border
+        BorderThickness="0"
+        CornerRadius="5"
+        Background="SlateGray">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ComboBox
+                x:Name="typeInput"
+                ItemsSource="{Binding Types, ElementName=root}"
+                SelectedItem="{Binding Match.Type, ElementName=root}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="5,5,5,5" />
+            <Label
+                Content="Is"
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"/>
+            <TextBox
+                x:Name="dataInput"
+                Text="{Binding Match.Data, ElementName=root}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                TextWrapping="Wrap"
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="5,5,5,5" />
+            <Button
+                x:Name="removeBtn"
+                Content="Remove"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="5,5,5,5" />
+            
+        </Grid>
+    </Border>
+</UserControl>

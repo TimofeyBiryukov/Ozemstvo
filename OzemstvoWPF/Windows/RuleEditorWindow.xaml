@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OzemstvoWPF"
+        xmlns:controls="clr-namespace:OzemstvoWPF.Controls"
         mc:Ignorable="d"
         Title="Rule Editor"
         Height="490"
         MinHeight="490"
-        Width="350"
-        MinWidth="350"
+        Width="400"
+        MinWidth="400"
         x:Name="root"
         ResizeMode="CanMinimize"
         xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -23,10 +24,11 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="1.4*"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -83,57 +85,43 @@
             SelectedItem="{Binding Rule.Browser, ElementName=root}"/>
 
         <Label
-            x:Name="typeInputLabel"
-            Content="Match By"
+            x:Name="matchListLabel"
+            Content="Open when:"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+            VerticalAlignment="Bottom"
             Grid.Row="2"
             Grid.Column="0"/>
-        <ComboBox
-            x:Name="typeInput"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
-            Grid.Row="2"
-            Grid.Column="1"
-            ItemsSource="{Binding Types, ElementName=root}"
-            SelectedItem="{Binding Rule.Matches[0].Type, ElementName=root}"
-            SelectionChanged="TypeInput_SelectionChanged"/>
-
-        <Label
-            x:Name="dataInputLabel"
-            d:Content="[Data Input]"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+        <ScrollViewer
+            VerticalScrollBarVisibility="Auto"
             Grid.Row="3"
-            Grid.Column="0"/>
-        <TextBox
-            x:Name="dataInput"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
-            TextWrapping="Wrap"
-            Grid.Row="3"
-            Grid.Column="1">
-            <Binding
-                Path="Rule.Matches[0].Data"
-                ElementName="root">
-                <Binding.ValidationRules>
-                    <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
-                </Binding.ValidationRules>
-            </Binding>
-        </TextBox>
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2">
+            <ItemsControl
+                x:Name="itemsControlRulesList"
+                d:ItemsSource="{d:SampleData ItemCount=5}"
+                ItemsSource="{Binding Rule.Matches, ElementName=root}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:MatchItem
+                            Match="{Binding .}"
+                            Margin="0,5,0,0" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
         <Label
             x:Name="templateInputLabel"
             Content="Template (optional)"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="0"/>
         <TextBlock
             TextWrapping="Wrap"
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             d:Text="Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}."
@@ -144,7 +132,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             TextWrapping="Wrap"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1">
             <Binding
                 Path="Rule.Template"
@@ -159,7 +147,7 @@
         <Border
             BorderBrush="White"
             BorderThickness="1"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="0"
             Grid.ColumnSpan="2"/>
         <Label
@@ -167,7 +155,7 @@
             Content="URL Example"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="0"
             Margin="4,0,0,0"/>
         <TextBox
@@ -175,7 +163,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="5"
             Margin="0,0,10,0">
             <Binding
@@ -186,7 +174,7 @@
         <Button
             x:Name="testButton"
             Grid.Column="0"
-            Grid.Row="7"
+            Grid.Row="8"
             Content="Test"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -196,7 +184,7 @@
         <Button
             x:Name="cancelButton"
             Grid.Column="1"
-            Grid.Row="7"
+            Grid.Row="8"
             Content="Cancel"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -207,7 +195,7 @@
         <Button
             x:Name="submitButton"
             Grid.Column="1"
-            Grid.Row="7"
+            Grid.Row="8"
             Content="Save"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
