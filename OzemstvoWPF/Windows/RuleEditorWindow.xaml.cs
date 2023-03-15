@@ -68,15 +68,26 @@ namespace OzemstvoWPF
                 MessageBox.Show("Browser is required");
                 return false;
             }
-            if (string.IsNullOrEmpty(Rule.Matches[0].Type))
+            if (Rule.Matches.Count == 0)
             {
-                MessageBox.Show("Type is required");
+                MessageBox.Show("At least one match is required");
                 return false;
             }
-            if (string.IsNullOrEmpty(Rule.Matches[0].Data))
+            else
             {
-                MessageBox.Show("Data is required");
-                return false;
+                foreach (var match in Rule.Matches)
+                {
+                    if (string.IsNullOrEmpty(match.Data))
+                    {
+                        MessageBox.Show("Match value is required");
+                        return false;
+                    }
+                    if (string.IsNullOrEmpty(match.Type))
+                    {
+                        MessageBox.Show("Match type is required");
+                        return false;
+                    }
+                }
             }
             if (string.IsNullOrEmpty(Rule.Template))
             {
