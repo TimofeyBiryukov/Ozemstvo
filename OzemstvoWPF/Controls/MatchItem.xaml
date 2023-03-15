@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OzemstvoWPF.Controls"
+             xmlns:validations="clr-namespace:OzemstvoWPF"
              mc:Ignorable="d"
              x:Name="root"
              d:DesignHeight="40" d:DesignWidth="300">
@@ -26,6 +27,7 @@
                 x:Name="typeInput"
                 ItemsSource="{Binding Types, ElementName=root}"
                 SelectedItem="{Binding Match.Type, ElementName=root}"
+                SelectedValue="Host"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Grid.Row="0"
@@ -39,13 +41,20 @@
                 HorizontalContentAlignment="Center"/>
             <TextBox
                 x:Name="dataInput"
-                Text="{Binding Match.Data, ElementName=root}"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"
                 Grid.Row="0"
                 Grid.Column="2"
-                Margin="5,5,5,5" />
+                Margin="5,5,5,5">
+                <Binding
+                    Path="Match.Data"
+                    ElementName="root">
+                    <Binding.ValidationRules>
+                        <validations:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
             <Button
                 x:Name="removeBtn"
                 Content="Remove"

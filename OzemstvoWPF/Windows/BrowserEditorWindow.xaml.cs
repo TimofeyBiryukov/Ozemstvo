@@ -1,35 +1,11 @@
 ﻿using OzemstvoWPF.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OzemstvoWPF
 {
-
-    //public class RequiredValidationRule : ValidationRule
-    //{
-    //    public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
-    //    {
-    //        string? stringToValidate = value as string;
-    //        if (string.IsNullOrEmpty(stringToValidate))
-    //        {
-    //            return new ValidationResult(false, "This field is required");
-    //        }
-    //        return ValidationResult.ValidResult;
-    //    }
-    //}
-
     /// <summary>
     /// Interaction logic for BrowserEditorWindow.xaml
     /// </summary>
