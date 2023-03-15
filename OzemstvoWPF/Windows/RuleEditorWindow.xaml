@@ -96,7 +96,7 @@
             Grid.Row="2"
             Grid.Column="1"
             ItemsSource="{Binding Types, ElementName=root}"
-            SelectedItem="{Binding Rule.Type, ElementName=root}"
+            SelectedItem="{Binding Rule.Matches[0].Type, ElementName=root}"
             SelectionChanged="TypeInput_SelectionChanged"/>
 
         <Label
@@ -114,7 +114,7 @@
             Grid.Row="3"
             Grid.Column="1">
             <Binding
-                Path="Rule.Data"
+                Path="Rule.Matches[0].Data"
                 ElementName="root">
                 <Binding.ValidationRules>
                     <local:RequiredValidationRule ValidatesOnTargetUpdated="True"/>

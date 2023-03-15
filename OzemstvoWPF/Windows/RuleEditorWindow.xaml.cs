@@ -48,6 +48,7 @@ namespace OzemstvoWPF
                 {
                     Rule.Browser = defaultBrowser.Name;
                 }
+                Rule.Matches.Add(new MatchProperty());
                 Rule.Type = Types.First();
             }
 
@@ -93,12 +94,12 @@ namespace OzemstvoWPF
                 MessageBox.Show("Browser is required");
                 return false;
             }
-            if (string.IsNullOrEmpty(Rule.Type))
+            if (string.IsNullOrEmpty(Rule.Matches[0].Type))
             {
                 MessageBox.Show("Type is required");
                 return false;
             }
-            if (string.IsNullOrEmpty(Rule.Data))
+            if (string.IsNullOrEmpty(Rule.Matches[0].Data))
             {
                 MessageBox.Show("Data is required");
                 return false;
