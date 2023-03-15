@@ -178,6 +178,14 @@ namespace OzemstvoWPF
             MatchProperty matchProperty = Rule.Matches.First(m => m.Id == matchItem.Match.Id);
             if (matchProperty is null) return;
             Rule.Matches.Remove(matchProperty);
+            if (Rule.Matches.Count() < 1)
+            {
+                Rule.Matches.Add(new MatchProperty
+                {
+                    Id = Guid.NewGuid().ToString()
+                });
+                return;
+            }
         }
     }
 }
