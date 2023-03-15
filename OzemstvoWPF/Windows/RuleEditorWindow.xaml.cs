@@ -35,7 +35,7 @@ namespace OzemstvoWPF
             Browsers = _browsers.Select(b => b.Name).ToArray();
             BrowserProperty? defaultBrowser = _browsers.Where(b => b.Default).FirstOrDefault();
             defaultBrowser ??= _browsers.First();
-            Types = Enum.GetNames(typeof(RuleType));
+            Types = Enum.GetNames(typeof(MatchType));
 
             if (rule is not null)
             {
@@ -63,19 +63,19 @@ namespace OzemstvoWPF
 
         private void updateDataInputLabel()
         {
-            if (Rule.Type == RuleType.Host.ToString())
+            if (Rule.Type == MatchType.Host.ToString())
             {
                 dataInputLabel.Content = "Host to match";
             }
-            else if (Rule.Type == RuleType.Path.ToString())
+            else if (Rule.Type == MatchType.Path.ToString())
             {
                 dataInputLabel.Content = "Path to match";
             }
-            else if (Rule.Type == RuleType.Port.ToString())
+            else if (Rule.Type == MatchType.Port.ToString())
             {
                 dataInputLabel.Content = "Port to match";
             }
-            else if (Rule.Type == RuleType.Regex.ToString())
+            else if (Rule.Type == MatchType.Regex.ToString())
             {
                 dataInputLabel.Content = "Regex to match";
             }
@@ -177,8 +177,15 @@ namespace OzemstvoWPF
             }
             BrowserProperty browserProperty = _browsers.First(b => b.Name == Rule.Browser);
             Browser browser = new(browserProperty.Name, browserProperty.Path);
-            RuleType ruleType = Enum.TryParse<RuleType>(Rule.Type, out RuleType type) ? type : RuleType.Host;
-            OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, ruleType, Rule.Data, Rule.Template);
+
+            List<Match> matches = new();
+            foreach (var match in Rule.Matches)
+            {
+                MatchType matchType = Enum.TryParse<MatchType>(match.Type, out MatchType type) ? type : MatchType.Host;
+                matches.Add(new Match(match.Data, matchType));
+            }
+            
+            OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, matches, Rule.Template);
             Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, new List<Browser> { browser });
         }
     }

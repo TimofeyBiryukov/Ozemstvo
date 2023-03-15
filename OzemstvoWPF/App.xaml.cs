@@ -23,7 +23,7 @@ namespace OzemstvoWPF
 
         private const string UniqueEventName = "Ozemstvo";
         private readonly Ozemstvo _ozemstvo = new();
-        private ObservableCollection<RuleProperty> _rules { get; set; } = new();
+        private ObservableCollection<RuleProperty> _rules = new();
         private ObservableCollection<BrowserProperty> _browsers = new();
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -102,10 +102,24 @@ namespace OzemstvoWPF
         public void LoadRulesProperties()
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
-            if (rules is not null)
+            if (rules is null) return;
+            foreach (var rule in rules)
             {
-                _rules = rules;
+                if (string.IsNullOrEmpty(rule.Data) || string.IsNullOrEmpty(rule.Type))
+                {
+                    rule.Data = string.Empty;
+                    rule.Type = string.Empty;
+                    continue;
+                }
+
+                var matchProperty = new MatchProperty();
+                matchProperty.Type = rule.Type;
+                matchProperty.Data = rule.Data;
+                rule.Matches.Add(matchProperty);
+                rule.Data = string.Empty;
+                rule.Type = string.Empty;
             }
+            _rules = rules;
         }
 
         public void LoadBrowsersProperties()
@@ -150,9 +164,16 @@ namespace OzemstvoWPF
             {
                 var browser = browsers.Find(b => b.Name == rule.Browser);
                 if (browser is null) continue;
-                Enum.TryParse(rule.Type, true, out RuleType type);
+                
+                List<Match> matches = new();
+                foreach (var match in rule.Matches)
+                {
+                    Enum.TryParse(rule.Type, true, out MatchType type);
+                    matches.Add(new Match(match.Data, type));
+                }
+
                 rules.Add(
-                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+                    new Rule(rule.Name, browser, matches, rule.Template, rule.Id));
             }
             return rules;
         }
@@ -164,9 +185,16 @@ namespace OzemstvoWPF
             {
                 var browser = _ozemstvo.Browsers.Find(b => b.Name == rule.Browser);
                 if (browser is null) continue;
-                Enum.TryParse(rule.Type, true, out RuleType type);
+
+                List<Match> matches = new();
+                foreach (var match in rule.Matches)
+                {
+                    Enum.TryParse(rule.Type, true, out MatchType type);
+                    matches.Add(new Match(match.Data, type));
+                }
+
                 rules.Add(
-                    new Rule(rule.Name, browser, type, rule.Data, rule.Template, rule.Id));
+                    new Rule(rule.Name, browser, matches, rule.Template, rule.Id));
             }
             return rules;
         }
