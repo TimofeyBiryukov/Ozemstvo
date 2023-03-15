@@ -49,18 +49,6 @@ namespace OzemstvoWPF {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("[]")]
-        public string Matches {
-            get {
-                return ((string)(this["Matches"]));
-            }
-            set {
-                this["Matches"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DefaultBrowserId {
             get {

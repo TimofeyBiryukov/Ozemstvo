@@ -8,9 +8,6 @@
     <Setting Name="Browsers" Type="System.String" Scope="User">
       <Value Profile="(Default)">[]</Value>
     </Setting>
-    <Setting Name="Matches" Type="System.String" Scope="User">
-      <Value Profile="(Default)">[]</Value>
-    </Setting>
     <Setting Name="DefaultBrowserId" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
