@@ -27,7 +27,6 @@
                 x:Name="typeInput"
                 ItemsSource="{Binding Types, ElementName=root}"
                 SelectedItem="{Binding Match.Type, ElementName=root}"
-                SelectedValue="Host"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Grid.Row="0"
