@@ -159,5 +159,10 @@ namespace OzemstvoWPF
             OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, matches, Rule.Template);
             Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, new List<Browser> { browser });
         }
+
+        private void addMatchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Rule.Matches.Add(new MatchProperty());
+        }
     }
 }
