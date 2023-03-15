@@ -26,12 +26,21 @@
             <ComboBox
                 x:Name="typeInput"
                 ItemsSource="{Binding Types, ElementName=root}"
-                SelectedItem="{Binding Match.Type, ElementName=root}"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
                 Grid.Row="0"
                 Grid.Column="0"
-                Margin="5,5,5,5" />
+                Margin="5,5,5,5">
+                <ComboBox.SelectedItem>
+                    <Binding
+                        Path="Match.Type"
+                        ElementName="root">
+                        <Binding.ValidationRules>
+                            <validations:RequiredValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </ComboBox.SelectedItem>
+            </ComboBox>
             <Label
                 Content="Is"
                 Grid.Row="0"

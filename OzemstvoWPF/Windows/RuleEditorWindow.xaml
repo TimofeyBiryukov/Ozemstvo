@@ -100,7 +100,7 @@
             Margin="5,5,5,5">
             <ItemsControl
                 x:Name="itemsControlRulesList"
-                d:ItemsSource="{d:SampleData ItemCount=5}"
+                d:ItemsSource="{d:SampleData ItemCount=4}"
                 ItemsSource="{Binding Rule.Matches, ElementName=root}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
