@@ -103,6 +103,7 @@ namespace OzemstvoWPF
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
             if (rules is null) return;
+
             // this is a fallback, we migrate old
             // Type & Data included in Rule
             // to new Matches with Rules and Data in them
