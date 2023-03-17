@@ -10,5 +10,6 @@ namespace OzemstvoWPF.Models
         virtual public ObservableCollection<MatchProperty> Matches { get; set; } = new();
         virtual public string Template { get; set; } = "{{url}}";
         virtual public string Example { get; set; } = string.Empty;
+        virtual public string Color { get; set; } = "";
     }
 }

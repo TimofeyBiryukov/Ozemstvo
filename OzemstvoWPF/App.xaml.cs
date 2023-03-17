@@ -3,11 +3,12 @@ using OzemstvoWPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace OzemstvoWPF
 {
@@ -103,6 +104,58 @@ namespace OzemstvoWPF
         {
             var rules = JsonSerializer.Deserialize<ObservableCollection<RuleProperty>>(Settings.Default.Rules.ToString());
             if (rules is null) return;
+            //foreach (var rule in rules)
+            //{
+            //    foreach (var match in rule.Matches)
+            //    {
+            //        if (string.IsNullOrEmpty(match.Color))
+            //        {
+            //            var random = new Random();
+            //            var number = random.Next(1, 6);
+            //            switch (number)
+            //            {
+            //                case 1:
+            //                    match.Color = "#151F30";
+            //                    break;
+            //                case 2:
+            //                    match.Color = "#103778";
+            //                    break;
+            //                case 3:
+            //                    match.Color = "#0593A2";
+            //                    break;
+            //                case 4:
+            //                    match.Color = "#FF7A48";
+            //                    break;
+            //                case 5:
+            //                    match.Color = "#E3371E";
+            //                    break;
+            //            }
+            //        }
+            //    }
+            //    if (string.IsNullOrEmpty(rule.Color))
+            //    {
+            //        var random = new Random();
+            //        var number = random.Next(1, 6);
+            //        switch (number)
+            //        {
+            //            case 1:
+            //                rule.Color = "#151F30";
+            //                break;
+            //            case 2:
+            //                rule.Color = "#103778";
+            //                break;
+            //            case 3:
+            //                rule.Color = "#0593A2";
+            //                break;
+            //            case 4:
+            //                rule.Color = "#FF7A48";
+            //                break;
+            //            case 5:
+            //                rule.Color = "#E3371E";
+            //                break;
+            //        }
+            //    }
+            //}
             _rules = rules;
         }
 

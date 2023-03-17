@@ -1,8 +1,11 @@
 ﻿using OzemstvoConsole;
 using OzemstvoWPF.Models;
 using System;
+using System.Globalization;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace OzemstvoWPF.Controls
 {
@@ -36,6 +39,26 @@ namespace OzemstvoWPF.Controls
         {
             Types = Enum.GetNames(typeof(MatchType));
             InitializeComponent();
+            //var random = new Random();
+            //var number = random.Next(1, 6);
+            //switch (number)
+            //{
+            //    case 1:
+            //        border.Background = new SolidColorBrush(FromHex("#151F30"));
+            //        break;
+            //    case 2:
+            //        border.Background = new SolidColorBrush(FromHex("#103778"));
+            //        break;
+            //    case 3:
+            //        border.Background = new SolidColorBrush(FromHex("#0593A2"));
+            //        break;
+            //    case 4:
+            //        border.Background = new SolidColorBrush(FromHex("#FF7A48"));
+            //        break;
+            //    case 5:
+            //        border.Background = new SolidColorBrush(FromHex("#E3371E"));
+            //        break;
+            //}
         }
 
         private void removeBtn_Click(object sender, RoutedEventArgs e)

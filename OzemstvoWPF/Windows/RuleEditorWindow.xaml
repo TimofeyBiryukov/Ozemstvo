@@ -31,7 +31,16 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
+
+        <Border
+            Background="{Binding Rule.Color, ElementName=root}"
+            d:Background="SlateGray"
+            Grid.Row="99"
+            Grid.RowSpan="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2" />
 
         <Label
             x:Name="ruleNameInputLabel"
@@ -177,7 +186,7 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"
             Grid.Row="8"
-            Grid.Column="5"
+            Grid.Column="1"
             Margin="0,0,10,0">
             <Binding
                 Path="Rule.Example"
