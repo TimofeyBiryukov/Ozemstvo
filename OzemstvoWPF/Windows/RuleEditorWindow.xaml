@@ -21,6 +21,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
@@ -31,23 +33,23 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
         <Border
             Background="{Binding Rule.Color, ElementName=root}"
             d:Background="SlateGray"
-            Grid.Row="99"
+            Grid.Row="0"
             Grid.RowSpan="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2"
+            CornerRadius="5" />
 
         <Label
             x:Name="ruleNameInputLabel"
             Content="Rule Name"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="0"
             Margin="4,0,0,0"/>
         <TextBox
@@ -55,7 +57,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="1"
             Margin="0,0,10,0">
             <Binding
@@ -72,14 +74,14 @@
             Content="Open In"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Margin="4,0,0,0"/>
         <ComboBox
             x:Name="openInInput"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Margin="0,0,10,0"
             ItemsSource="{Binding Browsers, ElementName=root}"
@@ -88,7 +90,7 @@
         <Border
             BorderBrush="SlateGray"
             BorderThickness="1"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.RowSpan="4"
             Grid.Column="0"
             Grid.ColumnSpan="2"/>
@@ -98,12 +100,12 @@
             Content="Open when:"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="0"
             Margin="5,0,0,0"/>
         <ScrollViewer
             VerticalScrollBarVisibility="Auto"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
             Margin="5,5,5,5">
@@ -124,7 +126,7 @@
         <Button
             x:Name="addMatchButton"
             Grid.Column="1"
-            Grid.Row="5"
+            Grid.Row="6"
             Content="Add another match"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
@@ -136,13 +138,13 @@
             Content="Template (optional)"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="0"/>
         <TextBlock
             TextWrapping="Wrap"
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             d:Text="Command template, this will be passed to the browser. {{url}} will be replaced with the URL of the page you want to open. It must include {{url}}."
@@ -153,7 +155,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             TextWrapping="Wrap"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="1"
             Margin="0,5,0,0">
             <Binding
@@ -169,7 +171,7 @@
         <Border
             BorderBrush="SlateGray"
             BorderThickness="1"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="0"
             Grid.ColumnSpan="2"/>
         <Label
@@ -177,7 +179,7 @@
             Content="URL Example"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="0"
             Margin="4,0,0,0"/>
         <TextBox
@@ -185,7 +187,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             TextWrapping="Wrap"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             Margin="0,0,10,0">
             <Binding
@@ -196,7 +198,7 @@
         <Button
             x:Name="testButton"
             Grid.Column="0"
-            Grid.Row="9"
+            Grid.Row="10"
             Content="Test"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -206,7 +208,7 @@
         <Button
             x:Name="cancelButton"
             Grid.Column="1"
-            Grid.Row="9"
+            Grid.Row="10"
             Content="Cancel"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -217,7 +219,7 @@
         <Button
             x:Name="submitButton"
             Grid.Column="1"
-            Grid.Row="9"
+            Grid.Row="10"
             Content="Save"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
