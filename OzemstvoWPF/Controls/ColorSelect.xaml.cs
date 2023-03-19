@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using OzemstvoWPF.Config;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace OzemstvoWPF.Controls
@@ -18,14 +19,7 @@ namespace OzemstvoWPF.Controls
             set { SetValue(ColorDependency, value); }
         }
 
-        static public string[] ColorVariants { get; set; } = new string[]
-        {
-            "#151F30", // Dark Blue
-            "#103778", // Blue
-            "#0593A2", // Light Blue
-            "#FF7A48", // Orange
-            "#E3371E" // Red
-        };
+        static public string[] ColorVariants { get; set; } = ColorConfig.ColorVariants;
 
         public ColorSelect()
         {

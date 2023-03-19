@@ -108,50 +108,50 @@ namespace OzemstvoWPF
             //{
             //    foreach (var match in rule.Matches)
             //    {
-            //        if (string.IsNullOrEmpty(match.Color))
+            //        if (string.IsNullOrEmpty(match.ColorConfig))
             //        {
             //            var random = new Random();
             //            var number = random.Next(1, 6);
             //            switch (number)
             //            {
             //                case 1:
-            //                    match.Color = "#151F30";
+            //                    match.ColorConfig = "#151F30";
             //                    break;
             //                case 2:
-            //                    match.Color = "#103778";
+            //                    match.ColorConfig = "#103778";
             //                    break;
             //                case 3:
-            //                    match.Color = "#0593A2";
+            //                    match.ColorConfig = "#0593A2";
             //                    break;
             //                case 4:
-            //                    match.Color = "#FF7A48";
+            //                    match.ColorConfig = "#FF7A48";
             //                    break;
             //                case 5:
-            //                    match.Color = "#E3371E";
+            //                    match.ColorConfig = "#E3371E";
             //                    break;
             //            }
             //        }
             //    }
-            //    if (string.IsNullOrEmpty(rule.Color))
+            //    if (string.IsNullOrEmpty(rule.ColorConfig))
             //    {
             //        var random = new Random();
             //        var number = random.Next(1, 6);
             //        switch (number)
             //        {
             //            case 1:
-            //                rule.Color = "#151F30";
+            //                rule.ColorConfig = "#151F30";
             //                break;
             //            case 2:
-            //                rule.Color = "#103778";
+            //                rule.ColorConfig = "#103778";
             //                break;
             //            case 3:
-            //                rule.Color = "#0593A2";
+            //                rule.ColorConfig = "#0593A2";
             //                break;
             //            case 4:
-            //                rule.Color = "#FF7A48";
+            //                rule.ColorConfig = "#FF7A48";
             //                break;
             //            case 5:
-            //                rule.Color = "#E3371E";
+            //                rule.ColorConfig = "#E3371E";
             //                break;
             //        }
             //    }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OzemstvoWPF.Config;
+using System;
 
 namespace OzemstvoWPF.Models;
 
@@ -7,14 +7,7 @@ public class BackgroundColor
 {
     virtual public string Color { get; set; } = "";
 
-    static public string[] ColorVariants { get; set; } = new string[]
-    {
-        "#151F30", // Dark Blue
-        "#103778", // Blue
-        "#0593A2", // Light Blue
-        "#FF7A48", // Orange
-        "#E3371E" // Red
-    };
+    static public string[] ColorVariants { get; set; } = ColorConfig.ColorVariants;
 
     public BackgroundColor()
     {
