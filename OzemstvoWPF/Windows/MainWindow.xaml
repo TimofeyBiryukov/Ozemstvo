@@ -18,7 +18,24 @@
         Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}">
     <Grid>
         <TabControl x:Name="tabControl">
-            <TabItem Header="Rules">
+            <TabItem
+                Header=""
+                IsEnabled="False">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Source="C:\Users\timof\Sources\Tim\Ozemstvo\OzemstvoWPF\icon.ico"
+                                Width="16"
+                                Height="auto"
+                                Margin="0,0,5,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+            </TabItem>
+            <TabItem
+                Header="Rules"
+                IsSelected="True">
                 <Grid>
                     <ScrollViewer
                         Margin="10,0,10,47"
