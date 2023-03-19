@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OzemstvoWPF"
         mc:Ignorable="d"
-        Title="BrowserEditorWindow"
+        Title="Add Browser"
         Height="200"
         Width="274"
         MinHeight="155"
