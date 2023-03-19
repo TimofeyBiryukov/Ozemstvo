@@ -35,15 +35,6 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Border
-            Background="{Binding Rule.Color, ElementName=root}"
-            d:Background="SlateGray"
-            Grid.Row="0"
-            Grid.RowSpan="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            CornerRadius="5" />
-
         <Label
             x:Name="ruleNameInputLabel"
             Content="Rule Name"
@@ -76,23 +67,13 @@
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
-            <ComboBox
-                x:Name="colorInput"
+            <controls:ColorSelect
+                Color="{Binding Rule.Color, ElementName=root, Mode=TwoWay}"
                 Grid.Row="0"
                 Grid.Column="2"
                 Margin="0,0,5,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                ItemsSource="{Binding Rule.ColorVariants, ElementName=root}"
-                SelectedItem="{Binding Rule.Color, ElementName=root}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Rectangle Width="16" Height="16" Margin="5" Fill="{Binding}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                VerticalAlignment="Center" />
         </Grid>
         
         <Label
