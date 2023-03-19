@@ -33,6 +33,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <Border
@@ -195,10 +196,28 @@
                 ElementName="root"/>
         </TextBox>
 
+        <Label
+            x:Name="colorInputLabel"
+            Content="Color"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Grid.Row="10"
+            Grid.Column="0"
+            Margin="4,0,0,0"/>
+        <ComboBox
+            x:Name="colorInput"
+            Grid.Row="10"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Margin="20,0,20,0"
+            ItemsSource="{Binding Rule.ColorVariants, ElementName=root}"
+            SelectedItem="{Binding Rule.Color, ElementName=root}"/>
+
         <Button
             x:Name="testButton"
             Grid.Column="0"
-            Grid.Row="10"
+            Grid.Row="11"
             Content="Test"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -208,7 +227,7 @@
         <Button
             x:Name="cancelButton"
             Grid.Column="1"
-            Grid.Row="10"
+            Grid.Row="11"
             Content="Cancel"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -219,7 +238,7 @@
         <Button
             x:Name="submitButton"
             Grid.Column="1"
-            Grid.Row="10"
+            Grid.Row="11"
             Content="Save"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
