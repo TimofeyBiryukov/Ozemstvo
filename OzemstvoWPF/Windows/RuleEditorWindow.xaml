@@ -208,11 +208,18 @@
             x:Name="colorInput"
             Grid.Row="10"
             Grid.Column="1"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="20,0,20,0"
             ItemsSource="{Binding Rule.ColorVariants, ElementName=root}"
-            SelectedItem="{Binding Rule.Color, ElementName=root}"/>
+            SelectedItem="{Binding Rule.Color, ElementName=root}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="16" Height="16" Margin="5" Fill="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <Button
             x:Name="testButton"
