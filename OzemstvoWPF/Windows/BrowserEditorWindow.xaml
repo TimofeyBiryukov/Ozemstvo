@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OzemstvoWPF"
         mc:Ignorable="d"
         Title="BrowserEditorWindow"
-        Height="155"
+        Height="200"
         Width="274"
         MinHeight="155"
         MinWidth="300"
@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
         <Label
@@ -39,7 +39,8 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             Grid.Row="0"
-            Grid.Column="1">
+            Grid.Column="1"
+            Margin="5,0,0,0">
             <Binding
                 Path="Browser.Name"
                 ElementName="root">
@@ -63,7 +64,7 @@
             VerticalAlignment="Center"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,65,0">
+            Margin="5,0,65,0">
             <Binding
                 Path="Browser.Path"
                 ElementName="root">
@@ -82,27 +83,34 @@
             Grid.Column="1"
             Click="browseButton_Click"/>
 
-        <Button
-            x:Name="cancelButton"
-            Grid.Column="1"
-            Grid.Row="3"
-            Content="Cancel"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Click="cancelButton_Click"
-            IsCancel="True"
-            Margin="52,0,0,0"
-            Padding="2,2,2,2"/>
-        <Button
-            x:Name="submitButton"
-            Grid.Column="1"
-            Grid.Row="3"
-            Content="Save"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Click="submitButton_Click"
-            IsDefault="True"
-            Margin="101,0,0,0"
-            Padding="2,2,2,2"/>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Button
+                x:Name="cancelButton"
+                Grid.Column="0"
+                Grid.Row="0"
+                Content="Cancel"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="cancelButton_Click"
+                IsCancel="True"
+                Margin="0,0,10,0" />
+            <Button
+                x:Name="submitButton"
+                Grid.Column="1"
+                Grid.Row="0"
+                Content="Save"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Click="submitButton_Click"
+                IsDefault="True" />
+        </Grid>
+
     </Grid>
 </Window>
