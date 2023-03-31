@@ -238,7 +238,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ozemstvo"
         "ProductCode" = "8:{F889DDE2-AE6C-413A-97ED-9EB1EBE8E648}"
-        "PackageCode" = "8:{0CC22CA9-CEB5-4B2C-8CD9-CAC8EB8DE2CD}"
+        "PackageCode" = "8:{CA2B6E11-F18F-4D4B-B83D-6E6148B383A4}"
         "UpgradeCode" = "8:{5785C7A3-15D9-427E-ABF2-02C97B1C66D9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
