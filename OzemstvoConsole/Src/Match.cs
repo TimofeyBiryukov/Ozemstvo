@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace OzemstvoConsole;
 
@@ -39,10 +38,16 @@ public class Match
     }
     else if (Type == MatchType.Regex)
     {
-      return new Regex(Value)?.IsMatch(uri.ToString()) ?? false;
+      try
+      {
+        return new Regex(Value)?.IsMatch(uri.ToString()) ?? false;
+      }
+      catch
+      {
+        return false;
+      }
     }
 
     return false;
   }
 }
-

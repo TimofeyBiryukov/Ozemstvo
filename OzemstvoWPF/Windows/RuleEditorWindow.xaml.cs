@@ -170,7 +170,14 @@ namespace OzemstvoWPF
             }
             
             OzemstvoConsole.Rule rule = new OzemstvoConsole.Rule(Rule.Name, browser, matches, Rule.Template);
-            Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, new List<Browser> { browser });
+            try
+            {
+                Ozemstvo.Run(new Uri(Rule.Example), new List<OzemstvoConsole.Rule> { rule }, new List<Browser> { browser });
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open URL");
+            }
         }
 
         private void addMatchButton_Click(object sender, RoutedEventArgs e)
