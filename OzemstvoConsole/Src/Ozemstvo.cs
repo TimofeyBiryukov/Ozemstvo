@@ -65,7 +65,7 @@ public class Ozemstvo
     var defaultBrowser = browsers.Find(x => x.Default);
     if (defaultBrowser is not null)
     {
-      Start(defaultBrowser, uri.ToString());
+      Start(defaultBrowser, '"' + uri.ToString() + '"');
       return;
     }
 
@@ -74,6 +74,7 @@ public class Ozemstvo
 
   private static void Start(Browser browser, string argumets)
   {
+    Console.WriteLine($"Starting {browser.Name} with {argumets}");
     Process.Start(browser.Path, argumets);
   }
 }
