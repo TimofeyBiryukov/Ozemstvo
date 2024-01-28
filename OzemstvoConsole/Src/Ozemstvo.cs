@@ -56,7 +56,7 @@ public class Ozemstvo
     {
       if (rule.Match(uri))
       {
-        Start(rule.Browser, rule.GetArguments(uri));
+        Start(rule.Browser, '"' + rule.GetArguments(uri) + '"');
         return;
       }
     }
