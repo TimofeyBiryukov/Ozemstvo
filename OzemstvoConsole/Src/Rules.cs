@@ -45,6 +45,10 @@ public class Rule
 
   public string GetArguments(Uri uri)
   {
+    if (Template == "{{url}}")
+    {
+      return '"' + Template.Replace(TemplateHook, uri.ToString()) + '"';
+    }
     return Template.Replace(TemplateHook, uri.ToString());
   }
 }

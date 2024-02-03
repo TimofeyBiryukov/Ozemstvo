@@ -45,8 +45,8 @@ namespace OzemstvoWPF
                     return;
                 }
 
-                _ozemstvo.Rules = GetRules();
                 _ozemstvo.Browsers = GetBrowsers();
+                _ozemstvo.Rules = GetRules();
 
                 _ozemstvo.Run(new Uri(e.Args[0]));
                 Shutdown();

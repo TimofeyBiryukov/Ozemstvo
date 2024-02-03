@@ -2,7 +2,7 @@
   "profiles": {
     "OzemstvoConsole": {
       "commandName": "Project",
-      "commandLineArgs": "https://github.com/sandeepmistry/arduino-CAN#compatible-hardware:~:text=Requires%20an%20external%203.3V%20CAN%20transceiver%2C%20such%20as%20a%20TI%20SN65HVD230."
+      "commandLineArgs": "https://discord.com/channels/851854972600451112/1184925886487724063"
     }
   }
 }
